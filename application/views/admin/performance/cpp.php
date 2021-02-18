@@ -11,10 +11,20 @@
 		<div class="col-md-12">
 			<div style="display:flex; row-direction:row; justify-content:flex-end; margin-bottom:10px;">
 				<div class="input-group">
-					<input readonly id="date-filter" type="text" class="form-control pointer" 
-						style="color: #000;background:#fff;" value="<?= $currDate ?>" 
-						data-date="<?= date("d-m-Y") ?>" data-date-format="dd-mm-yyyy" data-date-viewmode="months" />
-					<span class="input-group-addon pointer" onclick="changeDate()">Ganti Tanggal</span>
+					<span class="input-group-addon">Tahun</span>
+					<select id="year-date" class="form-control pointer" onchange="changeDate()">
+						<?php for ($i=2018; $i <= 2099 ; $i++) {  $selected = $year == $i ? "selected" : null ?>
+							<option <?=$selected?> value="<?=$i?>"><?=$i?></option>
+						<?php } ?>
+					</select>
+				</div>
+				<div class="input-group" style="margin-left: 20px;">
+					<span class="input-group-addon">Bulan</span>
+					<select id="month-date" class="form-control pointer" onchange="changeDate()">
+						<?php for ($i=1; $i <= 12 ; $i++) {  $selected = $month == $i ? "selected" : null ?>
+							<option <?=$selected?> value="<?=$i?>"><?=mToMonth($i)?></option>
+						<?php } ?>
+					</select>
 				</div>
 			</div>
 		</div>
@@ -67,11 +77,11 @@
 
 <script type="text/javascript">
 	const BASE_URL = "<?= base_url() ?>";
-	$("#date-filter").datepicker();
 
 	function changeDate() {
-		let dt = $("#date-filter").val().split("-");
-		const url = `${BASE_URL}admin/performance/cpp/${dt[2]}/${dt[1]}/${dt[0]}`;
+		let year = $("#year-date").val();
+		let month = $("#month-date").val();
+		const url = `${BASE_URL}admin/performance/cpp/${year}/${month}`;
 		setContentLoader(".content");
 		loadContent(url, ".content");
 	}

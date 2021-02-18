@@ -20,14 +20,15 @@ class HomeController extends CI_Controller
         $this->load->view("admin/developer");
     }
 
-    public function slitting($year, $month, $day)
+    public function slitting($year, $month)
     {
         $monthlyGraph = $this->monthlyGraph($year, "Slitting");
+       
         $A = $this->groupPerformance($year, $month, "A", "Slitting");
         $B = $this->groupPerformance($year, $month, "B", "Slitting");
         $C = $this->groupPerformance($year, $month, "C", "Slitting");
         $D = $this->groupPerformance($year, $month, "D", "Slitting");
-
+        
         $person = $this->personPerformance($year, "POLOSAN", "Slitting");
         $person_met = $this->personPerformance($year, "METALIZZED", "Slitting");
         $person_all = $this->personPerformance($year, "", "Slitting");
@@ -62,14 +63,12 @@ class HomeController extends CI_Controller
 
             "DNOT" => $D["HOLD"] + $D["NOT"] > 0 
                 ? (($D["HOLD"] + $D["NOT"]) / $totalNot) * 100 : 0,
-
-            "currDate" => date("d-m-Y", strtotime("$day-$month-$year"))
         ];
         
         $this->load->view('admin/performance/slitting', $json);
     }
 
-    public function cpp($year, $month, $day)
+    public function cpp($year, $month)
     {
         $monthlyGraph = $this->monthlyGraph($year, "CPP");
         $A = $this->groupPerformance($year, $month, "A", "CPP");
@@ -104,15 +103,13 @@ class HomeController extends CI_Controller
                 ? (($C["HOLD"] + $C["NOT"]) / $totalNot) * 100 : 0,
 
             "DNOT" => $D["HOLD"] + $D["NOT"] > 0 
-                ? (($D["HOLD"] + $D["NOT"]) / $totalNot) * 100 : 0,
-
-            "currDate" => date("d-m-Y", strtotime("$day-$month-$year"))
+                ? (($D["HOLD"] + $D["NOT"]) / $totalNot) * 100 : 0
         ];
         
         $this->load->view('admin/performance/cpp', $json);
     }
 
-    public function metalize($year, $month, $day)
+    public function metalize($year, $month)
     {
         $monthlyGraph = $this->monthlyGraph($year, "Metalize");
         $A = $this->groupPerformance($year, $month, "A", "Metalize");
@@ -148,8 +145,6 @@ class HomeController extends CI_Controller
 
             "DNOT" => $D["HOLD"] + $D["NOT"] > 0 
                 ? (($D["HOLD"] + $D["NOT"]) / $totalNot) * 100 : 0,
-
-            "currDate" => date("d-m-Y", strtotime("$day-$month-$year"))
         ];
         
         $this->load->view('admin/performance/metalize', $json);

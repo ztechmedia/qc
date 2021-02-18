@@ -1,9 +1,9 @@
 <li class="xn-openable performance">
 	<a><span class="fa fa-dashboard"></span> <span class="xn-text">Produktifitas</span></a>
 	<ul>
-		<li class="p-slitting"><a class="side-submenu" data-url="<?= base_url("admin/performance/slitting/$currentYear/$currentMonth/$currentDay") ?>" data-menu=".performance" data-submenu=".p-slitting"><span class="fa fa-crosshairs"></span> Slitting</a></li>
-		<li class="p-cpp"><a class="side-submenu" data-url="<?= base_url("admin/performance/cpp/$currentYear/$currentMonth/$currentDay") ?>" data-menu=".performance" data-submenu=".p-cpp"><span class="fa fa-crosshairs"></span> CPP</a></li>
-		<li class="p-metalize"><a class="side-submenu" data-url="<?= base_url("admin/performance/metalize/$currentYear/$currentMonth/$currentDay") ?>" data-menu=".performance" data-submenu=".p-metalize"><span class="fa fa-crosshairs"></span> Metalize</a></li>
+		<li class="p-slitting"><a class="side-submenu" data-url="<?= base_url("admin/performance/slitting/$currentYear/$currentMonth") ?>" data-menu=".performance" data-submenu=".p-slitting"><span class="fa fa-crosshairs"></span> Slitting</a></li>
+		<li class="p-cpp"><a class="side-submenu" data-url="<?= base_url("admin/performance/cpp/$currentYear/$currentMonth") ?>" data-menu=".performance" data-submenu=".p-cpp"><span class="fa fa-crosshairs"></span> CPP</a></li>
+		<li class="p-metalize"><a class="side-submenu" data-url="<?= base_url("admin/performance/metalize/$currentYear/$currentMonth") ?>" data-menu=".performance" data-submenu=".p-metalize"><span class="fa fa-crosshairs"></span> Metalize</a></li>
 	</ul>
 </li>
 

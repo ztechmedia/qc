@@ -13,9 +13,9 @@ $route['admin'] = 'AppController';
 
 /* home routes */
 //@view
-$route['admin/performance/slitting/(:num)/(:num)/(:num)'] = "HomeController/slitting/$1/$2/$3";
-$route['admin/performance/cpp/(:num)/(:num)/(:num)'] = "HomeController/cpp/$1/$2/$3";
-$route['admin/performance/metalize/(:num)/(:num)/(:num)'] = "HomeController/metalize/$1/$2/$3";
+$route['admin/performance/slitting/(:num)/(:num)'] = "HomeController/slitting/$1/$2";
+$route['admin/performance/cpp/(:num)/(:num)'] = "HomeController/cpp/$1/$2";
+$route['admin/performance/metalize/(:num)/(:num)'] = "HomeController/metalize/$1/$2";
 $route['myip'] = "AuthController/myip";
 $route['admin/developer'] = "HomeController/developer";
 

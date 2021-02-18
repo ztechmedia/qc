@@ -67,7 +67,7 @@ class AuthController extends CI_Controller
             "success" => true,
             "type" => "login",
             "redirect" => base_url("admin"),
-            "currentUrl" => base_url("admin/performance/slitting/$date[0]/$date[1]/$date[2]"),
+            "currentUrl" => base_url("admin/performance/slitting/$date[0]/$date[1]"),
         ]);
     }
 
@@ -173,7 +173,7 @@ class AuthController extends CI_Controller
             "success" => true,
             "type" => "reset-password",
             "redirect" => $redirect,
-            "currentUrl" => base_url("admin/performance/slitting/$date[0]/$date[1]/$date[2]"),
+            "currentUrl" => base_url("admin/performance/slitting/$date[0]/$date[1]"),
         ]);
     }
 }

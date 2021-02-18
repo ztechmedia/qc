@@ -17,7 +17,7 @@
                 <!-- START TIMELINE ITEM -->
 				<div class="timeline-item timeline-item-right">
 					<div class="timeline-item-info">Me</div>
-					<div class="timeline-item-icon"><span class="fa fa-person"></span></div>
+					<div class="timeline-item-icon"><span class="fa fa-user"></span></div>
 					<div class="timeline-item-content">
 						<div class="timeline-body">
 							<img src="<?=base_url('assets/joli/img/arman.png')?>" style="border-radius: 20px" class="img-text" width="150" align="left">

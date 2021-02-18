@@ -55,19 +55,13 @@
  * NOTE: If you change these, also change the error_reporting() code below
  */
 
-define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
+// define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
 
-// switch ($_SERVER["HTTP_HOST"]) {
-//     case "localhost:8000":
-//         define('ENVIRONMENT', 'development');
-//         break;
-//     case "localhost":
-//         define('ENVIRONMENT', 'development');
-//         break;
-//     default:
-//         define('ENVIRONMENT', 'production');
-//         break;
-// }
+if($_SERVER["HTTP_HOST"] == "localhost") {
+    define('ENVIRONMENT', 'development');
+} else {
+    define('ENVIRONMENT', 'production');
+}
 
 /*
  *---------------------------------------------------------------
