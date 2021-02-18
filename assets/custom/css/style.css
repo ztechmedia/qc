@@ -1,0 +1,81 @@
+a {
+    cursor: pointer
+}
+
+.action-edit, 
+.action-delete,
+.action-custom {
+    font-size: 16px;
+    cursor: pointer;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+
+.dataTables_length, .dataTables_filter {
+    border-bottom: none !important;
+}
+
+.link-to {
+    cursor: pointer !important;
+}
+
+.formError .formErrorContent,
+.formError .formErrorArrow div {
+    background: #883535 !important;
+}
+
+table.dataTable thead .sorting_asc,
+table.dataTable thead .sorting_desc,
+table.dataTable thead .sorting {
+    background-image: none !important;
+}
+
+.form-error {
+    color: #883535;
+    font-style: italic;
+    font-weight: 500;
+}
+
+.page-content-wrap {
+    background-color: #f2f2f2 !important;
+}
+
+#no {
+    text-align: center;
+}
+
+@media (max-width: 1000px) {
+    .gallery-item {
+        width: 25% !important;
+    }
+}
+
+.link-to, .link-to-with-prev,
+.go-back {
+    cursor: pointer;
+}
+
+.pointer {
+    cursor: pointer !important;
+}
+
+/* width */
+  ::-webkit-scrollbar {
+    width: 2px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: transparent; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #fa6d03; 
+    width: 2px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(219, 171, 116); 
+  }
