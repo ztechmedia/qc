@@ -11,6 +11,7 @@ class PDF extends FPDF
 	//Page Content
 	function Content($header, $rolls, $customer)
 	{   
+        $minimal = 10;
 		$this->SetFont('Times','',12);
 		// Column widths
         $w = array(10, 60, 50, 50);
@@ -20,7 +21,6 @@ class PDF extends FPDF
         $this->Ln();
         // Data
         $no = 1;
-        $total = 0;
         foreach($rolls as $roll)
         {
             $this->Cell($w[0],7,$no++,1,0);
@@ -28,6 +28,17 @@ class PDF extends FPDF
             $this->Cell($w[2],7,$roll->slitt_roll,1,0,'L');
             $this->Cell($w[3],7,$roll->kode_roll_slitt,1,0,'L');
             $this->Ln();
+            $minimal--;
+        }
+
+        if($minimal > 0) {
+            for ($i=1; $i <= $minimal; $i++) { 
+                $this->Cell($w[0],7,$no++,1,0);
+                $this->Cell($w[1],7,"",1,0,'L');
+                $this->Cell($w[2],7,"",1,0,'L');
+                $this->Cell($w[3],7,"",1,0,'L');
+                $this->Ln();
+            }
         }
         // Closing line
         $this->Cell(array_sum($w),0,'','T');
