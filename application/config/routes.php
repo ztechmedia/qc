@@ -19,6 +19,9 @@ $route['admin/performance/metalize/(:num)/(:num)'] = "HomeController/metalize/$1
 $route['myip'] = "AuthController/myip";
 $route['admin/developer'] = "HomeController/developer";
 
+$route['admin/productions/ncr/(:any)/(:any)/(:any)/(:any)'] = 'productions/SlittingController/ncr/$1/$2/$3/$4';
+$route['admin/productions/print-ncr/(:any)/(:any)/(:any)'] = 'productions/SlittingController/printNcr/$1/$2/$3';
+
 /* auth routes */
 //@view
 $route['login'] = 'AuthController/login';

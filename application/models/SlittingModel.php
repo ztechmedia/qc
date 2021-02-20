@@ -127,4 +127,34 @@ class SlittingModel extends CI_Model
             ->result();
         } 
     }
+
+    public function ncr($date, $group)
+    {
+       return $this->db
+                ->select("customer_lap_slitt as customer, COUNT(status) as total, slitt_roll")
+                ->from($this->table)
+                ->where("status", "NCR")
+                ->where("tgl", $date)
+                ->where("regu", $group)
+                ->where("stock", "Packing")
+                ->order_by("customer_lap_slitt")
+                ->group_by("customer_lap_slitt")
+                ->get()
+                ->result();
+    }
+
+    public function printNcr($date, $group, $customer)
+    {
+        return $this->db
+        ->select("customer_lap_slitt , kode_roll_slitt, slitt_roll")
+        ->from($this->table)
+        ->where("status", "NCR")
+        ->where("tgl", $date)
+        ->where("regu", $group)
+        ->where("stock", "Packing")
+        ->like("customer_lap_slitt", $customer)
+        ->order_by("customer_lap_slitt")
+        ->get()
+        ->result();
+    }
 }

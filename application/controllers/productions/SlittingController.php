@@ -389,4 +389,30 @@ class SlittingController extends CI_Controller
             ]);
         }
     }
+
+    public function ncr($year, $month, $day, $group)
+    {
+        $date = date("Y-m-d", strtotime("$year-$month-$day"));
+        $rolls = $this->Slitting->ncr($date, $group);
+        $data = [
+            "date" => $date,
+            "group" => $group,
+            "rolls" => $rolls
+        ];
+
+        $this->load->view('admin/print/ncr', $data);
+    }
+
+    public function printNcr($date, $slitt_roll, $group)
+    {
+        $customer = $this->db->get_where("input_lap_slitting", 
+            ["tgl" => $date, "regu" => $group, "slitt_roll" => str_replace("-", " ", $slitt_roll)])->row()->customer_lap_slitt;
+        $rolls = $this->Slitting->printNcr($date, $group, $customer);
+        $data = [
+            "customer" => $customer,
+            "rolls" => $rolls
+        ];
+
+        $this->load->view("admin/print/print-ncr", $data);
+    }
 }
