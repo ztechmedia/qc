@@ -23,6 +23,9 @@ class SlittingModel extends CI_Model
             ->where("MONTH(tgl)", $month)
             ->where("nama_mesin", $machine)
             ->where("stock !=", "Base Film")
+            ->where("status !=", "")
+            ->where("panjang_slitt >", 0)
+            ->where("kg_hasil_slitt >", 0)
             ->get()
             ->result();
     }
@@ -36,6 +39,9 @@ class SlittingModel extends CI_Model
             ->where("MONTH(tgl)", $month)
             ->where("nama_mesin", $machine)
             ->where("stock !=", "Base Film")
+            ->where("status !=", "")
+            ->where("panjang_slitt >", 0)
+            ->where("kg_hasil_slitt >", 0)
             ->group_by("status")
             ->get()
             ->result();
@@ -49,6 +55,9 @@ class SlittingModel extends CI_Model
             ->where("tgl", $date)
             ->where("nama_mesin", $machine)
             ->where("stock !=", "Base Film")
+            ->where("status !=", "")
+            ->where("panjang_slitt >", 0)
+            ->where("kg_hasil_slitt >", 0)
             ->group_by("status")
             ->order_by("status")
             ->get()
@@ -63,6 +72,9 @@ class SlittingModel extends CI_Model
             ->where("YEAR(tgl)", $year)
             ->where("stock !=", "Base Film")
             ->group_by("MONTH(tgl)")
+            ->where("status !=", "")
+            ->where("panjang_slitt >", 0)
+            ->where("kg_hasil_slitt >", 0)
             ->group_by("status")
             ->get()
             ->result();
@@ -77,6 +89,9 @@ class SlittingModel extends CI_Model
             ->where("MONTH(tgl)", $month)
             ->where("stock !=", "Base Film")
             ->where("regu", $regu)
+            ->where("status !=", "")
+            ->where("panjang_slitt >", 0)
+            ->where("kg_hasil_slitt >", 0)
             ->group_by("status")
             ->get()
             ->result();
@@ -90,6 +105,9 @@ class SlittingModel extends CI_Model
             ->from($this->table)
             ->where("YEAR(tgl)", $year)
             ->where("user !=", "")
+            ->where("status !=", "")
+            ->where("panjang_slitt >", 0)
+            ->where("kg_hasil_slitt >", 0)
             ->group_by("user")
             ->get()
             ->result();
@@ -101,6 +119,9 @@ class SlittingModel extends CI_Model
             ->where("user !=", "")
             ->where("stock !=", "Base Film")
             ->where("jenis_roll_slitt", $jenis_roll)
+            ->where("status !=", "")
+            ->where("panjang_slitt >", 0)
+            ->where("kg_hasil_slitt >", 0)
             ->group_by("user")
             ->get()
             ->result();

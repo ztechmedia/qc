@@ -181,9 +181,13 @@ class SlittingController extends CI_Controller
         $id = $obj->id;
         $status = $obj->status;
         $data["status"] = $status;
+
         if($status == "HOLD" || $status == "NOT") {
             $data['stock'] = "Secondary";
+        }else {
+            $data['stock'] = "Packing";
         }
+        
         $update = $this->BM->update("input_lap_slitting", $id, "id_slitt", $data);
 
         $statusClass = [

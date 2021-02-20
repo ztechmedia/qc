@@ -163,7 +163,7 @@
 		let type = $("#type").val();
 		let page = 1;
 		const url = encodeURI(
-			`${BASE_URL}admin/productions/slitting/slitting-table?year=${dt[2]}&month=${dt[1]}&tgl=${tgl}&limit=${limit}&page=${page}&nama_mesin=${machineName}&like:kode_roll_slitt=${noLot}&type_slitt=${type}&mic_slitt=${thick}&lebar_slitt=${width}&panjang_slitt=${length}`
+			`${BASE_URL}admin/productions/slitting/slitting-table?year=${dt[2]}&month=${dt[1]}&tgl=${tgl}&limit=${limit}&page=${page}&nama_mesin=${machineName}&like:kode_roll_slitt=${noLot}&type_slitt=${type}&mic_slitt=${thick}&lebar_slitt=${width}&panjang_slitt=${length}&where_in:status=OK,HOLD,NCR,NOT&gt:panjang_slitt=0&gt:kg_hasil_slitt=0`
 		);
 		setContentLoader(".slitting-table");
 		loadContent(url, ".slitting-table");
@@ -176,7 +176,7 @@
 		let limit = $("#limit").val();
 		let page = 1;
 		const url = encodeURI(
-			`${BASE_URL}admin/productions/slitting/slitting-table?year=${dt[2]}&month=${dt[1]}&limit=${limit}&page=${page}&nama_mesin=${machineName}&where_in:status=${status}&not:stock=Base Film`
+			`${BASE_URL}admin/productions/slitting/slitting-table?year=${dt[2]}&month=${dt[1]}&limit=${limit}&page=${page}&nama_mesin=${machineName}&where_in:status=${status}&not:stock=Base Film&gt:panjang_slitt=0&gt:kg_hasil_slitt=0`
 		);
 		setContentLoader(".slitting-table");
 		loadContent(url, ".slitting-table");

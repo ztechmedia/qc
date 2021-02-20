@@ -32,6 +32,8 @@ class SearchModel extends CI_Model
                         } else {
                             $this->db->where($fieldExp[1], $value);
                         }
+                    } else if ($fieldExp[0] == "gt") {
+                        $this->db->where("$fieldExp[1] >", $value);
                     } else if ($fieldExp[0] == "not") {
                         $this->db->where("$fieldExp[1] !=", $value);
                     }
@@ -76,6 +78,8 @@ class SearchModel extends CI_Model
                         } else {
                             $this->db->where($fieldExp[1], $value);
                         }
+                    } else if ($fieldExp[0] == "gt") {
+                        $this->db->where("$fieldExp[1] >", $value);
                     } else if ($fieldExp[0] == "not") {
                         $this->db->where("$fieldExp[1] !=", $value);
                     }
