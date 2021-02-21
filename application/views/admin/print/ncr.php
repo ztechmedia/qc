@@ -13,7 +13,7 @@
 
     <div class="row">
 		<div class="col-md-12">
-			<div style="display:flex; row-direction:row; justify-content:flex-end; margin-bottom:10px;">
+			<div style="display:flex; flex-direction:row; justify-content:flex-end; margin-bottom:10px;">
 				<div class="input-group">
 					<span class="input-group-addon">Group</span>
 					<select id="group" class="form-control pointer" onchange="changeGroup($(this).val())">
