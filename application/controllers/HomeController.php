@@ -63,6 +63,15 @@ class HomeController extends CI_Controller
 
             "DNOT" => $D["HOLD"] + $D["NOT"] > 0 
                 ? (($D["HOLD"] + $D["NOT"]) / $totalNot) * 100 : 0,
+
+            "AQOK" => $A["OK"],
+            "BQOK" => $B["OK"],
+            "CQOK" => $C["OK"],
+            "DQOK" => $D["OK"],
+            "AQHOLD" => $A["HOLD"] + $A["NOT"],
+            "BQHOLD" => $B["HOLD"] + $B["NOT"],
+            "CQHOLD" => $C["HOLD"] + $C["NOT"],
+            "DQHOLD" => $D["HOLD"] + $D["NOT"],
         ];
         
         $this->load->view('admin/performance/slitting', $json);
@@ -103,7 +112,16 @@ class HomeController extends CI_Controller
                 ? (($C["HOLD"] + $C["NOT"]) / $totalNot) * 100 : 0,
 
             "DNOT" => $D["HOLD"] + $D["NOT"] > 0 
-                ? (($D["HOLD"] + $D["NOT"]) / $totalNot) * 100 : 0
+                ? (($D["HOLD"] + $D["NOT"]) / $totalNot) * 100 : 0,
+
+            "AQOK" => $A["OK"],
+            "BQOK" => $B["OK"],
+            "CQOK" => $C["OK"],
+            "DQOK" => $D["OK"],
+            "AQHOLD" => $A["HOLD"] + $A["NOT"],
+            "BQHOLD" => $B["HOLD"] + $B["NOT"],
+            "CQHOLD" => $C["HOLD"] + $C["NOT"],
+            "DQHOLD" => $D["HOLD"] + $D["NOT"],
         ];
         
         $this->load->view('admin/performance/cpp', $json);
@@ -145,6 +163,15 @@ class HomeController extends CI_Controller
 
             "DNOT" => $D["HOLD"] + $D["NOT"] > 0 
                 ? (($D["HOLD"] + $D["NOT"]) / $totalNot) * 100 : 0,
+            
+            "AQOK" => $A["OK"],
+            "BQOK" => $B["OK"],
+            "CQOK" => $C["OK"],
+            "DQOK" => $D["OK"],
+            "AQHOLD" => $A["HOLD"] + $A["NOT"],
+            "BQHOLD" => $B["HOLD"] + $B["NOT"],
+            "CQHOLD" => $C["HOLD"] + $C["NOT"],
+            "DQHOLD" => $D["HOLD"] + $D["NOT"],
         ];
         
         $this->load->view('admin/performance/metalize', $json);

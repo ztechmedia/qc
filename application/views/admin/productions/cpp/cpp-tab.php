@@ -13,7 +13,9 @@
 			<form class="form-horizontal">
 				<div class="form-group">
 					<div class="input-group">
-						<input readonly id="date-filter" type="text" class="form-control pointer" style="color: #000;background:#fff;" value="<?= date("d-m-Y", strtotime($day . "-" . $month . "-" . $year)) ?>" data-date="01-01-1999" data-date-format="dd-mm-yyyy" data-date-viewmode="months" />
+						<input readonly id="date-filter" type="text" class="form-control pointer" style="color: #000;background:#fff;" 
+							value="<?= date("d-m-Y", strtotime($day . "-" . $month . "-" . $year)) ?>" 
+							data-date="01-01-1999" data-date-format="dd-mm-yyyy" data-date-viewmode="months" />
 						<span class="input-group-addon pointer" onclick="changeDate()">Ganti Tanggal</span>
 					</div>
 				</div>
@@ -115,7 +117,7 @@
     
     const BASE_URL = "<?= base_url() ?>";
 	const TAB_URL = `${BASE_URL}admin/productions/cpp/tab`;
-	const BODY_CLASS = ".metalize-body";
+	const BODY_CLASS = ".cpp-body";
 	const CHANGE_STATUS_URL = `${BASE_URL}admin/productions/cpp/change-status`;
 	const CHANGE_STATUS_ACTION_URL = `${BASE_URL}admin/productions/cpp/change-status-action`;
 	const CHANGE_COF_URL = `${BASE_URL}admin/productions/cpp/cof`;

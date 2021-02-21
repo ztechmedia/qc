@@ -146,7 +146,7 @@ class SlittingModel extends CI_Model
     public function printNcr($date, $group, $customer)
     {
         return $this->db
-        ->select("customer_lap_slitt , kode_roll_slitt, slitt_roll")
+        ->select("kode_roll_slitt, slitt_roll")
         ->from($this->table)
         ->where("status", "NCR")
         ->where("tgl", $date)

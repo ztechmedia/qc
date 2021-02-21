@@ -118,10 +118,10 @@
 		series: [{
 			name: 'Roll OK',
 			data: [
-				{ name: 'Group A', y: <?= $AOK ?> },
-				{ name: 'Group B', y: <?= $BOK ?> },
-				{ name: 'Group C', y: <?= $COK ?> },
-				{ name: 'Group D', y: <?= $DOK ?> },
+				{ name: 'Group A (<?=$AQOK?> Roll)', y: <?= $AOK ?> },
+				{ name: 'Group B (<?=$BQOK?> Roll)', y: <?= $BOK ?> },
+				{ name: 'Group C (<?=$CQOK?> Roll)', y: <?= $COK ?> },
+				{ name: 'Group D (<?=$DQOK?> Roll)', y: <?= $DOK ?> },
 			]
 		}]
 	});
@@ -158,10 +158,10 @@
 		series: [{
 			name: 'Roll HOLD & NOT',
 			data: [
-				{ name: 'Group A', y: <?= $ANOT ?> },
-				{ name: 'Group B', y: <?= $BNOT ?> },
-				{ name: 'Group C', y: <?= $CNOT ?> },
-				{ name: 'Group D', y: <?= $DNOT ?> },
+				{ name: 'Group A (<?=$AQHOLD?> Roll)', y: <?= $ANOT ?> },
+				{ name: 'Group B (<?=$BQHOLD?> Roll)', y: <?= $BNOT ?> },
+				{ name: 'Group C (<?=$CQHOLD?> Roll)', y: <?= $CNOT ?> },
+				{ name: 'Group D (<?=$DQHOLD?> Roll)', y: <?= $DNOT ?> },
 			]
 		}]
 	});

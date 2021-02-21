@@ -37,7 +37,8 @@ class CppController extends CI_Controller
             $machine = "2";
         }
 
-        $totalRollArray = $this->CPP->totalRoll($machine, $year = 2021, $month = 1);
+
+        $totalRollArray = $this->CPP->totalRoll($machine, $year, $month);
         $totalRoll = $totalRollArray[0]->total ? $totalRollArray[0]->total : 0;
         $totalWeight = $totalRollArray[0]->weight ? $totalRollArray[0]->weight : 0;
 
