@@ -8,15 +8,18 @@ class AppController extends CI_Controller
         parent::__construct();
         $this->load->model("BaseModel", "BM");
         $this->load->library('user_agent', 'agent');
+        $this->load->helper("utility");
         $this->auth->logged();
     }
 
     public function index()
     {
-        $date = explode("-", date("d-m-Y"));
+        $currentDate = date("Y-m-d");
+        $date = explode("-", $currentDate);
         $data["currentYear"] = $date[2];
         $data["currentMonth"] = $date[1];
         $data["currentDay"] = $date[0];
+        $data["currentDate"] = revDate($currentDate);
 
         $data["browser"] = $this->agent->browser();
         $data["browser_version"] = $this->agent->version();

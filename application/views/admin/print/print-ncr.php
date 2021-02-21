@@ -14,7 +14,7 @@ class PDF extends FPDF
         $minimal = 10;
 		$this->SetFont('Times','',12);
 		// Column widths
-        $w = array(10, 60, 50, 50);
+        $w = array(10, 80, 50, 50);
         // Header
         for($i=0;$i<count($header);$i++)
             $this->Cell($w[$i],10,$header[$i],1,0,'C');
