@@ -52,8 +52,8 @@
 					Metalize</a></li>
 			<li class="slitting"><a class="side-submenu" data-url="<?= base_url("admin/productions/slitting/main/$currentYear/$currentMonth/$currentDay") ?>" data-menu=".productions" data-submenu=".slitting"><span class="fa fa-crosshairs"></span>
 					Slitting</a></li>
-			<li class="ncr"><a class="side-submenu" data-url="<?= base_url("admin/productions/ncr/$currentDate/A") ?>" data-menu=".productions" data-submenu=".ncr"><span class="fa fa-file"></span>
-					Print NCR</a></li>
+			<li class="ncr"><a class="side-submenu" data-url="<?= base_url("admin/productions/ncr/$currentDate/A") ?>" data-menu=".productions" data-submenu=".ncr"><span class="fa fa-crosshairs"></span>
+					List NCR</a></li>
 		</ul>
 	</li>
 <?php } ?>

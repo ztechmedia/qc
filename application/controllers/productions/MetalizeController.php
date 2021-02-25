@@ -374,7 +374,7 @@ class MetalizeController extends CI_Controller
     public function changeDesc()
     {
         $obj = fileGetContent();
-        $data["ket_met"] = $obj->value;
+        $data["ket_met"] = strtoupper($obj->value);
         $update = $this->BM->update("input_met", $obj->id, "id_met", $data);
         if ($update) {
             appJson([

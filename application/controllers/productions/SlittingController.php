@@ -58,6 +58,8 @@ class SlittingController extends CI_Controller
             $machine = "Secondary 1";
         } else if ($tabName == "scnd2") {
             $machine = "Secondary 2";
+        } else if ($tabName == "all") {
+            $machine = "all";
         }
 
         $totalRoll = $this->Slitting->totalRollFG($machine, $year, $month);
@@ -133,6 +135,7 @@ class SlittingController extends CI_Controller
                 "data" => $notDay,
             ],
         ];
+
         $this->load->view("admin/productions/slitting/slitting-tab", $data);
     }
 
@@ -149,7 +152,7 @@ class SlittingController extends CI_Controller
             "id_slitt, tgl, shift, type_slitt, mic_slitt, lebar_slitt, 
             panjang_slitt, kode_roll_slitt, status, ket, kg_hasil_slitt,
             customer_lap_slitt, qc_cof_statik, qc_cof_kinetik, qc_corona,
-            jenis_roll_slitt, qc_defects, qc_od, stock, regu",
+            jenis_roll_slitt, qc_defects, qc_od, stock, regu, nama_mesin",
             //order by
             $order_by = [
                 "tgl" => "desc",
@@ -158,7 +161,12 @@ class SlittingController extends CI_Controller
             ]
         );
         $data["customerAlias"] = $this->customerAlias();
-        $this->load->view("admin/productions/slitting/slitting-table", $data);
+
+        if($_GET["nama_mesin"] != "all") {
+            $this->load->view("admin/productions/slitting/slitting-table", $data);
+        } else {
+            $this->load->view("admin/productions/slitting/slitting-all-table", $data);
+        }
     }
 
     //@desc     Change status view
@@ -184,6 +192,7 @@ class SlittingController extends CI_Controller
 
         if($status == "HOLD" || $status == "NOT") {
             $data['stock'] = "Secondary";
+	    $data['id_stock'] = 1;
         }else {
             $data['stock'] = "Packing";
         }
@@ -224,7 +233,7 @@ class SlittingController extends CI_Controller
     public function changeDesc()
     {
         $obj = fileGetContent();
-        $data["ket"] = $obj->value;
+        $data["ket"] = strtoupper($obj->value);
         $update = $this->BM->update("input_lap_slitting", $obj->id, "id_slitt", $data);
         if ($update) {
             appJson([
@@ -404,9 +413,10 @@ class SlittingController extends CI_Controller
 
     public function printNcr($date, $slitt_roll, $group)
     {
+	$date = revDate($date);
         $customer = $this->db->get_where("input_lap_slitting", 
-            ["tgl" => revDate($date), "regu" => $group, "slitt_roll" => str_replace("-", " ", $slitt_roll)])->row()->customer_lap_slitt;
-        $rolls = $this->Slitting->printNcr(revDate($date), $group, $customer);
+            ["tgl" => $date, "regu" => $group, "slitt_roll" => str_replace("-", " ", $slitt_roll)])->row()->customer_lap_slitt;
+        $rolls = $this->Slitting->printNcr($date, $group, $customer);
         $data = [
             "customer" => $customer,
             "rolls" => $rolls

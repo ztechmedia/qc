@@ -123,7 +123,7 @@ class CppController extends CI_Controller
     public function changeDesc()
     {
         $obj = fileGetContent();
-        $data["keterangan_cpp"] = $obj->value;
+        $data["keterangan_cpp"] = strtoupper($obj->value);
         $update = $this->BM->update("input_lap_cpp", $obj->id, "id", $data);
         if ($update) {
             appJson([

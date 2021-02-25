@@ -11,7 +11,7 @@
 
 <div class="page-content-wrap">
 
-    <div class="row">
+    <div class="row" style="height: 100vh">
 		<div class="col-md-12">
 			<div style="display:flex; flex-direction:row; justify-content:flex-end; margin-bottom:10px;">
 				<div class="input-group">

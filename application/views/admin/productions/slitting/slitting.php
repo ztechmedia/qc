@@ -23,6 +23,7 @@
                     <li class="li li-met3"><a onclick="openTab('met3')">SMET 3</a></li>
                     <li class="li li-scnd1"><a onclick="openTab('scnd1')">Secondary 1</a></li>
                     <li class="li li-scnd2"><a onclick="openTab('scnd2')">Secondary 2</a></li>
+                    <li class="li li-all"><a onclick="openTab('all')">Semua Mesin</a></li>
                 </ul>
                 <div class="panel-body tab-content">
                     <div class="slitting-body"></div>

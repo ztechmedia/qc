@@ -38,7 +38,7 @@
 					<!-- Start single service -->
 					<!-- Start single service -->
 					<div class="mu-service-single" style="background: #9c2020">
-						<span class="fa fa-wrench"></span>
+						<span class="fa fa-bar-chart-o"></span>
 						<h3>PRODUKTIFITAS</h3>
 					</div>
 					<!-- Start single service -->

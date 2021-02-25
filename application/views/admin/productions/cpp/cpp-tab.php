@@ -13,9 +13,7 @@
 			<form class="form-horizontal">
 				<div class="form-group">
 					<div class="input-group">
-						<input readonly id="date-filter" type="text" class="form-control pointer" style="color: #000;background:#fff;" 
-							value="<?= date("d-m-Y", strtotime($day . "-" . $month . "-" . $year)) ?>" 
-							data-date="01-01-1999" data-date-format="dd-mm-yyyy" data-date-viewmode="months" />
+						<input readonly id="date-filter" type="text" class="form-control pointer" style="color: #000;background:#fff;" value="<?= date("d-m-Y", strtotime($day . "-" . $month . "-" . $year)) ?>" data-date="01-01-1999" data-date-format="dd-mm-yyyy" data-date-viewmode="months" />
 						<span class="input-group-addon pointer" onclick="changeDate()">Ganti Tanggal</span>
 					</div>
 				</div>

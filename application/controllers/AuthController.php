@@ -57,7 +57,7 @@ class AuthController extends CI_Controller
             "userId" => $user->id,
             "name" => $user->name,
             "email" => $user->email,
-            "role" => $role->name,
+            "role" => $role->display_name,
             "role_id" => $role->id
         );
 
@@ -161,7 +161,7 @@ class AuthController extends CI_Controller
             "userId" => $user->id,
             "name" => $user->name,
             "email" => $user->email,
-            "role" => $role,
+            "role" => $role->display_name,
             "role_id" => $user->role
         );
 

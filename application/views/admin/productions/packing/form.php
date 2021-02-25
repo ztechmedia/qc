@@ -17,7 +17,7 @@
 <div class="form-group">
     <label class="col-md-3 control-label">PO Palet</label>
     <div class="col-md-6">
-        <input <?= $this->auth->role_id == 1 ? "" : "readonly" ?> name="id_po_palet" id="id_po_palet" type="text" class="validate[required] form-control" 
+        <input <?= $this->auth->role_id == 1 ? "" : "readonly" ?> name="id_po_palet" id="id_po_palet" type="text" class="form-control" 
             value="<?= $palet->id_po_palet ?>" />
     </div>
 </div>

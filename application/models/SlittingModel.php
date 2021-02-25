@@ -16,7 +16,8 @@ class SlittingModel extends CI_Model
 
     public function totalRollFG($machine, $year, $month)
     {
-        return $this->db
+        if($machine != "all") {
+            return $this->db
             ->select("COUNT(id_slitt) AS total, SUM(kg_hasil_slitt) AS weight")
             ->from($this->table)
             ->where("YEAR(tgl)", $year)
@@ -28,11 +29,25 @@ class SlittingModel extends CI_Model
             ->where("kg_hasil_slitt >", 0)
             ->get()
             ->result();
+        } else {
+            return $this->db
+            ->select("COUNT(id_slitt) AS total, SUM(kg_hasil_slitt) AS weight")
+            ->from($this->table)
+            ->where("YEAR(tgl)", $year)
+            ->where("MONTH(tgl)", $month)
+            ->where("stock !=", "Base Film")
+            ->where("status !=", "")
+            ->where("panjang_slitt >", 0)
+            ->where("kg_hasil_slitt >", 0)
+            ->get()
+            ->result();
+        }
     }
 
     public function totalRollStatus($machine, $year, $month)
     {
-        return $this->db
+        if($machine != "all") {
+            return $this->db
             ->select("status, COUNT(status) as total_status")
             ->from($this->table)
             ->where("YEAR(tgl)", $year)
@@ -45,11 +60,26 @@ class SlittingModel extends CI_Model
             ->group_by("status")
             ->get()
             ->result();
+        } else {
+            return $this->db
+            ->select("status, COUNT(status) as total_status")
+            ->from($this->table)
+            ->where("YEAR(tgl)", $year)
+            ->where("MONTH(tgl)", $month)
+            ->where("stock !=", "Base Film")
+            ->where("status !=", "")
+            ->where("panjang_slitt >", 0)
+            ->where("kg_hasil_slitt >", 0)
+            ->group_by("status")
+            ->get()
+            ->result();
+        }
     }
 
     public function totalRollStatusDay($machine, $date)
     {
-        return $this->db
+        if($machine != "all") {
+            return $this->db
             ->select("status, COUNT(status) as total_status")
             ->from($this->table)
             ->where("tgl", $date)
@@ -62,6 +92,20 @@ class SlittingModel extends CI_Model
             ->order_by("status")
             ->get()
             ->result();
+        } else {
+            return $this->db
+            ->select("status, COUNT(status) as total_status")
+            ->from($this->table)
+            ->where("tgl", $date)
+            ->where("stock !=", "Base Film")
+            ->where("status !=", "")
+            ->where("panjang_slitt >", 0)
+            ->where("kg_hasil_slitt >", 0)
+            ->group_by("status")
+            ->order_by("status")
+            ->get()
+            ->result();
+        }
     }
 
     public function getAll($year)
@@ -146,7 +190,7 @@ class SlittingModel extends CI_Model
     public function printNcr($date, $group, $customer)
     {
         return $this->db
-        ->select("kode_roll_slitt, slitt_roll")
+        ->select("customer_lap_slitt , kode_roll_slitt, slitt_roll")
         ->from($this->table)
         ->where("status", "NCR")
         ->where("tgl", $date)

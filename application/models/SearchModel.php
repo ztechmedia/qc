@@ -38,8 +38,14 @@ class SearchModel extends CI_Model
                         $this->db->where("$fieldExp[1] !=", $value);
                     }
                 } else {
-                    if ($value) {
-                        $this->db->where($field, $value);
+                    if($field == "nama_mesin") {
+                        if($value != "all") {
+                            $this->db->where($field, $value);
+                        }
+                    } else {
+                        if ($value) {
+                            $this->db->where($field, $value);
+                        }
                     }
                 }
             }
@@ -84,8 +90,14 @@ class SearchModel extends CI_Model
                         $this->db->where("$fieldExp[1] !=", $value);
                     }
                 } else {
-                    if ($value) {
-                        $this->db->where($field, $value);
+                    if($field == "nama_mesin") {
+                        if($value != "all") {
+                            $this->db->where($field, $value);
+                        }
+                    } else {
+                        if ($value) {
+                            $this->db->where($field, $value);
+                        }
                     }
                 }
             }
