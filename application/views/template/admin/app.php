@@ -82,8 +82,8 @@
 
     <script>
         setSidebarOnLoad();
-	let currentUrl = localStorage.getItem("currentUrl");
-	setCurrentNav(currentUrl);
+        let currentUrl = localStorage.getItem("currentUrl");
+        setCurrentNav(currentUrl);
     </script>
 
     <style>

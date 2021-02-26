@@ -1,5 +1,5 @@
 <li class="xn-openable performance">
-	<a><span class="fa fa-dashboard"></span> <span class="xn-text">Produktifitas</span></a>
+	<a><span class="fa fa-bar-chart-o"></span> <span class="xn-text">Produktifitas</span></a>
 	<ul>
 		<li class="p-slitting"><a class="side-submenu" data-url="<?= base_url("admin/performance/slitting/$currentYear/$currentMonth") ?>" data-menu=".performance" data-submenu=".p-slitting"><span class="fa fa-crosshairs"></span> Slitting</a></li>
 		<li class="p-cpp"><a class="side-submenu" data-url="<?= base_url("admin/performance/cpp/$currentYear/$currentMonth") ?>" data-menu=".performance" data-submenu=".p-cpp"><span class="fa fa-crosshairs"></span> CPP</a></li>
@@ -44,7 +44,7 @@
 	</li>
 
 	<li class="xn-openable productions">
-		<a><span class="fa fa-wrench"></span> <span class="xn-text">Produksi</span></a>
+		<a><span class="fa fa-cogs"></span> <span class="xn-text">Produksi</span></a>
 		<ul>
 			<li class="cpp"><a class="side-submenu" data-url="<?= base_url("admin/productions/cpp/main/$currentYear/$currentMonth/$currentDay") ?>" data-menu=".productions" data-submenu=".cpp"><span class="fa fa-crosshairs"></span>
 					CPP</a></li>
@@ -54,13 +54,15 @@
 					Slitting</a></li>
 			<li class="ncr"><a class="side-submenu" data-url="<?= base_url("admin/productions/ncr/$currentDate/A") ?>" data-menu=".productions" data-submenu=".ncr"><span class="fa fa-crosshairs"></span>
 					List NCR</a></li>
+			<li class="released"><a class="side-submenu" data-url="<?= base_url("admin/productions/released/$currentYear/$currentMonth") ?>" data-menu=".productions" data-submenu=".released"><span class="fa fa-crosshairs"></span>
+					Release Roll</a></li>
 		</ul>
 	</li>
 <?php } ?>
 
 <?php if ($this->auth->role_id == 6 || $this->auth->role_id == 4 || $this->auth->role_id == 1) { ?>
 	<li class="xn-openable packing">
-		<a><span class="fa fa-truck"></span> <span class="xn-text">Packing</span></a>
+		<a><span class="fa fa-gift"></span> <span class="xn-text">Packing</span></a>
 		<ul>
 			<li class="palet"><a class="side-submenu" data-url="<?= base_url("admin/productions/packing/palet") ?>" data-menu=".packing" data-submenu=".palet"><span class="fa fa-crosshairs"></span>
 					Palet</a></li>

@@ -2,13 +2,13 @@
     <thead class="thead">
         <tr>
             <th width="7%">Tipe</th>
-            <th width="8%">Customer</th>
+            <th width="7%">Customer</th>
             <th width="8%">Tanggal</th>
             <th width="5%">Lebar</th>
             <th width="6.5%">Panjang</th>
             <th width="6%">Kg</th>
             <th width="4%">Shift</th>
-            <th width="15%">No Lot & Nama Mesin</th>
+            <th width="17%">No Lot & Mesin & Operator</th>
             <th width="10%">COF</th>
             <th width="5%">Dyne</th>
             <th width="12%">Defect · OD</th>
@@ -103,13 +103,13 @@
 
         <tr id="<?= $prod->id_slitt ?>" class="<?= $color ?>">
             <td width="7%"><?= $prod->type_slitt . "-" . $prod->mic_slitt?></td>
-            <td width="8%"><?= checkAlias($customerAlias, $prod->customer_lap_slitt) ?></td>
+            <td width="7%"><?= checkAlias($customerAlias, $prod->customer_lap_slitt) ?></td>
             <td width="8%"><?= revDate($prod->tgl) ?></td>
             <td width="5%"><?= $prod->lebar_slitt ?></td>
             <td width="6.5%"><?= $prod->panjang_slitt ?></td>
             <td width="6%"><?= $prod->kg_hasil_slitt ?></td>
             <td width="4%"><?= $prod->shift ?></td>
-            <td width="15%"><?= $prod->kode_roll_slitt ?> <br> <p style="font-size: 18px; color: #9c2020;"><?=$prod->nama_mesin?></p></td>
+            <td width="17%"><?= $prod->kode_roll_slitt ?><p style="font-size: 12px; color: #9c2020;"><?= $prod->nama_mesin ?> - <?= strtoupper($prod->user) ?></p></td>
 
             <td width="5%">
                 <a id="<?= $cofStatik ?>"

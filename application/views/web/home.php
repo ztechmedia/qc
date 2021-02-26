@@ -10,8 +10,8 @@
 		<div class="mu-slider-content">
 			<h4>PT. WIRA MUSTIKA ABADI</h4>
 			<span></span>
-			<h2>SISTEM BUAT YANG BUTUH AJA!</h2>
-			<p>JANGAN DIBIKIN RIBET KALO BERGUNA YA PAKE AJA!</p>
+			<h3><b>SPA (Single Page Application) Full Asyncronous Request On Admin Panel</b></h3>
+			<p>Home & Login menggunakan teknik Syncronous jadi akan agak lama bagi sebagian browser lawas. Semua Resource akan di load dalam 1 waktu (saat login berhasil) mengakibatkan bagi beberapa browser seperti Chrome < v.88 akan sedikit berat. Admin panel menggunakan teknik Asyncronous full dengan AJAX Request, so you will never see Syncronous Loading & Request much faster. Have Fun :)</p>
 		</div>
 	</div>
 	<!-- Start single slider item -->

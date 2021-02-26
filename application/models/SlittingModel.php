@@ -115,10 +115,10 @@ class SlittingModel extends CI_Model
             ->from($this->table)
             ->where("YEAR(tgl)", $year)
             ->where("stock !=", "Base Film")
-            ->group_by("MONTH(tgl)")
             ->where("status !=", "")
             ->where("panjang_slitt >", 0)
             ->where("kg_hasil_slitt >", 0)
+            ->group_by("MONTH(tgl)")
             ->group_by("status")
             ->get()
             ->result();

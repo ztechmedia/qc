@@ -152,7 +152,7 @@ class SlittingController extends CI_Controller
             "id_slitt, tgl, shift, type_slitt, mic_slitt, lebar_slitt, 
             panjang_slitt, kode_roll_slitt, status, ket, kg_hasil_slitt,
             customer_lap_slitt, qc_cof_statik, qc_cof_kinetik, qc_corona,
-            jenis_roll_slitt, qc_defects, qc_od, stock, regu, nama_mesin",
+            jenis_roll_slitt, qc_defects, qc_od, stock, regu, nama_mesin, user",
             //order by
             $order_by = [
                 "tgl" => "desc",

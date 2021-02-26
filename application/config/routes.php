@@ -119,3 +119,7 @@ $route['admin/productions/packing/palet/(:num)/edit'] = 'productions/PackingCont
 //@action
 $route['admin/productions/packing/palet/(:num)/update'] = 'productions/PackingController/update/$1';
 $route['admin/productions/packing/palet/(:num)/delete'] = 'productions/PackingController/delete/$1';
+
+/* rleeased routes */
+//@view
+$route['admin/productions/released/(:num)/(:num)'] = 'productions/ReleasedController/released/$1/$2';

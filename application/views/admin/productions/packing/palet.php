@@ -17,7 +17,7 @@
                 <div class="panel-body">
                     <table class="table table-bordered" id="admin">
                         <thead>
-                            <th width="8%">No</th>
+                            <th width="8%">ID</th>
                             <th>No. Palet</th>
                             <th>Tgl Input</th>
                             <th>Customer</th>
@@ -46,14 +46,14 @@
             "processing": false,
             "serverSide": true,
             "order": [
-                [1, 'desc']
+                [0, 'desc']
             ],
             "ajax": {
                 "url": "<?= base_url("admin/productions/packing/palet-table") ?>",
                 "type": "POST"
             },
             columns: [{
-                    data: "no",
+                    data: "id_pal",
                 },
                 {
                     data: "no_palet",
