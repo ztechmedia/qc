@@ -181,5 +181,5 @@ function toRp($amount)
 {
 
     $rupiah = number_format($amount, 2, ',', '.');
-    return str_replace(',00', '', $rupiah);
+    return $rupiah;
 }

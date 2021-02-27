@@ -123,3 +123,8 @@ $route['admin/productions/packing/palet/(:num)/delete'] = 'productions/PackingCo
 /* rleeased routes */
 //@view
 $route['admin/productions/released/(:num)/(:num)'] = 'productions/ReleasedController/released/$1/$2';
+$route['admin/productions/released-table/(:num)/(:num)'] = 'productions/ReleasedController/releasedTable/$1/$2';
+$route['admin/productions/released/(:num)/(:num)/(:num)/edit'] = 'productions/ReleasedController/edit/$1/$2/$3';
+//@actions
+$route['admin/productions/released/(:num)/update'] = 'productions/ReleasedController/update/$1/$2';
+$route['admin/productions/released/(:num)/delete'] = 'productions/ReleasedController/delete/$1';

@@ -24,6 +24,7 @@ class Datatables
         $deleteMessage = array_key_exists("delete_message", $params) ? $params['delete_message'] : null;
         $middleware = array_key_exists("middleware", $params) ? $params['middleware'] : null;
         $querySelector = array_key_exists("querySelector", $params) ? $params['querySelector'] : null;
+        $queryVariabel = array_key_exists("variabel", $params) ? $params['variabel'] : null;
 
         $columns = array();
         $index = 0;
@@ -36,15 +37,15 @@ class Datatables
         $start = $ci->input->post('start');
         $order = $columns[$ci->input->post('order')[0]['column']];
         $dir = $ci->input->post('order')[0]['dir'];
-        $totalData = $ci->Table->totalDocument($table, $querySelector);
+        $totalData = $ci->Table->totalDocument($table, $querySelector, $queryVariabel);
         $totalFiltered = $totalData;
 
         if (empty($ci->input->post('search')['value'])) {
-            $dataTables = $ci->Table->getAll($table, $limit, $start, $order, $dir, $querySelector);
+            $dataTables = $ci->Table->getAll($table, $limit, $start, $order, $dir, $querySelector, $queryVariabel);
         } else {
             $search = $ci->input->post('search')['value'];
-            $dataTables = $ci->Table->dataSearch($table, $limit, $start, $search, $order, $dir, $searchAble, $querySelector);
-            $totalFiltered = $ci->Table->dataSearchCount($table, $search, $searchAble, $querySelector);
+            $dataTables = $ci->Table->dataSearch($table, $limit, $start, $search, $order, $dir, $searchAble, $querySelector, $queryVariabel);
+            $totalFiltered = $ci->Table->dataSearchCount($table, $search, $searchAble, $querySelector, $queryVariabel);
         }
 
         $data = array();
@@ -55,16 +56,6 @@ class Datatables
 
                 $nestedData['no'] = $no++;
                 foreach ($columns as $column) {
-
-                    if ($deleteMessage) {
-                        if (array_key_exists($column, $deleteMessage)) {
-                            $deleteMsg = str_replace(
-                                "[" . $column . "]",
-                                $dt->$column,
-                                $deleteMessage[$column]
-                            );
-                        }
-                    }
 
                     if ($deleteMessage) {
                         if (array_key_exists($column, $deleteMessage)) {
@@ -90,7 +81,6 @@ class Datatables
 
                 if ($actions && $actionsUrl) {
                     $actionData = [
-                        "table" => $table,
                         "data" => $dt,
                         "deleteMessage" => $deleteMsg,
                     ];

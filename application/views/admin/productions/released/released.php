@@ -53,7 +53,7 @@
                 </div>
                 <div class="widget-data">
                     <div style="color: yellow" class="widget-int num-count"><?=$status['HOLD']['total']?></div>
-                    <div style="color: yellow" class="widget-title"><?=toRp(round($status['HOLD']['total_kg']))?> Kg</div>
+                    <div style="color: yellow" class="widget-title"><?=toRp($status['HOLD']['total_kg'])?> Kg</div>
                     <div style="color: yellow" class="widget-subtitle">HOLD <?=mToMonth($month)?></div>
                 </div>
             </div>
@@ -66,7 +66,7 @@
                 </div>
                 <div class="widget-data">
                     <div style="color: orange" class="widget-int num-count"><?=$status['REWORK']['total']?></div>
-                    <div style="color: orange" class="widget-title"><?=toRp(round($status['REWORK']['total_kg']))?> Kg</div>
+                    <div style="color: orange" class="widget-title"><?=toRp($status['REWORK']['total_kg'])?> Kg</div>
                     <div style="color: orange" class="widget-subtitle">REWORK <?=mToMonth($month)?></div>
                 </div>
             </div>
@@ -79,7 +79,7 @@
                 </div>
                 <div class="widget-data">
                     <div style="color: #9c2020" class="widget-int num-count"><?=$status['REJECT']['total']?></div>
-                    <div style="color: #9c2020" class="widget-title"><?=toRp(round($status['REJECT']['total_kg']))?> Kg</div>
+                    <div style="color: #9c2020" class="widget-title"><?=toRp($status['REJECT']['total_kg'])?> Kg</div>
                     <div style="color: #9c2020" class="widget-subtitle">REJECT <?=mToMonth($month)?></div>
                 </div>
             </div>
@@ -88,9 +88,8 @@
 
     <div class="row">
         <div class="col-md-12">
-        <table class="table table-bordered tcustom">
-            <thead class="thead">
-                <tr>
+            <table class="table table-bordered" id="released-roll">
+                <thead>
                     <th>Tgl Released</th>
                     <th>No Released</th>
                     <th>Tipe</th>
@@ -102,26 +101,9 @@
                     <th>Di Released Oleh</th>
                     <th>Status</th>
                     <th>Alasan</th>
-                </tr>
-            </thead>
-
-            <tbody class="tbody">
-                <?php foreach ($rolls as $roll) { ?>
-                   <tr>
-                       <td><?=revDate($roll->tgl_released_jr)?></td>
-                       <td><?=$roll->no_released_jr?></td>
-                       <td><?=$roll->type_slitt?></td>
-                       <td><?=$roll->mic_slitt?></td>
-                       <td><?=$roll->lebar_slitt?></td>
-                       <td><?=$roll->panjang_slitt?></td>
-                       <td><?=$roll->no_roll_released_jr?></td>
-                       <td><?=$roll->kg_hasil_slitt?> Kg</td>
-                       <td><?=strtoupper($roll->id_user_released_jr)?></td>
-                       <td><?=$roll->status_akhir?></td>
-                       <td><?=$roll->reason_jr?></td>
-                   </tr>
-                <?php } ?>
-            </tbody>
+                    <th width="12%">Tindakan</th>
+                </thead>
+            </table>
         </table>
         </div>
     </div>
@@ -138,7 +120,56 @@
 		setContentLoader(".content");
 		loadContent(url, ".content");
     }
-    
+
+    $('#released-roll').DataTable({
+        "processing": false,
+        "serverSide": true,
+        "order": [
+            [0, 'desc']
+        ],
+        "ajax": {
+            "url": "<?= base_url("admin/productions/released-table/$year/$month") ?>",
+            "type": "POST"
+        },
+        columns: [
+            {
+                data: "tgl_released_jr",
+            },
+            {
+                data: "no_released_jr",
+            },
+            {
+                data: "type_slitt",
+            },
+            {
+                data: "mic_slitt",
+            },
+            {
+                data: 'lebar_slitt'
+            },
+            {
+                data: 'panjang_slitt'
+            },
+            {
+                data: 'no_roll_released_jr'
+            },
+            {
+                data: 'kg_hasil_slitt'
+            },
+            {
+                data: 'id_user_released_jr'
+            },
+            {
+                data: 'status_akhir'
+            },
+            {
+                data: 'reason_jr'
+            },{
+                    data: 'actions'
+                }
+        ]
+    });
+
     Highcharts.chart('released_month', {
         chart: {
             type: 'pie',

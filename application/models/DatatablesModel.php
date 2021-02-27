@@ -7,46 +7,73 @@ class DatatablesModel extends CI_Model
     {
         parent::__construct();
         $this->load->model("UserModel", "User");
+        $this->load->model("ReleasedModel", "Released");
     }
 
-    public function totalDocument($table, $querySelector)
+    public function totalDocument($table, $querySelector , $queryVariabel)
     {
         if ($querySelector) {
-            $query = $this->querySelector($querySelector)->get();
+            if($queryVariabel) {
+                $query = $this->querySelector($querySelector);
+                foreach ($queryVariabel as $where => $field) {
+                    $query->where($where, $field);
+                }
+                return $query->count_all_results();
+            } else {
+                return $this->querySelector($querySelector)->count_all_results();
+            }
         } else {
-            $query = $this->db->get($table);
+            return $this->db->count_all_results($table);
         }
-        return $query->num_rows();
     }
 
-    public function getAll($table, $limit, $start, $col, $dir, $querySelector)
+    public function getAll($table, $limit, $start, $col, $dir, $querySelector, $queryVariabel)
     {
         if ($querySelector) {
-            $query = $this->querySelector($querySelector)
+            if($queryVariabel) {
+                $query = $this->querySelector($querySelector);
+                
+                foreach ($queryVariabel as $where => $field) {
+                    $query->where($where, $field);
+                }
+
+                $query->limit($limit, $start);
+                $query->order_by($col, $dir);
+                return $query->get()->result();
+            } else {
+                return $this->querySelector($querySelector)
                 ->limit($limit, $start)
                 ->order_by($col, $dir)
-                ->get();
+                ->get()
+                ->result();
+            }
         } else {
-            $query = $this
-                ->db
+            return $this->db
                 ->limit($limit, $start)
                 ->order_by($col, $dir)
-                ->get($table);
+                ->get($table)
+                ->result();
         }
 
-        if ($query->num_rows() > 0) {
-            return $query->result();
-        } else {
-            return null;
-        }
+        // if ($query->num_rows() > 0) {
+        //     return $query->result();
+        // } else {
+        //     return null;
+        // }
     }
 
-    public function dataSearch($table, $limit, $start, $search, $col, $dir, $searchAble, $querySelector)
+    public function dataSearch($table, $limit, $start, $search, $col, $dir, $searchAble, $querySelector, $queryVariabel)
     {
         $like = 0;
         $query = $querySelector
             ? $this->querySelector($querySelector)
             : $this->db->select("*")->from($table);
+
+        if($queryVariabel) {
+            foreach ($queryVariabel as $where => $field) {
+                $query->where($where, $field);
+            }
+        }
 
         foreach ($searchAble as $sc) {
             if ($like === 0) {
@@ -60,12 +87,18 @@ class DatatablesModel extends CI_Model
         return $query->limit($limit, $start)->order_by($col, $dir)->get()->result();
     }
 
-    public function dataSearchCount($table, $search, $searchAble, $querySelector)
+    public function dataSearchCount($table, $search, $searchAble, $querySelector, $queryVariabel)
     {
         $like = 0;
         $query = $querySelector
             ? $this->querySelector($querySelector)
             : $this->db->select("*")->from($table);
+
+        if($queryVariabel) {
+            foreach ($queryVariabel as $where => $field) {
+                $query->where($where, $field);
+            }
+        }
 
         foreach ($searchAble as $sc) {
             if ($like === 0) {
@@ -94,6 +127,8 @@ class DatatablesModel extends CI_Model
                 return $this->User->users(["role" => 5]);
             case "user-packing":
                 return $this->User->users(["role" => 6]);
+            case "released-roll":
+                return $this->Released->getRolls();
         }
     }
 }

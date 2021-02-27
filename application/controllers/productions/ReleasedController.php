@@ -21,9 +21,21 @@ class ReleasedController extends CI_Controller
 
         $totalRoll = 0;
         $status = [
-            "HOLD" => 0,
-            "REWORK" => 0,
-            "REJECT" => 0
+            "HOLD" => [
+                "total" => 0,
+                "percent" => 0,
+                "total_kg" =>0
+            ],
+            "REWORK" => [
+                "total" => 0,
+                "percent" => 0,
+                "total_kg" =>0
+            ],
+            "REJECT" => [
+                "total" => 0,
+                "percent" => 0,
+                "total_kg" =>0
+            ]
         ];
 
         foreach ($rolls as $roll) {
@@ -98,7 +110,6 @@ class ReleasedController extends CI_Controller
             }
         }
 
-        $rollsTable = $this->Released->getRolls($year, $month);
         $data = [
             "totalRoll" => $totalRoll,
             "year" => $year,
@@ -108,10 +119,92 @@ class ReleasedController extends CI_Controller
             "reject" => $reject,
             "fullMonth" => mToMonth($month),
             "status" => $status,
-            "rolls" => $rollsTable
         ];
 
         $this->load->view("admin/productions/released/released", $data);
+    }
+
+    public function releasedTable($year, $month)
+    {
+        $tableOption = [
+            "columns" => ["id_released_jr", "no_released_jr", "reason_jr", "status_akhir", "tgl_released_jr",
+                            "no_roll_released_jr", "id_user_released_jr", "type_slitt", "mic_slitt", "lebar_slitt", "panjang_slitt", "kg_hasil_slitt"],
+            "searchable" => ["a.no_released_jr", "a.reason_jr", "a.status_akhir", "a.tgl_released_jr",
+                            "a.no_roll_released_jr", "a.id_user_released_jr", "b.type_slitt", "b.mic_slitt", "b.lebar_slitt", "b.panjang_slitt", "b.kg_hasil_slitt"],
+            "delete_message" => [
+                'no_released_jr' => "Yakin ingin menghapus [no_released_jr]",
+            ],
+            "actions_url" => [
+                "edit" => base_url("admin/productions/released/[id]/$year/$month/edit"),
+                "delete" => base_url("admin/productions/released/[id]/delete")
+            ],
+            "actions" => $this->auth->role_id == 1 ? "admin/actions/edit-delete" : "admin/actions/edit",
+            "querySelector" => "released-roll",
+            "id" => "id_released_jr",
+            "variabel" => [
+                "YEAR(a.tgl_released_jr)" => $year,
+                "MONTH(a.tgl_released_jr)" => $month,
+            ]
+        ];
+
+        $released = $this->datatables->setDatatables(
+            null,
+            $tableOption
+        );
+
+        json($released);
+    }
+
+    public function edit($id, $year, $month)
+    {
+        $released = $this->BM->getWhere($this->table, ["id_released_jr" => $id])->row();
+        $data = [
+            "roll" => $released,
+            "year" => $year,
+            "month" => $month
+        ];
+        $this->load->view("admin/productions/released/edit", $data);
+    }
+
+    public function update($id)
+    {
+        $post = getPost();
+        $status = $post['status_akhir'];
+        $status_form = $post['status_form'];
+        $rollSlitt = $this->BM->getWhere('input_lap_slitting', ['id_slitt' => $status_form])->row();
+        if($status == "REJECT") {
+            $reject = $this->BM->getWhere('stock_begrade', ['no_roll' => $post["no_roll_released_jr"]])->row();
+            if(!$reject) {
+                $dataReject = [
+                    'tgl_masuk' => $post['tgl_released_jr'],
+                    'type' => $rollSlitt->type_slitt,
+                    'tebal' => $rollSlitt->lebar_slitt,
+                    'lebar' => $rollSlitt->lebar_slitt,
+                    'panjang' => $rollSlitt->panjang_slitt,
+                    'no_roll' => $post['no_roll_released_jr'],
+                    'ket' => $post['reason_jr'],
+                    'tgl_kirim' => '0000-00-00',
+                    'inp' => 'secondary',
+                    'no_dokumen' => $post['no_released_jr'],
+                    'user' => $post['id_user_released_jr']
+                ];
+
+                $this->BM->create('stock_begrade', $dataReject);
+            }
+        } else if($status == "REWORK") {
+            $reject = $this->BM->getWhere('stock_begrade', ['no_roll' => $post["no_roll_released_jr"]]);
+           
+            if($reject) {
+                $this->BM->DELETE('stock_begrade', ["no_roll" => $post["no_roll_released_jr"]]);
+            }
+        }
+
+        $update = $this->BM->update('released_jr', $id, 'id_released_jr', $post);
+        if ($update) {
+            appJson([
+                "message" => "Berhasil mengubah data Released Roll",
+            ]);
+        }
     }
 
 }

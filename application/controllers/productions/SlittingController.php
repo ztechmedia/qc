@@ -106,7 +106,7 @@ class SlittingController extends CI_Controller
             "day" => $day,
             "totalRollFG" => $totalRollFG,
             "totalRollDay" => $totalRollDay,
-            "totalWeight" => round($totalWeight),
+            "totalWeight" => $totalWeight,
             "thisMonth" => mToMonth($month) . " " . $year,
             "toDay" => toIndoDateDay($currDate),
             "currDate" => $currDate,
@@ -195,6 +195,19 @@ class SlittingController extends CI_Controller
 	    $data['id_stock'] = 1;
         }else {
             $data['stock'] = "Packing";
+
+            $rollSlitt = $this->BM->getWhere('input_lap_slitting', ['id_slitt' => $id])->row();
+            $no_roll = $rollSlitt->kode_roll_slitt;
+           
+            $released = $this->BM->getWhere('released_jr', ['no_roll_released_jr' => $no_roll])->row();
+            if($released) {
+                $this->BM->delete('released_jr', ['no_roll_released_jr' => $no_roll]);
+            }
+
+            $reject = $this->BM->getWhere('stock_begrade', ['no_roll' => $no_roll])->row();
+            if($reject) {
+                $this->BM->delete('stock_begrade', ['no_roll' => $no_roll]);
+            }
         }
         
         $update = $this->BM->update("input_lap_slitting", $id, "id_slitt", $data);

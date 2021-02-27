@@ -38,17 +38,13 @@ class ReleasedModel extends CI_Model
             ->result();
     }
 
-    public function getRolls($year, $month)
+    public function getRolls()
     {
-        return $this->db
-            ->select("a.id_released_jr, a.no_released_jr, a.reason_jr, a.status_akhir, a.tgl_released_jr,
-                no_roll_released_jr, a.id_user_released_jr, b.type_slitt, b.mic_slitt, b.lebar_slitt, b.panjang_slitt, b.kg_hasil_slitt")
-            ->from("released_jr as a")
-            ->join("input_lap_slitting as b", "a.status_form = b.id_slitt")
-            ->where("YEAR(a.tgl_released_jr)", $year)
-            ->where("MONTH(a.tgl_released_jr)", $month)
-            ->where("a.status_akhir", "REJECT")
-            ->get()
-            ->result();
+        $query = $this->db;
+        $query->select("a.id_released_jr, a.no_released_jr, a.reason_jr, a.status_akhir, a.tgl_released_jr,
+                        no_roll_released_jr, a.id_user_released_jr, b.type_slitt, b.mic_slitt, b.lebar_slitt, b.panjang_slitt, b.kg_hasil_slitt");
+        $query->from("released_jr as a");
+        $query->join("input_lap_slitting as b", "a.status_form = b.id_slitt");
+        return $query;
     }
 }

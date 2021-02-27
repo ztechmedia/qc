@@ -45,8 +45,7 @@ class BaseModel extends CI_Model
     public function create($table, $data)
     {
         $this->db->insert($table, $data);
-        $id = $this->db->insert_id();
-        return $this->db->get_where($table, ['id' => $id])->row();
+        return $this->db->insert_id();
     }
 
     public function createMultiple($table, $data)

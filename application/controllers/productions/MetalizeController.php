@@ -81,7 +81,7 @@ class MetalizeController extends CI_Controller
             "day" => $day,
             "totalRoll" => $totalRoll,
             "totalRollDay" => $totalRollDay,
-            "totalWeight" => round($totalWeight),
+            "totalWeight" => $totalWeight,
             "thisMonth" => mToMonth($month) . " " . $year,
             "toDay" => toIndoDateDay($currDate),
             "currDate" => $currDate,
