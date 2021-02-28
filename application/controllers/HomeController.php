@@ -32,9 +32,9 @@ class HomeController extends CI_Controller
         $person = $this->personPerformance($year, "POLOSAN", "Slitting");
         $person_month = $this->personPerformanceMonth($year, $month, $person["person"], "POLOSAN", "Slitting");
         $person_met = $this->personPerformance($year, "METALIZZED", "Slitting");
-        $person_met_month = $this->personPerformanceMonth($year, $month, $person["person"], "METALIZZED", "Slitting");
+        $person_met_month = $this->personPerformanceMonth($year, $month, $person_met["person"], "METALIZZED", "Slitting");
         $person_all = $this->personPerformance($year, "", "Slitting");
-        $person_all_month = $this->personPerformanceMonth($year, $month, $person["person"], "", "Slitting");
+        $person_all_month = $this->personPerformanceMonth($year, $month, $person_all["person"], "", "Slitting");
         $totalOk = $A["OK"] + $B["OK"] + $C["OK"] + $D["OK"]; 
         $totalNot = $A["HOLD"] + $B["HOLD"] + $C["HOLD"] + $D["HOLD"] 
                     + $A["NOT"] + $B["NOT"] + $C["NOT"] + $D["NOT"]; 
@@ -321,18 +321,19 @@ class HomeController extends CI_Controller
         if($group == "Slitting") {
             $persons = $this->Slitting->statusPersonMonth($year, $month, $jenis);
         } else if($group == "CPP") {
-            $persons = $this->CPP->statusPersonMonth($year, $month);
+            $persons = $this->CPP->statusPersonMonth($year, 2);
         } else if($group == "Metalize") {
             $persons = $this->Metalize->statusPersonMonth($year, $month);
         }
         $total_roll = [];
         $exist = 0;
+        // dd($persons);
         foreach ($person as $pr) {
-            foreach ($persons as $prs) {
-                if($pr == $prs->user) {
+           
+            foreach ($persons as $prs) { 
+                if(strtoupper($pr) == strtoupper($prs->user)) {
                     $total_roll[] = intval($prs->total);
                     $exist = 1;
-                    break;
                 }
             }
 
@@ -342,7 +343,6 @@ class HomeController extends CI_Controller
                 $exist = 0;
             }
         }
-
         return [
             "total_roll" => $total_roll
         ];
