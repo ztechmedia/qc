@@ -30,7 +30,7 @@ class MasterController extends CI_Controller
                 "edit" => base_url("admin/master/customer-alias/[id]/edit"),
                 "delete" => base_url('admin/master/customer-alias/[id]/delete')
             ],
-            "actions" => "admin/actions/edit-delete"
+            "actions" => $this->auth->role_id == 1 ? "admin/actions/edit-delete" : "admin/actions/edit"
         ];
 
         $users = $this->datatables->setDatatables(

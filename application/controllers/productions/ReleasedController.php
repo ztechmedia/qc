@@ -178,7 +178,7 @@ class ReleasedController extends CI_Controller
                 $dataReject = [
                     'tgl_masuk' => $post['tgl_released_jr'],
                     'type' => $rollSlitt->type_slitt,
-                    'tebal' => $rollSlitt->lebar_slitt,
+                    'tebal' => $rollSlitt->mic_slitt,
                     'lebar' => $rollSlitt->lebar_slitt,
                     'panjang' => $rollSlitt->panjang_slitt,
                     'no_roll' => $post['no_roll_released_jr'],

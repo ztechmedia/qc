@@ -89,4 +89,18 @@ class MetalizeModel extends CI_Model
             ->result();
     }
 
+    public function statusPersonMonth($year, $month)
+    {   
+     
+        return $this->db
+            ->select("user, COUNT(status_met) as total")
+            ->from($this->table)
+            ->where("YEAR(tgl_input)", $year)
+            ->where("MONTH(tgl_input)", $month)
+            ->where("user !=", "")
+            ->group_by("user")
+            ->get()
+            ->result();
+    }
+
 }

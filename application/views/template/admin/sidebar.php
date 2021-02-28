@@ -60,7 +60,7 @@
 	</li>
 <?php } ?>
 
-<?php if ($this->auth->role_id == 6 || $this->auth->role_id == 4 || $this->auth->role_id == 1) { ?>
+<?php if ($this->auth->role_id == 6 || $this->auth->role_id == 1) { ?>
 	<li class="xn-openable packing">
 		<a><span class="fa fa-gift"></span> <span class="xn-text">Packing</span></a>
 		<ul>

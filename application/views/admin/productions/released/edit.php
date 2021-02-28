@@ -80,8 +80,8 @@
                         <div class="col-md-6">
                             <select class="form-control" id="status_akhir" name="status_akhir">
                             <?php $status = ["HOLD", "REWORK", "REJECT"];
-                                foreach ($status as $value) {?>
-                                <option value="<?=$value?>"><?=$value?></option>
+                                foreach ($status as $value) { $select = $value == $roll->status_akhir ? "selected" : null; ?>
+                                <option <?=$select?> value="<?=$value?>"><?=$value?></option>
                             <?php } ?>
                             </select>
                         </div>

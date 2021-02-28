@@ -14,13 +14,12 @@
             <div class="panel panel-default">
                 <div class="panel-body">
 
-                    <?php if ($this->auth->role_id == 1) { ?>
+                   
                         <div class="btnContainer">
                             <button class="btn btn-default link-to" data-to="<?= base_url("admin/master/customer-alias/create") ?>">
                                 Tambah Alias
                             </button>
                         </div>
-                    <?php } ?>
 
                     <table class="table table-bordered" id="admin">
                         <thead>

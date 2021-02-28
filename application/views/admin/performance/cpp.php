@@ -237,6 +237,10 @@
 			name: 'TOTAL ROLL CPP ALL <?=$year?>',
 			color: "orange",
 			data:<?=json_encode($total_roll)?>
+		},{
+			name: 'TOTAL ROLL CPP ALL BULAN <?=strtoupper(mToMonth($month))?>',
+			color: "skyblue",
+			data:<?=json_encode($total_roll_month)?>
 		}]
 	});
 </script>

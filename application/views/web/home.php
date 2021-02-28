@@ -10,8 +10,8 @@
 		<div class="mu-slider-content">
 			<h4>PT. WIRA MUSTIKA ABADI</h4>
 			<span></span>
-			<h3><b>SPA (Single Page Application) Full Asyncronous Request On Admin Panel</b></h3>
-			<p>Home & Login menggunakan teknik Syncronous jadi akan agak lama bagi sebagian browser lawas. Semua Resource akan di load dalam 1 waktu (saat login berhasil) mengakibatkan bagi beberapa browser seperti Chrome < v.88 akan sedikit berat. Admin panel menggunakan teknik Asyncronous full dengan AJAX Request, so you will never see Syncronous Loading & Request much faster. Have Fun :)</p>
+			<h3><b>Warning!! Please read...</b></h3>
+			<p>Aplikasi ini hanya mengambil data dari <b>http://192.168.1.41/wm</b> sebagai source data untuk ditampilkan dalam bentuk yang lebih presentatif. Tidak ada <b>PENAMBAHAN/PERUBAHAN/PENGURANGAN</b> data di setiap fungsi aplikasi. Enjoy!</p>
 		</div>
 	</div>
 	<!-- Start single slider item -->

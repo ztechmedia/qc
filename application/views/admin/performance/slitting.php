@@ -250,6 +250,10 @@
 			name: 'TOTAL ROLL FG POLOSAN <?=$year?>',
 			color: "orange",
 			data:<?=json_encode($total_roll)?>
+		},{
+			name: 'TOTAL ROLL FG POLOSAN BULAN <?=strtoupper(mToMonth($month))?>',
+			color: "limegreen",
+			data:<?=json_encode($total_roll_month)?>
 		}]
 	});
 
@@ -281,8 +285,12 @@
 		},
 		series: [{
 			name: 'TOTAL ROLL FG METALIZE <?=$year?>',
-			color: "green",
+			color: "orange",
 			data:<?=json_encode($total_roll_met)?>
+		},{
+			name: 'TOTAL ROLL FG METALIZE <?=strtoupper(mToMonth($month))?>',
+			color: "green",
+			data:<?=json_encode($total_roll_met_month)?>
 		}]
 	});
 
@@ -314,8 +322,12 @@
 		},
 		series: [{
 			name: 'TOTAL ROLL POLOSAN·METALIZED·BASE FILM <?=$year?>',
-			color: "skyblue",
+			color: "orange",
 			data:<?=json_encode($total_roll_all)?>
+		},{
+			name: 'TOTAL ROLL POLOSAN·METALIZED·BASE FILM <?=strtoupper(mToMonth($month))?>',
+			color: "skyblue",
+			data:<?=json_encode($total_roll_all_month)?>
 		}]
 	});
 </script>

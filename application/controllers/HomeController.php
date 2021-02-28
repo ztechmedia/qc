@@ -30,8 +30,11 @@ class HomeController extends CI_Controller
         $D = $this->groupPerformance($year, $month, "D", "Slitting");
         
         $person = $this->personPerformance($year, "POLOSAN", "Slitting");
+        $person_month = $this->personPerformanceMonth($year, $month, $person["person"], "POLOSAN", "Slitting");
         $person_met = $this->personPerformance($year, "METALIZZED", "Slitting");
+        $person_met_month = $this->personPerformanceMonth($year, $month, $person["person"], "METALIZZED", "Slitting");
         $person_all = $this->personPerformance($year, "", "Slitting");
+        $person_all_month = $this->personPerformanceMonth($year, $month, $person["person"], "", "Slitting");
         $totalOk = $A["OK"] + $B["OK"] + $C["OK"] + $D["OK"]; 
         $totalNot = $A["HOLD"] + $B["HOLD"] + $C["HOLD"] + $D["HOLD"] 
                     + $A["NOT"] + $B["NOT"] + $C["NOT"] + $D["NOT"]; 
@@ -43,10 +46,13 @@ class HomeController extends CI_Controller
             "not" => $monthlyGraph["not"],
             "person" => $person["person"],
             "total_roll" => $person["total_roll"],
+            "total_roll_month" => $person_month["total_roll"],
             "person_met" => $person_met["person"],
             "total_roll_met" => $person_met["total_roll"],
+            "total_roll_met_month" => $person_met_month["total_roll"],
             "person_all" => $person_all["person"],
             "total_roll_all" => $person_all["total_roll"],
+            "total_roll_all_month" => $person_all_month["total_roll"],
             "AOK" => $A["OK"] > 0 ? ($A["OK"] / $totalOk) * 100 : 0,
             "BOK" => $B["OK"] > 0 ? ($B["OK"] / $totalOk) * 100 : 0,
             "COK" => $C["OK"] > 0 ? ($C["OK"] / $totalOk) * 100 : 0,
@@ -86,6 +92,7 @@ class HomeController extends CI_Controller
         $D = $this->groupPerformance($year, $month, "D", "CPP");
 
         $person = $this->personPerformance($year, "", "CPP");
+        $person_month = $this->personPerformanceMonth($year, $month, $person["person"], "", "CPP");
         $totalOk = $A["OK"] + $B["OK"] + $C["OK"] + $D["OK"]; 
         $totalNot = $A["HOLD"] + $B["HOLD"] + $C["HOLD"] + $D["HOLD"] 
                     + $A["NOT"] + $B["NOT"] + $C["NOT"] + $D["NOT"]; 
@@ -97,6 +104,7 @@ class HomeController extends CI_Controller
             "not" => $monthlyGraph["not"],
             "person" => $person["person"],
             "total_roll" => $person["total_roll"],
+            "total_roll_month" => $person_month["total_roll"],
             "AOK" => $A["OK"] > 0 ? ($A["OK"] / $totalOk) * 100 : 0,
             "BOK" => $B["OK"] > 0 ? ($B["OK"] / $totalOk) * 100 : 0,
             "COK" => $C["OK"] > 0 ? ($C["OK"] / $totalOk) * 100 : 0,
@@ -136,6 +144,7 @@ class HomeController extends CI_Controller
         $D = $this->groupPerformance($year, $month, "D", "Metalize");
 
         $person = $this->personPerformance($year, "", "Metalize");
+        $person_month = $this->personPerformanceMonth($year, $month, $person["person"], "", "Metalize");
         $totalOk = $A["OK"] + $B["OK"] + $C["OK"] + $D["OK"]; 
         $totalNot = $A["HOLD"] + $B["HOLD"] + $C["HOLD"] + $D["HOLD"] 
                     + $A["NOT"] + $B["NOT"] + $C["NOT"] + $D["NOT"]; 
@@ -147,6 +156,7 @@ class HomeController extends CI_Controller
             "not" => $monthlyGraph["not"],
             "person" => $person["person"],
             "total_roll" => $person["total_roll"],
+            "total_roll_month" => $person_month["total_roll"],
             "AOK" => $A["OK"] > 0 ? ($A["OK"] / $totalOk) * 100 : 0,
             "BOK" => $B["OK"] > 0 ? ($B["OK"] / $totalOk) * 100 : 0,
             "COK" => $C["OK"] > 0 ? ($C["OK"] / $totalOk) * 100 : 0,
@@ -209,7 +219,7 @@ class HomeController extends CI_Controller
                     if($roll->status == "NOT") {
                         $data["NOT"][$i] = [
                             "total" => $roll->total   
-                        ];
+                        ]; 
                     }
                 }
             }
@@ -302,6 +312,38 @@ class HomeController extends CI_Controller
 
         return [
             "person" => $person,
+            "total_roll" => $total_roll
+        ];
+    }
+
+    public function personPerformanceMonth($year, $month, $person, $jenis, $group)
+    {
+        if($group == "Slitting") {
+            $persons = $this->Slitting->statusPersonMonth($year, $month, $jenis);
+        } else if($group == "CPP") {
+            $persons = $this->CPP->statusPersonMonth($year, $month);
+        } else if($group == "Metalize") {
+            $persons = $this->Metalize->statusPersonMonth($year, $month);
+        }
+        $total_roll = [];
+        $exist = 0;
+        foreach ($person as $pr) {
+            foreach ($persons as $prs) {
+                if($pr == $prs->user) {
+                    $total_roll[] = intval($prs->total);
+                    $exist = 1;
+                    break;
+                }
+            }
+
+            if($exist == 0) {
+                $total_roll[] = 0;
+            } else {
+                $exist = 0;
+            }
+        }
+
+        return [
             "total_roll" => $total_roll
         ];
     }

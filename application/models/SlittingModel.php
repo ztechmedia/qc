@@ -172,6 +172,39 @@ class SlittingModel extends CI_Model
         } 
     }
 
+    public function statusPersonMonth($year, $month, $jenis_roll)
+    {   
+        if($jenis_roll == "") {
+            return $this->db
+            ->select("user, COUNT(status) as total")
+            ->from($this->table)
+            ->where("YEAR(tgl)", $year)
+            ->where("MONTH(tgl)", $month)
+            ->where("user !=", "")
+            ->where("status !=", "")
+            ->where("panjang_slitt >", 0)
+            ->where("kg_hasil_slitt >", 0)
+            ->group_by("user")
+            ->get()
+            ->result();
+        } else {
+            return $this->db
+            ->select("user, COUNT(status) as total")
+            ->from($this->table)
+            ->where("YEAR(tgl)", $year)
+            ->where("MONTH(tgl)", $month)
+            ->where("user !=", "")
+            ->where("stock !=", "Base Film")
+            ->where("jenis_roll_slitt", $jenis_roll)
+            ->where("status !=", "")
+            ->where("panjang_slitt >", 0)
+            ->where("kg_hasil_slitt >", 0)
+            ->group_by("user")
+            ->get()
+            ->result();
+        } 
+    }
+
     public function ncr($date, $group)
     {
        return $this->db

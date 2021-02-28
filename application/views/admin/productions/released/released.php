@@ -203,7 +203,7 @@
         },
         series: [{
             type: 'pie',
-            name: 'Browser share',
+            name: 'Total',
             data: [
                 {
                     name: 'HOLD',
