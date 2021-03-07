@@ -32,9 +32,13 @@
 		<div class="col-md-12">
 			<div id="month"></div>
 		</div>
+
+		<div class="col-md-12">
+			<div id="waste"></div>
+		</div>
     </div>
 
-    <div class="row" style="margin-top: 10px">
+	<div class="row" style="margin-top: 10px">
         <div class="col-md-4">
             <div class="widget widget-default widget-item-icon" style="border: 1px solid skyblue">
                 <div class="widget-item-left">
@@ -69,7 +73,19 @@
                     <div class="widget-title">Total Pengiriman <?=mToMonth($month)?></div>
                 </div>
             </div>
-        </div>
+		</div>
+		
+		<div class="col-md-12">
+			<div class="widget widget-default widget-item-icon" style="border: 1px solid #9c2020">
+                <div class="widget-item-left">
+                    <span class="fa fa-trash-o"></span>
+                </div>
+                <div class="widget-data">
+                    <div class="widget-int num-count"><?=$total_waste?> Kg (<?=$waste_percen?> %)</div>
+                    <div class="widget-title">Waste Bulan <?=mToMonth($month). ' '. $year?></div>
+                </div>
+            </div>
+		</div>
     </div>
 </div>
 
@@ -83,6 +99,50 @@
 		setContentLoader(".content");
 		loadContent(url, ".content");
 	}
+
+	Highcharts.chart('waste', {
+		chart: {
+			plotBackgroundColor: null,
+			plotBorderWidth: null,
+			plotShadow: false,
+			type: 'pie'
+		},
+		title: {
+			text: 'Waste <?= mToMonth($month).' '.$year ?> '
+		},
+		tooltip: {
+			pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+		},
+		accessibility: {
+			point: {
+				valueSuffix: '%'
+			}
+		},
+		plotOptions: {
+			pie: {
+				allowPointSelect: true,
+				cursor: 'pointer',
+				dataLabels: {
+					enabled: true,
+					format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+					connectorColor: 'silver'
+				}
+			}
+		},
+		series: [{
+			name: 'Roll HOLD & NOT',
+			data: [
+				{ name: '<?=$waste[0]["nama_waste"]. " (".toRp($waste[0]["total_waste"])." Kg)"?>', y: <?= intval($waste[0]["total_waste"]) ?> },
+				{ name: '<?=$waste[1]["nama_waste"]. " (".toRp($waste[1]["total_waste"])." Kg)"?>?>', y: <?= intval($waste[1]["total_waste"]) ?> },
+				{ name: '<?=$waste[2]["nama_waste"]. " (".toRp($waste[2]["total_waste"])." Kg)"?>?>', y: <?= intval($waste[2]["total_waste"]) ?> },
+				{ name: '<?=$waste[3]["nama_waste"]. " (".toRp($waste[3]["total_waste"])." Kg)"?>?>', y: <?= intval($waste[3]["total_waste"]) ?> },
+				{ name: '<?=$waste[4]["nama_waste"]. " (".toRp($waste[4]["total_waste"])." Kg)"?>?>', y: <?= intval($waste[4]["total_waste"]) ?> },
+				{ name: '<?=$waste[5]["nama_waste"]. " (".toRp($waste[5]["total_waste"])." Kg)"?>?>', y: <?= intval($waste[5]["total_waste"]) ?> },
+				{ name: '<?=$waste[6]["nama_waste"]. " (".toRp($waste[6]["total_waste"])." Kg)"?>?>', y: <?= intval($waste[6]["total_waste"]) ?> },
+				{ name: '<?=$waste[7]["nama_waste"]. " (".toRp($waste[7]["total_waste"])." Kg)"?>?>', y: <?= intval($waste[7]["total_waste"]) ?> },
+			]
+		}]
+	});
 
 	Highcharts.chart('month', {
 		chart: {

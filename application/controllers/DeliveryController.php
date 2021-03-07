@@ -24,6 +24,7 @@ class DeliveryController extends CI_Controller
         $deliveriesMetal = $this->Delivery->getTotalKirimJenis($year, "METALIZZED");
         $totalMonthPolos = toRp($this->Delivery->getTotalKirimMonth($year, $month, "POLOSAN"));
         $totalMonthMetal = toRp($this->Delivery->getTotalKirimMonth($year, $month, "METALIZZED"));
+        $totalWaste = $this->Delivery->totalWaste($year, $month);
         for ($i=1; $i <= 12 ; $i++) { 
             $exist = 0;
             $existPolos = 0;
@@ -71,21 +72,29 @@ class DeliveryController extends CI_Controller
         $total_month = 0;
         foreach ($deliveries as $delivery) {
             if($delivery->month == $month){
-                $total_month = toRp($delivery->total_kirim);
+                $total_month = $delivery->total_kirim;
                 break;
             }
+        }
+
+        $total_waste = 0;
+        foreach ($totalWaste as $key => $value) {
+            $total_waste += $value["total_waste"];
         }
 
         $data = [
             "total_kirim" => $total_kirim,
             "total_kirim_polos" => $total_kirim_polos,
             "total_kirim_metal" => $total_kirim_metal,
-            'total_month' => $total_month,
+            'total_month' => toRp($total_month),
             'total_month_polos' => $totalMonthPolos, 
             'total_month_metal' => $totalMonthMetal, 
             'months' => $months,
             'year' => $year,
-            'month' => $month
+            'month' => $month,
+            'waste' => $totalWaste,
+            "total_waste" => toRp($total_waste),
+            "waste_percen" => $total_waste > 0 ? toRp((($total_waste / $total_month) * 100)) : 0
         ];
 
         $this->load->view("admin/delivery/delivery", $data);

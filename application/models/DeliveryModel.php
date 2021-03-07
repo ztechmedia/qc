@@ -57,4 +57,16 @@ class DeliveryModel extends CI_Model
             ->row()
             ->total_kirim;
     }
+
+    public function totalWaste($year, $month)
+    {
+        return $this->db
+            ->select("SUM(wst_qty) as total_waste, nama_waste")
+            ->from("waste_proses")
+            ->where("YEAR(tgl_wst)", $year)
+            ->where("MONTH(tgl_wst)", $month)
+            ->group_by("nama_waste")
+            ->get()
+            ->result_array();
+    }
 }
