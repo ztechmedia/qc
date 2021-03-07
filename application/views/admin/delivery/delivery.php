@@ -36,7 +36,7 @@
 
     <div class="row" style="margin-top: 10px">
         <div class="col-md-4">
-            <div class="widget widget-default widget-item-icon">
+            <div class="widget widget-default widget-item-icon" style="border: 1px solid skyblue">
                 <div class="widget-item-left">
                     <span class="fa fa-truck"></span>
                 </div>
@@ -48,7 +48,7 @@
         </div>
 
         <div class="col-md-4">
-            <div class="widget widget-default widget-item-icon">
+            <div class="widget widget-default widget-item-icon" style="border: 1px solid limegreen">
                 <div class="widget-item-left">
                     <span class="fa fa-truck"></span>
                 </div>
@@ -60,7 +60,7 @@
         </div>
 
         <div class="col-md-4">
-            <div class="widget widget-default widget-item-icon">
+            <div class="widget widget-default widget-item-icon" style="border: 1px solid orange">
                 <div class="widget-item-left">
                     <span class="fa fa-truck"></span>
                 </div>
@@ -111,9 +111,17 @@
 			}
 		},
 		series: [{
-			name: 'Total Berat Pengiriman',
+			name: 'Total Berat Pengiriman TOTAL',
 			color: "orange",
 			data:<?=json_encode($total_kirim)?>
+		}, {
+			name: 'Total Berat Pengiriman POLOSAN',
+			color: "skyblue",
+			data:<?=json_encode($total_kirim_polos)?>
+		}, {
+			name: 'Total Berat Pengiriman METALIZED',
+			color: "limegreen",
+			data:<?=json_encode($total_kirim_metal)?>
 		}]
 	});
 

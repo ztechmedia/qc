@@ -16,19 +16,50 @@ class DeliveryController extends CI_Controller
     public function delivery($year, $month)
     {
         $total_kirim = [];
+        $total_kirim_polos = [];
+        $total_kirim_metal = [];
         $months = [];
         $deliveries = $this->Delivery->getTotalKirim($year);
-        $totalMonthPolos = toRp(intval($this->Delivery->getTotalKirimMonth($year, $month, "POLOSAN")));
-        $totalMonthMetal = toRp(intval($this->Delivery->getTotalKirimMonth($year, $month, "METALIZZED")));
+        $deliveriesPolos = $this->Delivery->getTotalKirimJenis($year, "POLOSAN");
+        $deliveriesMetal = $this->Delivery->getTotalKirimJenis($year, "METALIZZED");
+        $totalMonthPolos = toRp($this->Delivery->getTotalKirimMonth($year, $month, "POLOSAN"));
+        $totalMonthMetal = toRp($this->Delivery->getTotalKirimMonth($year, $month, "METALIZZED"));
         for ($i=1; $i <= 12 ; $i++) { 
             $exist = 0;
+            $existPolos = 0;
+            $existMetal = 0;
+
             foreach ($deliveries as $delivery) {
                 if($delivery->month == $i) {
                     $total_kirim[] = intval($delivery->total_kirim);
-                    $months[] = mToMonth($i).' ('.toRp(intval($delivery->total_kirim)).' Kg)';
+                    $months[] = mToMonth($i).' ('.toRp($delivery->total_kirim).' Kg)';
                     $exist++;
                     break;
                 }
+            }
+
+            foreach ($deliveriesPolos as $delivery) {
+                if($delivery->month == $i) {
+                    $total_kirim_polos[] = intval($delivery->total_kirim);
+                    $existPolos++;
+                    break;
+                }
+            }
+
+            foreach ($deliveriesMetal as $delivery) {
+                if($delivery->month == $i) {
+                    $total_kirim_metal[] = intval($delivery->total_kirim);
+                    $existMetal++;
+                    break;
+                }
+            }
+
+            if($existPolos == 0) {
+                $total_kirim_polos[] = 0;
+            }
+
+            if($existMetal == 0) {
+                $total_kirim_metal[] = 0;
             }
 
             if($exist == 0) {
@@ -40,13 +71,15 @@ class DeliveryController extends CI_Controller
         $total_month = 0;
         foreach ($deliveries as $delivery) {
             if($delivery->month == $month){
-                $total_month = toRp(intval($delivery->total_kirim));
+                $total_month = toRp($delivery->total_kirim);
                 break;
             }
         }
 
         $data = [
             "total_kirim" => $total_kirim,
+            "total_kirim_polos" => $total_kirim_polos,
+            "total_kirim_metal" => $total_kirim_metal,
             'total_month' => $total_month,
             'total_month_polos' => $totalMonthPolos, 
             'total_month_metal' => $totalMonthMetal, 
