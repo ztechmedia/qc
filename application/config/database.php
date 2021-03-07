@@ -9,7 +9,7 @@ $db['default'] = array(
     'hostname' => 'localhost',
     'username' => ENVIRONMENT !== 'production' ? 'root' : 'root',
     'password' => ENVIRONMENT !== 'production' ? '' : 'charis838',
-    'database' => ENVIRONMENT !== 'production' ? 'ci_wmi' : 'wmi',
+    'database' => ENVIRONMENT !== 'production' ? 'ci_qc_server' : 'wmi',
     'dbdriver' => 'mysqli',
     'dbprefix' => '',
     'pconnect' => false,

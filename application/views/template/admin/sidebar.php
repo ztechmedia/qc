@@ -7,6 +7,10 @@
 	</ul>
 </li>
 
+<li class="delivery">
+	<a class="side-menu" data-url="<?= base_url("admin/delivery/$currentYear/$currentMonth") ?>" data-menu=".delivery"><span class="fa fa-truck"></span> <span class="xn-text">Pengiriman</span></a>
+</li>
+
 <?php if ($this->auth->role_id == 1) { ?>
 	<li class="xn-openable users">
 		<a><span class="fa fa-user"></span> <span class="xn-text">Akun QA</span></a>

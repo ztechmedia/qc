@@ -31,9 +31,10 @@
 					</div>
 					<!-- Start single service -->
 					<!-- Start single service -->
-					<div class="mu-service-single" style="background: #084262">
-						<span class="fa fa-truck"></span>
-						<h3>LAPORAN PENGIRIMAN</h3>
+					<div class="mu-service-single" style="background: #084262; border-bottom-left-radius: 70px; border-bottom-right-radius: 70px;">
+						<marquee><h4 style="font-style: italic">Update !!</h4></marquee>
+						<p>Untuk melihat jumlah Roll HOLD yang di Release QC (Release REWORK, REJECT) ada pada menu:</p>
+						<p><b>Produksi -> Release Roll</b></p>
 					</div>
 					<!-- Start single service -->
 					<!-- Start single service -->
