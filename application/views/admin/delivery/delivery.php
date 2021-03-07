@@ -76,7 +76,7 @@
 		</div>
 		
 		<div class="col-md-12">
-			<div class="widget widget-default widget-item-icon" style="border: 1px solid #9c2020">
+			<div class="widget widget-default widget-item-icon" style="border: 1px solid #9c2020	">
                 <div class="widget-item-left">
                     <span class="fa fa-trash-o"></span>
                 </div>
@@ -130,17 +130,8 @@
 			}
 		},
 		series: [{
-			name: 'Roll HOLD & NOT',
-			data: [
-				{ name: '<?=$waste[0]["nama_waste"]. " (".toRp($waste[0]["total_waste"])." Kg)"?>', y: <?= intval($waste[0]["total_waste"]) ?> },
-				{ name: '<?=$waste[1]["nama_waste"]. " (".toRp($waste[1]["total_waste"])." Kg)"?>?>', y: <?= intval($waste[1]["total_waste"]) ?> },
-				{ name: '<?=$waste[2]["nama_waste"]. " (".toRp($waste[2]["total_waste"])." Kg)"?>?>', y: <?= intval($waste[2]["total_waste"]) ?> },
-				{ name: '<?=$waste[3]["nama_waste"]. " (".toRp($waste[3]["total_waste"])." Kg)"?>?>', y: <?= intval($waste[3]["total_waste"]) ?> },
-				{ name: '<?=$waste[4]["nama_waste"]. " (".toRp($waste[4]["total_waste"])." Kg)"?>?>', y: <?= intval($waste[4]["total_waste"]) ?> },
-				{ name: '<?=$waste[5]["nama_waste"]. " (".toRp($waste[5]["total_waste"])." Kg)"?>?>', y: <?= intval($waste[5]["total_waste"]) ?> },
-				{ name: '<?=$waste[6]["nama_waste"]. " (".toRp($waste[6]["total_waste"])." Kg)"?>?>', y: <?= intval($waste[6]["total_waste"]) ?> },
-				{ name: '<?=$waste[7]["nama_waste"]. " (".toRp($waste[7]["total_waste"])." Kg)"?>?>', y: <?= intval($waste[7]["total_waste"]) ?> },
-			]
+			name: 'Total Waste',
+			data: <?=json_encode($waste)?>
 		}]
 	});
 

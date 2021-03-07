@@ -25,6 +25,7 @@ class DeliveryController extends CI_Controller
         $totalMonthPolos = toRp($this->Delivery->getTotalKirimMonth($year, $month, "POLOSAN"));
         $totalMonthMetal = toRp($this->Delivery->getTotalKirimMonth($year, $month, "METALIZZED"));
         $totalWaste = $this->Delivery->totalWaste($year, $month);
+
         for ($i=1; $i <= 12 ; $i++) { 
             $exist = 0;
             $existPolos = 0;
@@ -78,8 +79,13 @@ class DeliveryController extends CI_Controller
         }
 
         $total_waste = 0;
+        $waste = [];
         foreach ($totalWaste as $key => $value) {
             $total_waste += $value["total_waste"];
+            $waste[] = [
+                "name" => $value['nama_waste']." (".$value['total_waste']." Kg)",
+                "y" => intval($value["total_waste"])
+            ];
         }
 
         $data = [
@@ -92,7 +98,7 @@ class DeliveryController extends CI_Controller
             'months' => $months,
             'year' => $year,
             'month' => $month,
-            'waste' => $totalWaste,
+            'waste' => $waste,
             "total_waste" => toRp($total_waste),
             "waste_percen" => $total_waste > 0 ? toRp((($total_waste / $total_month) * 100)) : 0
         ];
