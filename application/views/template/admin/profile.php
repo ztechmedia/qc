@@ -12,7 +12,7 @@
             <div class="profile-data-title">Ip Address: <b><?=$ip?></b></div>
             <div class="profile-data-title">OS: <b><?=$os?></b></div>
             <div class="profile-data-title">Browser: <b><?=$browser." ".$browser_version?></b></div>
-            <div class="profile-data-title">Efektif Program: <b>07 Februari 2021</b></div>
+            <div class="profile-data-title">Update: <b>10 Maret 2021</b></div>
         </div>
     </div>
 </li>

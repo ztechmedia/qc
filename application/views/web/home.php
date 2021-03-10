@@ -35,6 +35,8 @@
 						<marquee><h4 style="font-style: italic">Update !!</h4></marquee>
 						<p>Untuk melihat jumlah Roll HOLD yang di Release QC (Release REWORK, REJECT) ada pada menu:</p>
 						<p><b>Produksi -> Release Roll</b></p>
+						<p>Untuk melihat pengiriman:</p>
+						<p><b>Pengiriman</b></p>
 					</div>
 					<!-- Start single service -->
 					<!-- Start single service -->

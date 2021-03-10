@@ -139,7 +139,7 @@
 							</a>
 						</h4>
 					</div>                                
-					<div class="panel-body panel-body-open list-group" id="accOneColOne" style="height:348px; overflow: auto; overflow-y: scroll">
+					<div class="panel-body panel-body-open list-group" id="accOneColOne" style="height:300px; overflow: auto; overflow-y: scroll">
 						<div class="person-waste"></div>
 					</div>                                     
 				</div>
