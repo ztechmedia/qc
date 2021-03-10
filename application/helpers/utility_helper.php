@@ -180,6 +180,6 @@ function checkAlias($array, $data)
 function toRp($amount)
 {
 
-    $rupiah = number_format($amount, 2, ',', '.');
+    $rupiah = number_format($amount, 2, ',' ,'.');
     return $rupiah;
 }

@@ -124,6 +124,7 @@
         "searching": false,
         "processing": false,
         "serverSide": true,
+        "searching": false,
         "order": [
             [0, 'desc']
         ],

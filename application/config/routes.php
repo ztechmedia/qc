@@ -128,3 +128,15 @@ $route['admin/productions/released/(:num)/(:num)/(:num)/edit'] = 'productions/Re
 //@actions
 $route['admin/productions/released/(:num)/update'] = 'productions/ReleasedController/update/$1/$2';
 $route['admin/productions/released/(:num)/delete'] = 'productions/ReleasedController/delete/$1';
+
+//cron route at server
+$route['last-id/(:any)'] = 'CronController/lastId/$1';
+$route['update-data'] = 'CronController/updateDataServer';
+
+//cron route at client
+$route['push_start'] = "CronController/pushStart";
+
+//delivery
+//@view
+$route['admin/delivery/(:num)/(:num)'] = "DeliveryController/delivery/$1/$2";
+$route['admin/waste/(:num)/(:num)'] = "DeliveryController/waste/$1/$2";
