@@ -53,10 +53,10 @@
 		</div>
 		<div class="col-md-6">
 			<div class="panel-group accordion">
-				<div class="panel panel-primary">
+				<div class="panel panel-danger">
 					<div class="panel-heading ui-draggable-handle">
 						<h4 class="panel-title">
-							<a href="#accOneColOne">
+							<a style="color: #9c2020">
 								ROLL HOLD & NOT
 							</a>
 						</h4>
@@ -247,11 +247,11 @@
 			}
 		},
 		series: [{
-			name: 'TOTAL ROLL FG POLOSAN <?=$year?>',
+			name: 'TOTAL ROLL SEPANJANG TAHUN <?=$year?>',
 			color: "orange",
 			data:<?=json_encode($total_roll)?>
 		},{
-			name: 'TOTAL ROLL FG POLOSAN BULAN <?=strtoupper(mToMonth($month))?>',
+			name: 'TOTAL ROLL BULAN <?=strtoupper(mToMonth($month))?>',
 			color: "limegreen",
 			data:<?=json_encode($total_roll_month)?>
 		}]
@@ -272,7 +272,7 @@
 		},
 		yAxis: {
 			title: {
-				text: 'Total Roll Metalize'
+				text: 'Total Roll Metalized'
 			}
 		},
 		plotOptions: {
@@ -284,11 +284,11 @@
 			}
 		},
 		series: [{
-			name: 'TOTAL ROLL FG METALIZE <?=$year?>',
+			name: 'TOTAL ROLL SEPANJANG TAHUN <?=$year?>',
 			color: "orange",
 			data:<?=json_encode($total_roll_met)?>
 		},{
-			name: 'TOTAL ROLL FG METALIZE <?=strtoupper(mToMonth($month))?>',
+			name: 'TOTAL ROLL BULAN <?=strtoupper(mToMonth($month))?>',
 			color: "green",
 			data:<?=json_encode($total_roll_met_month)?>
 		}]
@@ -321,11 +321,11 @@
 			}
 		},
 		series: [{
-			name: 'TOTAL ROLL POLOSAN·METALIZED·BASE FILM <?=$year?>',
+			name: 'TOTAL ROLL POLOSAN·METALIZED·BASE FILM TAHUN <?=$year?>',
 			color: "orange",
 			data:<?=json_encode($total_roll_all)?>
 		},{
-			name: 'TOTAL ROLL POLOSAN·METALIZED·BASE FILM <?=strtoupper(mToMonth($month))?>',
+			name: 'TOTAL ROLL POLOSAN·METALIZED·BASE FILM BULAN <?=strtoupper(mToMonth($month))?>',
 			color: "skyblue",
 			data:<?=json_encode($total_roll_all_month)?>
 		}]

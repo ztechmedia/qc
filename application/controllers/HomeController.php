@@ -321,7 +321,7 @@ class HomeController extends CI_Controller
         if($group == "Slitting") {
             $persons = $this->Slitting->statusPersonMonth($year, $month, $jenis);
         } else if($group == "CPP") {
-            $persons = $this->CPP->statusPersonMonth($year, 2);
+            $persons = $this->CPP->statusPersonMonth($year, $month);
         } else if($group == "Metalize") {
             $persons = $this->Metalize->statusPersonMonth($year, $month);
         }

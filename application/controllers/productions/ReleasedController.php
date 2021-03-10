@@ -136,9 +136,8 @@ class ReleasedController extends CI_Controller
             ],
             "actions_url" => [
                 "edit" => base_url("admin/productions/released/[id]/$year/$month/edit"),
-                "delete" => base_url("admin/productions/released/[id]/delete")
             ],
-            "actions" => $this->auth->role_id == 1 ? "admin/actions/edit-delete" : "admin/actions/edit",
+            "actions" => "admin/actions/edit",
             "querySelector" => "released-roll",
             "id" => "id_released_jr",
             "variabel" => [

@@ -98,10 +98,10 @@
                     <th>Panjang</th>
                     <th>No Roll</th>
                     <th>Berat</th>
-                    <th>Di Released Oleh</th>
+                    <th>User</th>
                     <th>Status</th>
                     <th>Alasan</th>
-                    <th width="12%">Tindakan</th>
+                    <th width="5%">Tindakan</th>
                 </thead>
             </table>
         </table>
@@ -120,8 +120,8 @@
 		setContentLoader(".content");
 		loadContent(url, ".content");
     }
-
     $('#released-roll').DataTable({
+        "searching": false,
         "processing": false,
         "serverSide": true,
         "order": [

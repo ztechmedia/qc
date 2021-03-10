@@ -85,6 +85,7 @@ class MetalizeModel extends CI_Model
             ->where("YEAR(tgl_input)", $year)
             ->where("user !=", "")
             ->group_by("user")
+            ->order_by("user", "asc")
             ->get()
             ->result();
     }
@@ -99,6 +100,7 @@ class MetalizeModel extends CI_Model
             ->where("MONTH(tgl_input)", $month)
             ->where("user !=", "")
             ->group_by("user")
+            ->order_by("user", "asc")
             ->get()
             ->result();
     }

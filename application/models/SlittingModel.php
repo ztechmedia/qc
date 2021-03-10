@@ -185,6 +185,7 @@ class SlittingModel extends CI_Model
             ->where("panjang_slitt >", 0)
             ->where("kg_hasil_slitt >", 0)
             ->group_by("user")
+            ->order_by("user", "asc")
             ->get()
             ->result();
         } else {
@@ -200,6 +201,7 @@ class SlittingModel extends CI_Model
             ->where("panjang_slitt >", 0)
             ->where("kg_hasil_slitt >", 0)
             ->group_by("user")
+            ->order_by("user", "asc")
             ->get()
             ->result();
         } 
