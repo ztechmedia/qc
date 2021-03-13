@@ -110,11 +110,33 @@ class DeliveryModel extends CI_Model
 
     public function personWorks($year, $month)
     {
-        $users = $this->db
+        $userSlit = $this->db
             ->select("user")
             ->from("input_lap_slitting")
             ->where("YEAR(tgl)", $year)
             ->where("MONTH(tgl)", $month)
+            ->where("user !=", "")
+            ->where_not_in("user", ["ricky", "putra", "bangkit", "riswanto", "packing3", "packing2", "firdaus", "faisal", "alim"])
+            ->group_by("user")
+            ->get()
+            ->result();
+
+        $userMet = $this->db
+            ->select("user")
+            ->from("input_met")
+            ->where("YEAR(tgl_input)", $year)
+            ->where("MONTH(tgl_input)", $month)
+            ->where("user !=", "")
+            ->where_not_in("user", ["ricky", "putra", "bangkit", "riswanto", "packing3", "packing2", "firdaus", "faisal", "alim"])
+            ->group_by("user")
+            ->get()
+            ->result();
+
+        $userCpp = $this->db
+            ->select("user")
+            ->from("input_lap_cpp")
+            ->where("YEAR(tgl_input)", $year)
+            ->where("MONTH(tgl_input)", $month)
             ->where("user !=", "")
             ->where_not_in("user", ["ricky", "putra", "bangkit", "riswanto", "packing3", "packing2", "firdaus", "faisal", "alim"])
             ->group_by("user")
@@ -134,21 +156,65 @@ class DeliveryModel extends CI_Model
         foreach ($dates as $dt) {
            $date[] = $dt->tgl;
         }
+
+        $users = [];
+        foreach ($userSlit as $user) {
+            $users[] = [
+                "user" => $user->user,
+                "machine" => "slitt"
+            ];
+        }
+
+        foreach ($userMet as $user) {
+            $users[] = [
+                "user" => $user->user,
+                "machine" => "met"
+            ];
+        }
+
+        foreach ($userCpp as $user) {
+            $users[] = [
+                "user" => $user->user,
+                "machine" => "cpp"
+            ];
+        }
         
         $workDays = [];
-        foreach ($users as $user) {
-            $day = $this->db
-                ->select("tgl")
-                ->from("input_lap_slitting")
-                ->where("YEAR(tgl)", $year)
-                ->where("MONTH(tgl)", $month)
-                ->where_in("tgl", $date)
-                ->where("user", $user->user)
-                ->group_by("tgl")
-                ->count_all_results();
+        foreach ($users as $key => $user) {
+            if($user["machine"] == "slitt") {
+                $day = $this->db
+                    ->select("tgl")
+                    ->from("input_lap_slitting")
+                    ->where("YEAR(tgl)", $year)
+                    ->where("MONTH(tgl)", $month)
+                    ->where_in("tgl", $date)
+                    ->where("user", $user['user'])
+                    ->group_by("tgl")
+                    ->count_all_results();
+            } else if($user["machine"] == "met") {
+                $day = $this->db
+                    ->select("tgl_input")
+                    ->from("input_met")
+                    ->where("YEAR(tgl_input)", $year)
+                    ->where("MONTH(tgl_input)", $month)
+                    ->where_in("tgl_input", $date)
+                    ->where("user", $user['user'])
+                    ->group_by("tgl_input")
+                    ->count_all_results();
+            } else if($user["machine"] == "cpp") {
+                $day = $this->db
+                    ->select("tgl_input")
+                    ->from("input_lap_cpp")
+                    ->where("YEAR(tgl_input)", $year)
+                    ->where("MONTH(tgl_input)", $month)
+                    ->where_in("tgl_input", $date)
+                    ->where("user", $user['user'])
+                    ->group_by("tgl_input")
+                    ->count_all_results();
+            }
             
             $workDays[] = [
-                "user" => $user->user,
+                "user" => $user['user'],
                 "work_day" => $day
             ];
         }
@@ -158,8 +224,6 @@ class DeliveryModel extends CI_Model
 
     public function personWasteWorks($year, $month)
     {
-        
-
         $users = $this->db
             ->select("user_id_wst, SUM(wst_qty) as total_waste")
             ->from("waste_proses")

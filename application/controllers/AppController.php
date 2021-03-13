@@ -17,7 +17,8 @@ class AppController extends CI_Controller
         $currentDate = date("Y-m-d");
         $date = explode("-", $currentDate);
         $data["currentYear"] = $date[0];
-        $data["currentMonth"] = $date[1];
+        // $data["currentMonth"] = $date[1];
+        $data["currentMonth"] = 2;
         $data["currentDay"] = $date[2];
         $data["currentDate"] = revDate($currentDate);
 
