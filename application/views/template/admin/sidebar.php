@@ -13,7 +13,7 @@
 
 <?php if ($this->auth->role_id == 1) { ?>
 	<li class="xn-openable users">
-		<a><span class="fa fa-user"></span> <span class="xn-text">Akun QA</span></a>
+		<a><span class="fa fa-user"></span> <span class="xn-text">Akun</span></a>
 		<ul>
 			<li class="admin"><a class="side-submenu" data-url="<?= base_url("admin/users/1") ?>" data-menu=".users" data-submenu=".admin"><span class="fa fa-crosshairs"></span> Admin</a></li>
 
@@ -25,28 +25,24 @@
 			<li class="lab"><a class="side-submenu" data-url="<?= base_url("admin/users/4") ?>" data-menu=".users" data-submenu=".lab"><span class="fa fa-crosshairs"></span> Lab & Inspection</a></li>
 
 			<li class="inout"><a class="side-submenu" data-url="<?= base_url("admin/users/5") ?>" data-menu=".users" data-submenu=".inout"><span class="fa fa-crosshairs"></span> In & Out</a></li>
-		</ul>
-	</li>
-
-	<li class="xn-openable prod-users">
-		<a><span class="fa fa-user"></span> <span class="xn-text">Akun Produksi</span></a>
-		<ul>
-			<li class="packing-user"><a class="side-submenu" data-url="<?= base_url("admin/users/6") ?>" data-menu=".prod-users" data-submenu=".packing-user"><span class="fa fa-crosshairs"></span> Packing</a></li>
+			<li class="packing-user"><a class="side-submenu" data-url="<?= base_url("admin/users/6") ?>" data-menu=".users" data-submenu=".packing-user"><span class="fa fa-crosshairs"></span> Packing</a></li>
 		</ul>
 	</li>
 <?php } ?>
 
-<?php if ($this->auth->role_id != 6) { ?>
-	<li class="xn-openable master">
-		<a><span class="fa fa-hdd-o"></span> <span class="xn-text">Master</span></a>
-		<ul>
-			<li class="customer-alias"><a class="side-submenu" data-url="<?= base_url("admin/master/customer-alias") ?>" data-menu=".master" data-submenu=".customer-alias"><span class="fa fa-crosshairs"></span> Customer Alias</a></li>
-			<?php if ($this->auth->role_id == 1) { ?>
-				<li class="defect-alias"><a class="side-submenu" data-url="<?= base_url("admin/master/defect-alias") ?>" data-menu=".master" data-submenu=".defect-alias"><span class="fa fa-crosshairs"></span> Defect Alias</a></li>
-			<?php } ?>
-		</ul>
-	</li>
+<?php if($this->auth->role_id == 4 || $this->auth->role_id == 1) { ?>
+<li class="xn-openable master">
+	<a><span class="fa fa-hdd-o"></span> <span class="xn-text">Master</span></a>
+	<ul>
+		<li class="customer-alias"><a class="side-submenu" data-url="<?= base_url("admin/master/customer-alias") ?>" data-menu=".master" data-submenu=".customer-alias"><span class="fa fa-crosshairs"></span> Customer Alias</a></li>
+		<?php if ($this->auth->role_id == 1) { ?>
+			<li class="defect-alias"><a class="side-submenu" data-url="<?= base_url("admin/master/defect-alias") ?>" data-menu=".master" data-submenu=".defect-alias"><span class="fa fa-crosshairs"></span> Defect Alias</a></li>
+		<?php } ?>
+	</ul>
+</li>
+<?php } ?>
 
+<?php if ($this->auth->role_id != 6) { ?>
 	<li class="xn-openable productions">
 		<a><span class="fa fa-cogs"></span> <span class="xn-text">Produksi</span></a>
 		<ul>
@@ -56,8 +52,10 @@
 					Metalize</a></li>
 			<li class="slitting"><a class="side-submenu" data-url="<?= base_url("admin/productions/slitting/main/$currentYear/$currentMonth/$currentDay") ?>" data-menu=".productions" data-submenu=".slitting"><span class="fa fa-crosshairs"></span>
 					Slitting</a></li>
+			<?php if($this->auth->role_id == 1 || $this->auth->role_id == 4)  {?>
 			<li class="ncr"><a class="side-submenu" data-url="<?= base_url("admin/productions/ncr/$currentDate/A") ?>" data-menu=".productions" data-submenu=".ncr"><span class="fa fa-crosshairs"></span>
 					List NCR</a></li>
+			<?php } ?>
 			<li class="released"><a class="side-submenu" data-url="<?= base_url("admin/productions/released/$currentYear/$currentMonth") ?>" data-menu=".productions" data-submenu=".released"><span class="fa fa-crosshairs"></span>
 					Release Roll</a></li>
 		</ul>
