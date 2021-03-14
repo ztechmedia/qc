@@ -10,7 +10,6 @@
 </div>
 
 <div class="page-content-wrap">
-
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default tabs">

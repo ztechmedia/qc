@@ -236,4 +236,21 @@ class SlittingModel extends CI_Model
         ->get()
         ->result();
     }
+
+    public function getAllRolls($year, $month)
+    {
+        return $this->db
+            ->select("slitt_roll, COUNT(slitt_roll) AS total_roll, jenis_roll_slitt")
+            ->from($this->table)
+            ->where("YEAR(tgl)", $year)
+            ->where("MONTH(tgl)", $month)
+            ->where("stock !=", "Base Film")
+            ->where("user !=", "")
+            ->where_in("status", ["OK", "NCR"])    
+            ->where("panjang_slitt >", 0)
+            ->where("kg_hasil_slitt >", 0)
+            ->group_by("slitt_roll")
+            ->get()
+            ->result();
+    }
 }

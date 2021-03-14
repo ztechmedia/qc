@@ -33,8 +33,9 @@ class SlittingController extends CI_Controller
         $data = [
             "year" => $year,
             "month" => $month,
-            "day" => $day
+            "day" => $day,
         ];
+
         $this->load->view("admin/productions/slitting/slitting", $data);
     }
 
@@ -165,6 +166,24 @@ class SlittingController extends CI_Controller
         if($_GET["nama_mesin"] != "all") {
             $this->load->view("admin/productions/slitting/slitting-table", $data);
         } else {
+            $year = $_GET["year"];
+            $month = $_GET["month"];
+            $rolls = $this->Slitting->getAllRolls($year, $month);
+            $met = [];
+            $polos = [];
+            foreach ($rolls as $roll) {
+                $slitt_roll = explode("x", str_replace(" ", "", $roll->slitt_roll));
+            if(
+                $slitt_roll[2] == "4000" || $slitt_roll[2] == "6000" || 
+                $slitt_roll[2] == "8000" || $slitt_roll[2] == "10000" || $slitt_roll[2] == "12000") 
+                {
+                    $roll->jenis_roll_slitt == "POLOSAN" ? $polos[] = $roll : $met[] = $roll;
+                }
+            }
+            $data["year"] = $year;
+            $data["month"] = $month;
+            $data["polos"] = $polos;
+            $data["met"] = $met;
             $this->load->view("admin/productions/slitting/slitting-all-table", $data);
         }
     }
