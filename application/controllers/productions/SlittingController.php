@@ -380,7 +380,7 @@ class SlittingController extends CI_Controller
             "id" => $id,
             "product" => " <b>No Lot: $product->kode_roll_slitt ($product->slitt_roll)</b>",
             "od" => $newOd,
-            "url" => base_url("admin/productions/metalize/change-od/$id/action")
+            "url" => base_url("admin/productions/slitting/change-od/$id/action")
         ];
 
         $this->load->view("admin/productions/actions/change-od", $data);
@@ -394,7 +394,6 @@ class SlittingController extends CI_Controller
         $od = $post["od"];
         $data["qc_od"] = serialize($od);
         $update = $this->BM->update("input_lap_slitting", $id, "id_slitt", $data);
-
         $min = min($od);
         $max = max($od);
         $od = array_filter($od);

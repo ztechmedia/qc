@@ -7,8 +7,8 @@
 	        <th width="4%">Shift</th>
 	        <th width="10%">No Lot</th>
             <th width="6%">Kg</th>
-            <th width="4%">Haze</th>
-            <th width="5%">Dyne</th>
+            <!-- <th width="4%">Haze</th>
+            <th width="5%">Dyne</th> -->
             <th>Keterangan</th>
             <th width="5%">Status</th>
         </tr>
@@ -64,7 +64,7 @@
                 <td width="10%"><?= $prod->kode_roll ?></td>
                 <td width="6%"><?= $prod->kg_hasil_cpp ?></td>
 
-                <td width="4%">
+                <!-- <td width="4%">
                     <a id="<?= $haze ?>" onclick="setHaze('<?= $haze ?>', '<?= $prod->qc_haze ?>', '<?= $prod->id ?>')">
                         <?= $prod->qc_haze ? $prod->qc_haze : "-" ?>
                     </a>
@@ -75,7 +75,7 @@
                         onclick="setCorona('<?= $corona ?>', '<?= $prod->qc_corona ?>', '<?= $prod->id ?>')">
                         <?= $prod->qc_corona ? $prod->qc_corona : "-" ?>
                     </a>
-                </td>
+                </td> -->
 
                 <td>
                     <a id="<?= $desc ?>" onclick="setDesc('<?= $desc ?>', '<?= $prod->keterangan_cpp ?>', '<?= $prod->id ?>')">

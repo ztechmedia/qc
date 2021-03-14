@@ -9,9 +9,9 @@
             <th width="6%">Kg</th>
             <th width="4%">Shift</th>
             <th width="15%">No Lot</th>
-            <th width="10%">COF</th>
+            <!-- <th width="10%">COF</th>
             <th width="5%">Dyne</th>
-            <th width="12%">Defect · OD</th>
+            <th width="12%">Defect · OD</th> -->
             <th>Keterangan</th>
             <th width="5%">Status</th>
         </tr>
@@ -49,48 +49,48 @@
                 } else if ($prod->status == 'OK') {
                     $color =  "ok";
                 }
-                $cofStatik = "cof-statik-$prod->id_slitt";
-                $cofKinetik = "cof-kinetik-$prod->id_slitt";
                 $desc = "desc-$prod->id_slitt";
-                $corona = "corona-$prod->id_slitt";
+                // $cofStatik = "cof-statik-$prod->id_slitt";
+                // $cofKinetik = "cof-kinetik-$prod->id_slitt";
+                // $corona = "corona-$prod->id_slitt";
 
-                $defects = $prod->qc_defects ? unserialize($prod->qc_defects) : null;
-                $defect = "2X: <br> 3X: ";
-                if ($defects) {
-                    $xx = "";
-                    $xxx = "";
-                    foreach ($defects as $alias => $value) {
-                        if ($value == "XX" || $value >= 4) {
-                            if ($xx == "") {
-                                $xx = $alias;
-                            } else {
-                                $xx = $xx . "·" . $alias;
-                            }
-                        } else if ($value == "XXX" || $value >= 6) {
-                            if ($xxx == "") {
-                                $xxx = $alias;
-                            } else {
-                                $xxx = $xxx . "·" . $alias;
-                            }
-                        }
-                    }
-                    $xx = $xx != "" ? "[ $xx ]" : $xx;
-                    $xxx = $xxx != "" ? "[ $xxx ]" : $xxx;
-                    $defect = "2X: " . $xx . "<br> 3X: " . $xxx;
-                }
+                // $defects = $prod->qc_defects ? unserialize($prod->qc_defects) : null;
+                // $defect = "2X: <br> 3X: ";
+                // if ($defects) {
+                //     $xx = "";
+                //     $xxx = "";
+                //     foreach ($defects as $alias => $value) {
+                //         if ($value == "XX" || $value >= 4) {
+                //             if ($xx == "") {
+                //                 $xx = $alias;
+                //             } else {
+                //                 $xx = $xx . "·" . $alias;
+                //             }
+                //         } else if ($value == "XXX" || $value >= 6) {
+                //             if ($xxx == "") {
+                //                 $xxx = $alias;
+                //             } else {
+                //                 $xxx = $xxx . "·" . $alias;
+                //             }
+                //         }
+                //     }
+                //     $xx = $xx != "" ? "[ $xx ]" : $xx;
+                //     $xxx = $xxx != "" ? "[ $xxx ]" : $xxx;
+                //     $defect = "2X: " . $xx . "<br> 3X: " . $xxx;
+                // }
 
-                $ods = $prod->qc_od ? unserialize($prod->qc_od) : null;
-                $od = "OD: ";
-                if($ods) {
-                    $min = min($ods);
-                    $max = max($ods);
-                    $ods = array_filter($ods);
-                    $odSum = array_sum($ods);
-                    $avg = $odSum > 0 ? substr($odSum/count($ods), 0, 4) : 0;
-                    $maxV = $max ? $max : 0;
-                    $minV = $min ? $min : 0;
-                    $od = "OD: $minV"."·".$maxV."·".$avg;
-                }
+                // $ods = $prod->qc_od ? unserialize($prod->qc_od) : null;
+                // $od = "OD: ";
+                // if($ods) {
+                //     $min = min($ods);
+                //     $max = max($ods);
+                //     $ods = array_filter($ods);
+                //     $odSum = array_sum($ods);
+                //     $avg = $odSum > 0 ? substr($odSum/count($ods), 0, 4) : 0;
+                //     $maxV = $max ? $max : 0;
+                //     $minV = $min ? $min : 0;
+                //     $od = "OD: $minV"."·".$maxV."·".$avg;
+                // }
                 $shift = !$prod->regu ? $prod->shift : "$prod->shift-$prod->regu";
         ?>
 
@@ -111,7 +111,7 @@
             <td width="4%"><?= $prod->shift ?></td>
             <td width="15%"><?= $prod->kode_roll_slitt ?></td>
 
-            <td width="5%">
+            <!-- <td width="5%">
                 <a id="<?= $cofStatik ?>"
                     onclick="setCof('<?= $cofStatik ?>', '<?= $prod->qc_cof_statik ?>', '<?= $prod->id_slitt ?>')">
                     <?= $prod->qc_cof_statik ?>
@@ -149,7 +149,7 @@
                 </div>
                 <div class="pointer" id="od-<?= $prod->id_slitt ?>" onclick="changeOd('<?= $prod->id_slitt ?>')">
                     <?=$od?></div>
-            </td>
+            </td> -->
 
             <td>
                 <a id="<?= $desc ?>" onclick="setDesc('<?= $desc ?>', '<?= $prod->ket ?>', '<?= $prod->id_slitt ?>')">
