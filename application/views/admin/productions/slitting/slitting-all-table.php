@@ -29,8 +29,8 @@
         <table class="table table-bordered tcustom">
             <thead class="thead">
                 <tr>
-                    <th width="7%">Tipe</th>
-                    <th width="7%">Cst</th>
+                    <th width="9%">Tipe</th>
+                    <th width="10%">Cst</th>
                     <th width="10%">Tgl</th>
                     <th width="5%">Lbr</th>
                     <th width="6.5%">Pjg</th>
@@ -130,8 +130,8 @@
                 <?php } ?>
 
                 <tr id="<?= $prod->id_slitt ?>" class="<?= $color ?>">
-                    <td width="7%"><?= $prod->type_slitt . "-" . $prod->mic_slitt?></td>
-                    <td width="7%"><?= checkAlias($customerAlias, $prod->customer_lap_slitt) ?></td>
+                    <td width="9%"><?= $prod->type_slitt . "-" . $prod->mic_slitt?></td>
+                    <td width="10%"><?= $prod->customer_lap_slitt == "" ? "Base Film" : checkAlias($customerAlias, $prod->customer_lap_slitt) ?></td>
                     <td width="10%"><?= revDate($prod->tgl) ?></td>
                     <td width="5%"><?= $prod->lebar_slitt ?></td>
                     <td width="6.5%"><?= $prod->panjang_slitt ?></td>

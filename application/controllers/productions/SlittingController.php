@@ -455,4 +455,27 @@ class SlittingController extends CI_Controller
 
         $this->load->view("admin/print/print-ncr", $data);
     }
+
+    public function edit($date, $id)
+    {
+        $date = explode("-", $date);
+        $data = [
+            "year" => $date[0],
+            "month" => $date[1],
+            "date" => $date[2]
+        ];
+        $data["slitting"] = $this->BM->getWhere('input_lap_slitting', ['id_slitt' => $id])->row();
+        $this->load->view('admin/productions/slitting/edit', $data);
+    }
+    
+    public function update($id)
+    {
+        $post = getPost();
+        $post["kg_hasil_slitt"] = number_format(($post['lebar_slitt']/1000) * $post['panjang_slitt'] * 0.91 * ($post['mic_slitt']/1000), 2, ".", "");
+        $update = $this->BM->update("input_lap_slitting", $id, "id_slitt", $post);
+        
+        if($update) {
+            appJson(["message" => "Berhasil update roll"]);
+        }
+    }
 }

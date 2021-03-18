@@ -191,5 +191,27 @@ class CppController extends CI_Controller
             ]);
         }
     }
+
+    public function edit($date, $id)
+    {
+        $date = explode("-", $date);
+        $data = [
+            "year" => $date[0],
+            "month" => $date[1],
+            "date" => $date[2]
+        ];
+        $data["cpp"] = $this->BM->getWhere('input_lap_cpp', ['id' => $id])->row();
+        $this->load->view('admin/productions/cpp/edit', $data);
+    }
     
+    public function update($id)
+    {
+        $post = getPost();
+        $post["kg_hasil_cpp"] = number_format(($post['lebar']/1000) * $post['panjang'] * 0.91 * ($post['tebal']/1000), 2, ".", "");
+        $update = $this->BM->updateById("input_lap_cpp", $id, $post);
+        
+        if($update) {
+            appJson(["message" => "Berhasil update roll CPP"]);
+        }
+    }
 }

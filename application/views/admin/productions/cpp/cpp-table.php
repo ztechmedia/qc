@@ -10,7 +10,7 @@
             <!-- <th width="4%">Haze</th>
             <th width="5%">Dyne</th> -->
             <th>Keterangan</th>
-            <th width="5%">Status</th>
+            <th width="8%">Status</th>
         </tr>
     </thead>
 
@@ -79,12 +79,13 @@
 
                 <td>
                     <a id="<?= $desc ?>" onclick="setDesc('<?= $desc ?>', '<?= $prod->keterangan_cpp ?>', '<?= $prod->id ?>')">
-                        <?= $prod->keterangan_cpp ? $prod->keterangan_cpp : "-" ?>
+                        <?= $prod->keterangan_cpp ? strtoupper($prod->keterangan_cpp) : "-" ?>
                     </a>
                 </td>
 
-                <td width="5%">
-                    <a id="status-<?= $prod->id ?>" onclick="changeStatus('<?= $prod->id ?>')"><?= $prod->status ?></a>
+                <td width="8%">
+                    <a id="status-<?= $prod->id ?>" onclick="changeStatus('<?= $prod->id ?>')"><?= $prod->status ?></a> | 
+                    <a class="link-to" data-to="<?=base_url("admin/productions/cpp/$prod->tgl_input/$prod->id/edit")?>">Revisi</a>
                 </td>
             </tr>
         <?php

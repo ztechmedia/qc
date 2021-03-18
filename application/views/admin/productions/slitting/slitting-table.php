@@ -13,7 +13,7 @@
             <th width="5%">Dyne</th>
             <th width="12%">Defect · OD</th> -->
             <th>Keterangan</th>
-            <th width="5%">Status</th>
+            <th width="8%">Status</th>
         </tr>
     </thead>
 
@@ -153,13 +153,14 @@
 
             <td>
                 <a id="<?= $desc ?>" onclick="setDesc('<?= $desc ?>', '<?= $prod->ket ?>', '<?= $prod->id_slitt ?>')">
-                    <?= $prod->ket ? $prod->ket : "-" ?>
+                    <?= $prod->ket ? strtoupper($prod->ket) : "-" ?>
                 </a>
             </td>
 
-            <td width="5%">
+            <td width="8%">
                 <a id="status-<?= $prod->id_slitt ?>"
-                    onclick="changeStatus('<?= $prod->id_slitt ?>')"><?= $prod->status ?></a>
+                    onclick="changeStatus('<?= $prod->id_slitt ?>')"><?= $prod->status ?></a> | 
+                <a class="link-to" data-to="<?=base_url("admin/productions/slitting/$prod->tgl/$prod->id_slitt/edit")?>">Revisi</a>
             </td>
         </tr>
         <?php

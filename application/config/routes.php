@@ -81,6 +81,8 @@ $route['admin/productions/slitting/corona'] = 'productions/SlittingController/ch
 $route['admin/productions/slitting/change-status-action'] = 'productions/SlittingController/changeStatusAction';
 $route['admin/productions/slitting/change-defect/(:num)/action'] = 'productions/SlittingController/changeDefectAction/$1';
 $route['admin/productions/slitting/change-od/(:num)/action'] = 'productions/SlittingController/changeOdAction/$1';
+$route['admin/productions/slitting/(:any)/(:num)/edit'] = 'productions/SlittingController/edit/$1/$2';
+$route['admin/productions/slitting/(:num)/update'] = 'productions/SlittingController/update/$1';
 
 /* metalize routes */
 //@view
@@ -110,6 +112,8 @@ $route['admin/productions/cpp/desc'] = 'productions/CppController/changeDesc';
 $route['admin/productions/cpp/haze'] = 'productions/CppController/changeHaze';
 $route['admin/productions/cpp/corona'] = 'productions/CppController/changeCorona';
 $route['admin/productions/cpp/change-status-action'] = 'productions/CppController/changeStatusAction';
+$route['admin/productions/cpp/(:any)/(:num)/edit'] = 'productions/CppController/edit/$1/$2';
+$route['admin/productions/cpp/(:num)/update'] = 'productions/CppController/update/$1';
 
 /* palet routes */
 //@view

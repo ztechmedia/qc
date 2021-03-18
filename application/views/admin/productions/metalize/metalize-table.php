@@ -125,7 +125,7 @@
 
                 <td>
                     <a id="<?= $desc ?>" onclick="setDesc('<?= $desc ?>', '<?= $prod->ket_met ?>', '<?= $prod->id_met ?>')">
-                        <?= $prod->ket_met ? $prod->ket_met : "-" ?>
+                        <?= $prod->ket_met ? strtoupper($prod->ket_met) : "-" ?>
                     </a>
                 </td>
 

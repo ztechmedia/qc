@@ -121,10 +121,9 @@
 		loadContent(url, ".content");
     }
     $('#released-roll').DataTable({
-        "searching": false,
         "processing": false,
         "serverSide": true,
-        "searching": false,
+        //"searching": false,
         "order": [
             [0, 'desc']
         ],

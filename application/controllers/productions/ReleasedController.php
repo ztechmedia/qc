@@ -140,10 +140,10 @@ class ReleasedController extends CI_Controller
             "actions" => "admin/actions/edit",
             "querySelector" => "released-roll",
             "id" => "id_released_jr",
-            "variabel" => [
-                "YEAR(a.tgl_released_jr)" => $year,
-                "MONTH(a.tgl_released_jr)" => $month,
-            ]
+            //"variabel" => [
+            //    "YEAR(a.tgl_released_jr)" => $year,
+            //    "MONTH(a.tgl_released_jr)" => $month,
+            //]
         ];
 
         $released = $this->datatables->setDatatables(
