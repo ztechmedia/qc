@@ -9,7 +9,7 @@
 <div class="form-group">
     <label class="col-md-3 control-label">Tgl Input</label>
     <div class="col-md-6">
-        <input readonly name="tgl_inputpalet" id="tgl_inputpalet" type="text" class="validate[required] form-control" 
+        <input style="color:black" readonly type="text" class="validate[required] form-control" 
             value="<?= revDate($palet->tgl_inputpalet) ?>" />
     </div>
 </div>
@@ -33,23 +33,19 @@
 <div class="form-group">
     <label class="col-md-3 control-label">Customer</label>
     <div class="col-md-6">
-        <input name="customer_palet" id="customer_palet" type="text" class="validate[required] form-control" 
-            value="<?= $palet->customer_palet ?>" />
-    </div>
-</div>
-
-<div class="form-group">
-    <label class="col-md-3 control-label">Type Roll</label>
-    <div class="col-md-6">
-        <input name="slitt_roll_palet" id="slitt_roll_palet" type="text" class="validate[required] form-control" 
-            value="<?= $palet->slitt_roll_palet ?>" />
+        <select name="customer_palet" id="customer_palet" class="form-control">
+            <?php foreach ($customers as $customer) { $selected = $customer->customer_palet == $palet->customer_palet ? "selected" : null; ?>
+               <option <?= $selected ?> value="<?= $customer->customer_palet ?>"><?= $customer->customer_palet ?></option>
+            <?php } ?>
+        </select>
+        <span>Hati - hati nama Customer banyak yang beda, perhatikan titik, koma dan spasi (Programer wira amatir sih)</span>
     </div>
 </div>
 
 <div class="form-group">
     <label class="col-md-3 control-label">Type</label>
     <div class="col-md-6">
-        <input <?= $this->auth->role_id == 1 ? "" : "readonly" ?> name="type_roll_palet" id="type_roll_palet" type="text" class="validate[required] form-control" 
+        <input name="type_roll_palet" id="type_roll_palet" type="text" class="validate[required] form-control" 
             value="<?= $palet->type_roll_palet ?>" />
     </div>
 </div>
@@ -57,7 +53,7 @@
 <div class="form-group">
     <label class="col-md-3 control-label">Tebal</label>
     <div class="col-md-6">
-        <input <?= $this->auth->role_id == 1 ? "" : "readonly" ?> name="tebal_roll_palet" id="tebal_roll_palet" type="number" class="validate[required] form-control" 
+        <input name="tebal_roll_palet" id="tebal_roll_palet" type="number" class="validate[required] form-control" 
             value="<?= $palet->tebal_roll_palet ?>" />
     </div>
 </div>
@@ -81,7 +77,7 @@
 <div class="form-group">
     <label class="col-md-3 control-label">Tgl Kirim</label>
     <div class="col-md-6">
-        <input readonly name="tgl_kirim" id="tgl_kirim" type="text" class="validate[required] form-control" 
+        <input style="color:black" readonly type="text" class="validate[required] form-control" 
             value="<?= revDate($palet->tgl_kirim) ?>" />
     </div>
 </div>

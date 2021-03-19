@@ -35,7 +35,7 @@
                     <th width="11%">Properties</th> -->
                     <th>Keterangan</th>
                     <th width="8%">Operator</th>
-                    <th width="8%">Status</th>
+                    <th width="10%">Status</th>
                 </tr>
             </thead>
 
@@ -156,7 +156,7 @@
                             <?= strtoupper($prod->user) ?>
                         </td>
 
-                        <td width="8%">
+                        <td width="10%">
                             <a id="status-<?= $prod->id_met ?>" onclick="changeStatus('<?= $prod->id_met ?>')"><?= $prod->status_met ?></a> | 
                             <a class="link-to" data-to="<?=base_url("admin/productions/metalize/$prod->tgl_input/$prod->id_met/edit")?>">Revisi</a>
                         </td>

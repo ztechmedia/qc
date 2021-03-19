@@ -36,7 +36,7 @@
                     <th width="12%">Defect · OD</th> -->
                     <th>Keterangan</th>
                     <th width="8%">Operator</th>
-                    <th width="8%">Status</th>
+                    <th width="10%">Status</th>
                 </tr>
             </thead>
 
@@ -184,7 +184,7 @@
                         <?= strtoupper($prod->user) ?>
                     </td>
 
-                    <td width="8%">
+                    <td width="10%">
                         <a id="status-<?= $prod->id_slitt ?>"
                             onclick="changeStatus('<?= $prod->id_slitt ?>')"><?= $prod->status ?></a> | 
                         <a class="link-to" data-to="<?=base_url("admin/productions/slitting/$prod->tgl/$prod->id_slitt/edit")?>">Revisi</a>

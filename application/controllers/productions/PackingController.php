@@ -64,6 +64,14 @@ class PackingController extends CI_Controller
         $data = [
             "palet" => $palet,
         ];
+        $data['customers'] = $this->db
+            ->select("customer_palet")
+            ->from("input_palet")
+            ->where("customer_palet !=", "")
+            ->where_not_in("customer_palet", ["1835/PO/TAC/XII/19", "customer_palet"])
+            ->group_by("customer_palet")
+            ->get()->result();
+            
         $this->load->view('admin/productions/packing/edit', $data);
     }
 
@@ -72,8 +80,7 @@ class PackingController extends CI_Controller
     public function update($id)
     {
         $post = getPost();
-        $post["tgl_inputpalet"] = revDate($post["tgl_inputpalet"]);
-        $post["tgl_kirim"] = revDate($post["tgl_kirim"]);
+        $post['slitt_roll_palet'] = $post['type_roll_palet']." ".$post['tebal_roll_palet']." x ".$post['lebar_roll_palet']." x ".$post['panjang_roll_palet'];
         $palet = $this->BM->update($this->paletTable, $id, "id_pal", $post);
         if ($palet) {
             appJson([

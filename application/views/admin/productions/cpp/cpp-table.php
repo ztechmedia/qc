@@ -33,7 +33,7 @@
                     <th width="5%">Dyne</th> -->
                     <th>Keterangan</th>
                     <th width="10%">Operator/GL</th>
-                    <th width="8%">Status</th>
+                    <th width="10%">Status</th>
                 </tr>
             </thead>
 
@@ -108,7 +108,7 @@
 
                         <td width="10%"><?= strtoupper($prod->user) ?></td>
 
-                        <td width="8%">
+                        <td width="10%">
                                 <a id="status-<?= $prod->id ?>" onclick="changeStatus('<?= $prod->id ?>')"><?= $prod->status ?></a> | 
                                 <a class="link-to" data-to="<?=base_url("admin/productions/cpp/$prod->tgl_input/$prod->id/edit")?>">Revisi</a>
                         </td>

@@ -94,7 +94,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">Tipe Output</label>
                         <div class="col-md-6">
-                            <input name="output_type_met" id="output_type_met" type="text" class="validate[required] form-control" 
+                            <input style="color:black" readonly name="output_type_met" id="output_type_met" type="text" class="validate[required] form-control" 
                             value="<?= $metalize->output_type_met ?>" />
                         </div>
                     </div> 
@@ -126,7 +126,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">Deskripsi</label>
                         <div class="col-md-6">
-                            <input name="desc_type" id="desc_type" type="text" class="validate[required] form-control" 
+                            <input style="color:black" readonly name="desc_type" id="desc_type" type="text" class="validate[required] form-control" 
                             value="<?= $metalize->desc_type ?>" />
                         </div>
                     </div> 

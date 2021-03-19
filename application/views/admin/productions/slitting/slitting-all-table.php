@@ -64,7 +64,7 @@
                         <th width="5%">Dyne</th>
                         <th width="12%">Defect · OD</th> -->
                         <th>Keterangan</th>
-                        <th width="7%">Status</th>
+                        <th width="13%">Status</th>
                     </tr>
                 </thead>
 
@@ -208,9 +208,10 @@
                             </a>
                         </td>
 
-                        <td width="7%">
+                        <td width="13%">
                             <a id="status-<?= $prod->id_slitt ?>"
-                                onclick="changeStatus('<?= $prod->id_slitt ?>')"><?= $prod->status ?></a>
+                                onclick="changeStatus('<?= $prod->id_slitt ?>')"><?= $prod->status ?></a> | 
+                            <a class="link-to" data-to="<?=base_url("admin/productions/slitting/$prod->tgl/$prod->id_slitt/edit")?>">Revisi</a>
                         </td>
                     </tr>
                     <?php
