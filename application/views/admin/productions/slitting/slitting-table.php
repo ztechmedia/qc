@@ -1,172 +1,201 @@
-<table class="table table-bordered tcustom">
-    <thead class="thead">
-        <tr>
-            <th width="7%">Tipe</th>
-            <th width="8%">Customer</th>
-            <th width="8%">Tanggal</th>
-            <th width="5%">Lebar</th>
-            <th width="6.5%">Panjang</th>
-            <th width="6%">Kg</th>
-            <th width="4%">Shift</th>
-            <th width="15%">No Lot</th>
-            <!-- <th width="10%">COF</th>
-            <th width="5%">Dyne</th>
-            <th width="12%">Defect · OD</th> -->
-            <th>Keterangan</th>
-            <th width="8%">Status</th>
-        </tr>
-    </thead>
+<div class="row">
+    <div class="col-md-12">
+        <ul class="pagination pagination-sm pull-left">
+            <?php if(array_key_exists("prev", $pagination)) {?>
+                <li onclick="changePage('<?=$pagination['prev']['page']?>')"
+                    data-secondary="yes"><a>«</a></li>
+            <?php } else{ ?>
+                <li class="disabled"><a>«</a></li>
+            <?php } ?>
+            
+            <li><a><?= "Halaman $page - $totalPage | Data $start - $end"?></a></li>      
 
-    <tbody class="tbody">
+            <?php if(array_key_exists("next", $pagination)) {  ?>
+                <li onclick="changePage('<?=$pagination['next']['page']?>')"
+                    data-secondary="yes"><a>»</a></li>
+            <?php } else{ ?>
+                <li class="disabled"><a>»</a></li>
+            <?php } ?>
+        </ul>  
+    </div>
+    
+    <div class="col-md-12" style="margin-top: 10px">
+        <table class="table table-bordered tcustom">
+            <thead class="thead">
+                <tr>
+                    <th width="7%">Tipe</th>
+                    <th width="8%">Customer</th>
+                    <th width="8%">Tanggal</th>
+                    <th width="5%">Lebar</th>
+                    <th width="6.5%">Panjang</th>
+                    <th width="6%">Kg</th>
+                    <th width="4%">Shift</th>
+                    <th width="15%">No Lot</th>
+                    <!-- <th width="10%">COF</th>
+                    <th width="5%">Dyne</th>
+                    <th width="12%">Defect · OD</th> -->
+                    <th>Keterangan</th>
+                    <th width="8%">Operator</th>
+                    <th width="8%">Status</th>
+                </tr>
+            </thead>
 
-        <?php
-            $no = 1;
-            $currShit = null;
-            $currDate = null;
-            $shiftSeparator = false;
-            foreach ($products as $prod) {
-                if ($currShit == null) {
-                    $currShit = $prod->shift;
-                } else if ($currShit != $prod->shift) {
-                    $shiftSeparator = true;
-                    $currShit = $prod->shift;
-                }
+            <tbody class="tbody">
 
-                if ($currDate == null) {
-                    $currDate = $prod->tgl;
-                } else if ($currDate != $prod->tgl) {
-                    $shiftSeparator = true;
-                    $currDate = $prod->tgl;
-                }
-
-                $color = null;
-                if ($prod->status == 'HOLD') {
-                    $color = "hold";
-                } else if ($prod->status == 'NOT') {
-                    $color = "not";
-                } else if ($prod->status == 'NCR') {
-                    $color =  "ncr";
-                } else if ($prod->status == 'OK') {
-                    $color =  "ok";
-                }
-                $desc = "desc-$prod->id_slitt";
-                // $cofStatik = "cof-statik-$prod->id_slitt";
-                // $cofKinetik = "cof-kinetik-$prod->id_slitt";
-                // $corona = "corona-$prod->id_slitt";
-
-                // $defects = $prod->qc_defects ? unserialize($prod->qc_defects) : null;
-                // $defect = "2X: <br> 3X: ";
-                // if ($defects) {
-                //     $xx = "";
-                //     $xxx = "";
-                //     foreach ($defects as $alias => $value) {
-                //         if ($value == "XX" || $value >= 4) {
-                //             if ($xx == "") {
-                //                 $xx = $alias;
-                //             } else {
-                //                 $xx = $xx . "·" . $alias;
-                //             }
-                //         } else if ($value == "XXX" || $value >= 6) {
-                //             if ($xxx == "") {
-                //                 $xxx = $alias;
-                //             } else {
-                //                 $xxx = $xxx . "·" . $alias;
-                //             }
-                //         }
-                //     }
-                //     $xx = $xx != "" ? "[ $xx ]" : $xx;
-                //     $xxx = $xxx != "" ? "[ $xxx ]" : $xxx;
-                //     $defect = "2X: " . $xx . "<br> 3X: " . $xxx;
-                // }
-
-                // $ods = $prod->qc_od ? unserialize($prod->qc_od) : null;
-                // $od = "OD: ";
-                // if($ods) {
-                //     $min = min($ods);
-                //     $max = max($ods);
-                //     $ods = array_filter($ods);
-                //     $odSum = array_sum($ods);
-                //     $avg = $odSum > 0 ? substr($odSum/count($ods), 0, 4) : 0;
-                //     $maxV = $max ? $max : 0;
-                //     $minV = $min ? $min : 0;
-                //     $od = "OD: $minV"."·".$maxV."·".$avg;
-                // }
-                $shift = !$prod->regu ? $prod->shift : "$prod->shift-$prod->regu";
-        ?>
-
-        <?php if ($shiftSeparator == true) { ?>
-            <tr>
-                <td colspan="8" class="shift-separator">
-                    <?= "Shift ".$shift." · Tanggal: " . revDate($prod->tgl) ?></td>
-            </tr>
-        <?php } ?>
-
-        <tr id="<?= $prod->id_slitt ?>" class="<?= $color ?>">
-            <td width="7%"><?= $prod->type_slitt . "-" . $prod->mic_slitt?></td>
-            <td width="8%"><?= checkAlias($customerAlias, $prod->customer_lap_slitt) ?></td>
-            <td width="8%"><?= revDate($prod->tgl) ?></td>
-            <td width="5%"><?= $prod->lebar_slitt ?></td>
-            <td width="6.5%"><?= $prod->panjang_slitt ?></td>
-            <td width="6%"><?= $prod->kg_hasil_slitt ?></td>
-            <td width="4%"><?= $prod->shift ?></td>
-            <td width="15%"><?= $prod->kode_roll_slitt ?></td>
-
-            <!-- <td width="5%">
-                <a id="<?= $cofStatik ?>"
-                    onclick="setCof('<?= $cofStatik ?>', '<?= $prod->qc_cof_statik ?>', '<?= $prod->id_slitt ?>')">
-                    <?= $prod->qc_cof_statik ?>
-                </a>
-            </td>
-
-            <td width="5%">
-                <a id="<?= $cofKinetik ?>"
-                    onclick="setCof('<?= $cofKinetik ?>', '<?= $prod->qc_cof_kinetik ?>', '<?= $prod->id_slitt ?>')">
-                    <?= $prod->qc_cof_kinetik ?>
-                </a>
-            </td>
-
-            <td width="5%">
-                <a id="<?= $corona ?>"
-                    onclick="setCorona('<?= $corona ?>', '<?= $prod->qc_corona ?>', '<?= $prod->id_slitt ?>')">
-                    <?php
-                        if ($prod->qc_corona) {
-                            echo $prod->qc_corona;
-                        } else {
-                            if ($prod->jenis_roll_slitt == "METALIZZED" && $prod->stock != "Base Film") {
-                                echo "52";
-                            } else {
-                                echo "42";
-                            }
+                <?php
+                    $no = 1;
+                    $currShit = null;
+                    $currDate = null;
+                    $shiftSeparator = false;
+                    foreach ($products as $prod) {
+                        if ($currShit == null) {
+                            $currShit = $prod->shift;
+                        } else if ($currShit != $prod->shift) {
+                            $shiftSeparator = true;
+                            $currShit = $prod->shift;
                         }
-                        ?>
-                </a>
-            </td>
 
-            <td width="12%">
-                <div class="pointer" id="defect-<?= $prod->id_slitt ?>"
-                    onclick="changeDefect('<?= $prod->id_slitt ?>')">
-                    <?= $defect ?>
-                </div>
-                <div class="pointer" id="od-<?= $prod->id_slitt ?>" onclick="changeOd('<?= $prod->id_slitt ?>')">
-                    <?=$od?></div>
-            </td> -->
+                        if ($currDate == null) {
+                            $currDate = $prod->tgl;
+                        } else if ($currDate != $prod->tgl) {
+                            $shiftSeparator = true;
+                            $currDate = $prod->tgl;
+                        }
 
-            <td>
-                <a id="<?= $desc ?>" onclick="setDesc('<?= $desc ?>', '<?= $prod->ket ?>', '<?= $prod->id_slitt ?>')">
-                    <?= $prod->ket ? strtoupper($prod->ket) : "-" ?>
-                </a>
-            </td>
+                        $color = null;
+                        if ($prod->status == 'HOLD') {
+                            $color = "hold";
+                        } else if ($prod->status == 'NOT') {
+                            $color = "not";
+                        } else if ($prod->status == 'NCR') {
+                            $color =  "ncr";
+                        } else if ($prod->status == 'OK') {
+                            $color =  "ok";
+                        }
+                        $desc = "desc-$prod->id_slitt";
+                        // $cofStatik = "cof-statik-$prod->id_slitt";
+                        // $cofKinetik = "cof-kinetik-$prod->id_slitt";
+                        // $corona = "corona-$prod->id_slitt";
 
-            <td width="8%">
-                <a id="status-<?= $prod->id_slitt ?>"
-                    onclick="changeStatus('<?= $prod->id_slitt ?>')"><?= $prod->status ?></a> | 
-                <a class="link-to" data-to="<?=base_url("admin/productions/slitting/$prod->tgl/$prod->id_slitt/edit")?>">Revisi</a>
-            </td>
-        </tr>
-        <?php
-            if ($shiftSeparator == true) {
-                $shiftSeparator = false;
-            }
-        } ?>
-    </tbody>
-</table>
+                        // $defects = $prod->qc_defects ? unserialize($prod->qc_defects) : null;
+                        // $defect = "2X: <br> 3X: ";
+                        // if ($defects) {
+                        //     $xx = "";
+                        //     $xxx = "";
+                        //     foreach ($defects as $alias => $value) {
+                        //         if ($value == "XX" || $value >= 4) {
+                        //             if ($xx == "") {
+                        //                 $xx = $alias;
+                        //             } else {
+                        //                 $xx = $xx . "·" . $alias;
+                        //             }
+                        //         } else if ($value == "XXX" || $value >= 6) {
+                        //             if ($xxx == "") {
+                        //                 $xxx = $alias;
+                        //             } else {
+                        //                 $xxx = $xxx . "·" . $alias;
+                        //             }
+                        //         }
+                        //     }
+                        //     $xx = $xx != "" ? "[ $xx ]" : $xx;
+                        //     $xxx = $xxx != "" ? "[ $xxx ]" : $xxx;
+                        //     $defect = "2X: " . $xx . "<br> 3X: " . $xxx;
+                        // }
+
+                        // $ods = $prod->qc_od ? unserialize($prod->qc_od) : null;
+                        // $od = "OD: ";
+                        // if($ods) {
+                        //     $min = min($ods);
+                        //     $max = max($ods);
+                        //     $ods = array_filter($ods);
+                        //     $odSum = array_sum($ods);
+                        //     $avg = $odSum > 0 ? substr($odSum/count($ods), 0, 4) : 0;
+                        //     $maxV = $max ? $max : 0;
+                        //     $minV = $min ? $min : 0;
+                        //     $od = "OD: $minV"."·".$maxV."·".$avg;
+                        // }
+                        $shift = !$prod->regu ? $prod->shift : "$prod->shift-$prod->regu";
+                ?>
+
+                <?php if ($shiftSeparator == true) { ?>
+                    <tr>
+                        <td colspan="8" class="shift-separator">
+                            <?= "Shift ".$shift." · Tanggal: " . revDate($prod->tgl) ?></td>
+                    </tr>
+                <?php } ?>
+
+                <tr id="<?= $prod->id_slitt ?>" class="<?= $color ?>">
+                    <td width="7%"><?= $prod->type_slitt . "-" . $prod->mic_slitt?></td>
+                    <td width="8%"><?= checkAlias($customerAlias, $prod->customer_lap_slitt) ?></td>
+                    <td width="8%"><?= revDate($prod->tgl) ?></td>
+                    <td width="5%"><?= $prod->lebar_slitt ?></td>
+                    <td width="6.5%"><?= $prod->panjang_slitt ?></td>
+                    <td width="6%"><?= $prod->kg_hasil_slitt ?></td>
+                    <td width="4%"><?= $prod->shift ?></td>
+                    <td width="15%"><?= $prod->kode_roll_slitt ?></td>
+
+                    <!-- <td width="5%">
+                        <a id="<?= $cofStatik ?>"
+                            onclick="setCof('<?= $cofStatik ?>', '<?= $prod->qc_cof_statik ?>', '<?= $prod->id_slitt ?>')">
+                            <?= $prod->qc_cof_statik ?>
+                        </a>
+                    </td>
+
+                    <td width="5%">
+                        <a id="<?= $cofKinetik ?>"
+                            onclick="setCof('<?= $cofKinetik ?>', '<?= $prod->qc_cof_kinetik ?>', '<?= $prod->id_slitt ?>')">
+                            <?= $prod->qc_cof_kinetik ?>
+                        </a>
+                    </td>
+
+                    <td width="5%">
+                        <a id="<?= $corona ?>"
+                            onclick="setCorona('<?= $corona ?>', '<?= $prod->qc_corona ?>', '<?= $prod->id_slitt ?>')">
+                            <?php
+                                if ($prod->qc_corona) {
+                                    echo $prod->qc_corona;
+                                } else {
+                                    if ($prod->jenis_roll_slitt == "METALIZZED" && $prod->stock != "Base Film") {
+                                        echo "52";
+                                    } else {
+                                        echo "42";
+                                    }
+                                }
+                                ?>
+                        </a>
+                    </td>
+
+                    <td width="12%">
+                        <div class="pointer" id="defect-<?= $prod->id_slitt ?>"
+                            onclick="changeDefect('<?= $prod->id_slitt ?>')">
+                            <?= $defect ?>
+                        </div>
+                        <div class="pointer" id="od-<?= $prod->id_slitt ?>" onclick="changeOd('<?= $prod->id_slitt ?>')">
+                            <?=$od?></div>
+                    </td> -->
+
+                    <td>
+                        <a id="<?= $desc ?>" onclick="setDesc('<?= $desc ?>', '<?= $prod->ket ?>', '<?= $prod->id_slitt ?>')">
+                            <?= $prod->ket ? strtoupper($prod->ket) : "-" ?>
+                        </a>
+                    </td>
+
+                    <td width="8%">
+                        <?= strtoupper($prod->user) ?>
+                    </td>
+
+                    <td width="8%">
+                        <a id="status-<?= $prod->id_slitt ?>"
+                            onclick="changeStatus('<?= $prod->id_slitt ?>')"><?= $prod->status ?></a> | 
+                        <a class="link-to" data-to="<?=base_url("admin/productions/slitting/$prod->tgl/$prod->id_slitt/edit")?>">Revisi</a>
+                    </td>
+                </tr>
+                <?php
+                    if ($shiftSeparator == true) {
+                        $shiftSeparator = false;
+                    }
+                } ?>
+            </tbody>
+        </table>
+    </div>
+</div>

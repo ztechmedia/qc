@@ -118,7 +118,7 @@ class MetalizeController extends CI_Controller
             "id_met, tgl_input, inputan_bf, type_input_met, shift, tebal_inp_met, lebar_inp_met, 
             panjang_inp_met, closed, opened, output_kode_roll, output_type_met, mic_met, lebar_met, 
             panjang_met, ket_met, status_met, kg_hasil_met,
-            qc_corona, qc_od, qc_defects, qc_eaa, regu",
+            qc_corona, qc_od, qc_defects, qc_eaa, regu, user",
             //order by
             $order_by = [
                 "tgl_input" => "desc",
@@ -380,6 +380,29 @@ class MetalizeController extends CI_Controller
             appJson([
                 "message" => "Berhasil mengubah keterangan",
             ]);
+        }
+    }
+
+    public function edit($date, $id)
+    {
+        $date = explode("-", $date);
+        $data = [
+            "year" => $date[0],
+            "month" => $date[1],
+            "date" => $date[2]
+        ];
+        $data["metalize"] = $this->BM->getWhere('input_met', ['id_met' => $id])->row();
+        $this->load->view('admin/productions/metalize/edit', $data);
+    }
+    
+    public function update($id)
+    {
+        $post = getPost();
+        $post["kg_hasil_met"] = number_format(($post['lebar_met']/1000) * $post['panjang_met'] * 0.91 * ($post['mic_met']/1000), 2, ".", "");
+        $update = $this->BM->update("input_met", $id, "id_met", $post);
+        
+        if($update) {
+            appJson(["message" => "Berhasil update roll Metalize"]);
         }
     }
 }

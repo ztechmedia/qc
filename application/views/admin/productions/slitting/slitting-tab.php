@@ -123,7 +123,6 @@
 				</div>
 			</div>
 		</div>
-
 		<div class="slitting-table"></div>
 	</div>
 </div>
@@ -149,6 +148,24 @@
 	$(".popover-dismiss").popover({
 		trigger: 'focus'
 	});
+
+	function changePage(page) {
+		let dt = $("#date-filter-1").val() ?
+			$("#date-filter-1").val().split("-") :
+			$("#date-filter").val().split("-");
+		let tgl = $("#date-filter-1").val() ? `${dt[2]}-${dt[1]}-${dt[0]}` : "";
+		let limit = $("#limit").val();
+		let noLot = $("#no-lot").val();
+		let length = $("#length").val();
+		let width = $("#width").val();
+		let thick = $("#thick").val();
+		let type = $("#type").val();
+		const url = encodeURI(
+			`${BASE_URL}admin/productions/slitting/slitting-table?year=${dt[2]}&month=${dt[1]}&tgl=${tgl}&limit=${limit}&page=${page}&nama_mesin=${machineName}&like:kode_roll_slitt=${noLot}&type_slitt=${type}&mic_slitt=${thick}&lebar_slitt=${width}&panjang_slitt=${length}&where_in:status=OK,HOLD,NCR,NOT&gt:panjang_slitt=0&gt:kg_hasil_slitt=0`
+		);
+		setContentLoader(".slitting-table");
+		loadContent(url, ".slitting-table");
+	}
 
 	function loadTable() {
 		let dt = $("#date-filter-1").val() ?

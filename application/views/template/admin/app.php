@@ -50,26 +50,17 @@
     <script type="text/javascript" src="<?= base_url("assets/joli/js/jquery/jquery-ui.min.js") ?>"></script>
     <script type="text/javascript" src="<?= base_url("assets/joli/js/bootstrap/bootstrap.min.js") ?>"></script>
     <script type="text/javascript" src="<?= base_url("assets/joli/js/bootstrap/bootstrap-datepicker.js") ?>"></script>
-    //<script type="text/javascript" src="<?= base_url("assets/joli/js/bootstrap/bootstrap-select.js") ?>"></script>
     <script type="text/javascript" src="<?= base_url("assets/joli/js/mcustomscrollbar/jquery.mCustomScrollbar.min.js") ?>"></script>
-    <script type="text/javascript" src="<?= base_url("assets/datatables/datatables.min.js") ?>"></script>
     <script type="text/javascript" src="<?= base_url("assets/sweetalert/sweetalert.min.js") ?>"></script>
 
     <script type="text/javascript" src="<?= base_url("assets/joli/js/validationengine/languages/jquery.validationEngine-id.js") ?>"></script>
     <script type="text/javascript" src="<?= base_url("assets/joli/js/validationengine/jquery.validationEngine.js") ?>"></script>
     <script type="text/javascript" src="<?= base_url("assets/joli/js/validationengine/jquery.validationEngine.js") ?>"></script>
-    //<script type="text/javascript" src="<?= base_url("assets/joli/js/blueimp/jquery.blueimp-gallery.min.js") ?>"></script>
-    //<script type="text/javascript" src="<?= base_url("assets/joli/js/icheck/icheck.min.js") ?>"></script>
-    //<script type="text/javascript" src="<?= base_url("assets/joli/js/fileinput/fileinput.min.js") ?>"></script>
-    //<script type="text/javascript" src="<?= base_url("assets/joli/js/maskedinput/jquery.maskedinput.min.js") ?>"></script>
-    //<script type="text/javascript" src="<?= base_url("assets/joli/js/knob/jquery.knob.min.js") ?>"></script>
 
     <script type="text/javascript" src="<?= base_url("assets/joli/js/plugins.js") ?>"></script>
     <script type="text/javascript" src="<?= base_url("assets/joli/js/actions.js") ?>"></script>
 
     <!-- CUSTOM SCRIPT -->
-    //<script type="text/javascript" src="<?= base_url("assets/custom/js/dropzone.min.js") ?>"></script>
-    //<script type="text/javascript" src="<?= base_url("assets/custom/js/jquery.maskMoney.min.js") ?>"></script>
     <script type="text/javascript" src="<?= base_url("assets/custom/js/validation/forms.js") ?>"></script>
     <script type="text/javascript" src="<?= base_url("assets/custom/js/ajax/ajaxRequest.js") ?>"></script>
     <script type="text/javascript" src="<?= base_url("assets/custom/js/ajax/datatables/datatables.js") ?>"></script>

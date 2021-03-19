@@ -110,7 +110,7 @@ class CppController extends CI_Controller
             $dateField = "tgl_input",
             //column to show
             "id, tgl_input, shift, regu, type, tebal, lebar, panjang, kode_roll, no_spk, kode_mesin, 
-                kg_hasil_cpp, keterangan_cpp, status, qc_haze, qc_corona",
+                kg_hasil_cpp, keterangan_cpp, status, qc_haze, qc_corona, user",
             //order by
             $order_by = [
                 "tgl_input" => "desc",

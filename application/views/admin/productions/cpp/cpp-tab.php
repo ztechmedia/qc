@@ -140,6 +140,20 @@
 		loadContent(url, ".cpp-table");
 	}
 
+	function changePage(page) {
+		let dt = $("#date-filter-1").val() ? $("#date-filter-1").val().split("-") : $("#date-filter").val().split("-");
+		let tgl = $("#date-filter-1").val() ? `${dt[2]}-${dt[1]}-${dt[0]}` : "";
+		let limit = $("#limit").val();
+		let noLot = $("#no-lot").val();
+		let length = $("#length").val();
+		let width = $("#width").val();
+		let thick = $("#thick").val();
+		let type = $("#type").val();
+		const url = encodeURI(`${BASE_URL}admin/productions/cpp/cpp-table?year=${dt[2]}&month=${dt[1]}&tgl_input=${tgl}&limit=${limit}&page=${page}&kode_mesin=${machineName}&like:kode_roll=${noLot}&type=${type}&tebal=${thick}&lebar=${width}&panjang=${length}`);
+		setContentLoader(".cpp-table");
+		loadContent(url, ".cpp-table");
+	}
+
 	loadTable();
 
 	function loadData(status) {

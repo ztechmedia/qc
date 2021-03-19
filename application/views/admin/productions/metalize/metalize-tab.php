@@ -108,7 +108,6 @@
 		<div class="metalize-table"></div>
 	</div>
 </div>
-
 <script>
     $("#date-filter").datepicker();
     $("#date-filter-1").datepicker();
@@ -137,6 +136,20 @@
 		let thick = $("#thick").val();
 		let type = $("#type").val();
 		let page = 1;
+		const url = encodeURI(`${BASE_URL}admin/productions/metalize/metalize-table?year=${dt[2]}&month=${dt[1]}&tgl_input=${tgl}&limit=${limit}&page=${page}&id_mesin=${machineName}&like:output_kode_roll=${noLot}&output_type_met=${type}&mic_met=${thick}&lebar_met=${width}&panjang_met=${length}`);
+		setContentLoader(".metalize-table");
+		loadContent(url, ".metalize-table");
+	}
+
+	function changePage(page) {
+		let dt = $("#date-filter-1").val() ? $("#date-filter-1").val().split("-") : $("#date-filter").val().split("-");
+		let tgl = $("#date-filter-1").val() ? `${dt[2]}-${dt[1]}-${dt[0]}` : "";
+		let limit = $("#limit").val();
+		let noLot = $("#no-lot").val();
+		let length = $("#length").val();
+		let width = $("#width").val();
+		let thick = $("#thick").val();
+		let type = $("#type").val();
 		const url = encodeURI(`${BASE_URL}admin/productions/metalize/metalize-table?year=${dt[2]}&month=${dt[1]}&tgl_input=${tgl}&limit=${limit}&page=${page}&id_mesin=${machineName}&like:output_kode_roll=${noLot}&output_type_met=${type}&mic_met=${thick}&lebar_met=${width}&panjang_met=${length}`);
 		setContentLoader(".metalize-table");
 		loadContent(url, ".metalize-table");

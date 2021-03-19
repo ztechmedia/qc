@@ -100,6 +100,8 @@ $route['admin/productions/metalize/change-defect/(:num)/action'] = 'productions/
 $route['admin/productions/metalize/change-od/(:num)/action'] = 'productions/MetalizeController/changeOdAction/$1';
 $route['admin/productions/metalize/change-eaa/(:num)/action'] = 'productions/MetalizeController/changeEaaAction/$1';
 $route['admin/productions/metalize/desc'] = 'productions/MetalizeController/changeDesc';
+$route['admin/productions/metalize/(:any)/(:num)/edit'] = 'productions/MetalizeController/edit/$1/$2';
+$route['admin/productions/metalize/(:num)/update'] = 'productions/MetalizeController/update/$1';
 
 /* cpp routes */
 //@view
