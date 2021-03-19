@@ -30,8 +30,8 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">Tgl Input</label>
                         <div class="col-md-6">
-                            <input style="color: black" readonly name="tgl_input" id="tgl_input" type="text" class="validate[required] form-control" 
-                            value="<?= $cpp->tgl_input ?>" />
+                            <input style="color: black" readonly type="text" class="validate[required] form-control" 
+                            value="<?= revDate($cpp->tgl_input) ?>" />
                         </div>
                     </div>
 
@@ -104,6 +104,13 @@
                         <div class="col-md-6">
                             <input name="desc_type" id="desc_type" type="text" class="validate[required] form-control" 
                             value="<?= $cpp->desc_type ?>" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Keterangan</label>
+                        <div class="col-md-6">
+                            <textarea name="keterangan_cpp" id="keterangan_cpp" class="form-control"><?= $cpp->keterangan_cpp ?></textarea>
                         </div>
                     </div>
 

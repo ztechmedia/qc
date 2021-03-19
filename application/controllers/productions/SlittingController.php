@@ -471,6 +471,7 @@ class SlittingController extends CI_Controller
     public function update($id)
     {
         $post = getPost();
+        $post["tgl"] = revDate($post["tgl"]);
         $post["kg_hasil_slitt"] = number_format(($post['lebar_slitt']/1000) * $post['panjang_slitt'] * 0.91 * ($post['mic_slitt']/1000), 2, ".", "");
         $update = $this->BM->update("input_lap_slitting", $id, "id_slitt", $post);
         

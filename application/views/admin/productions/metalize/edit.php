@@ -134,7 +134,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">Customer</label>
                         <div class="col-md-6">
-                            <input name="customer_met" id="customer_met" type="text" class="validate[required] form-control" 
+                            <input name="customer_met" id="customer_met" type="text" class="form-control" 
                             value="<?= $metalize->customer_met ?>" />
                         </div>
                     </div> 
@@ -142,8 +142,15 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">Join</label>
                         <div class="col-md-6">
-                            <input name="joint_met" id="joint_met" type="text" class="validate[required] form-control" 
+                            <input name="joint_met" id="joint_met" type="text" class="form-control" 
                             value="<?= $metalize->joint_met ?>" />
+                        </div>
+                    </div> 
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Keterangan</label>
+                        <div class="col-md-6">
+                            <textarea name="ket_met" id="ket_met" type="text" class="form-control"><?= $metalize->ket_met ?></textarea>
                         </div>
                     </div> 
 

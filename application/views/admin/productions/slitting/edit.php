@@ -22,7 +22,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">PO/CO</label>
                         <div class="col-md-6">
-                            <input style="color: black" readonly name="id_po_slitt" id="id_po_slitt" type="text" class="validate[required] form-control" 
+                            <input style="color: black" readonly type="text" class="form-control" 
                                 value="<?= $slitting->id_po_slitt ?>" />
                         </div>
                     </div>
@@ -30,7 +30,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">SPK</label>
                         <div class="col-md-6">
-                            <textarea style="color: black" readonly name="id_spk_slitt" id="id_spk_slitt" type="text" class="validate[required] form-control"><?= $slitting->id_spk_slitt ?></textarea>
+                            <textarea style="color: black" readonly type="text" class="form-control"><?= $slitting->id_spk_slitt ?></textarea>
                         </div>
                     </div>
 
@@ -45,8 +45,8 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">Tanggal</label>
                         <div class="col-md-6">
-                            <input style="color: black" readonly name="tgl" id="tgl" type="text" class="validate[required] form-control" 
-                                value="<?= $slitting->tgl ?>" />
+                            <input data-date="<?= date('d-m-Y') ?>" data-date-format="dd-mm-yyyy" data-date-viewmode="months"  style="color: black" readonly name="tgl" id="tgl" type="text" class="validate[required] form-control pointer" 
+                                value="<?= revDate($slitting->tgl) ?>" />
                         </div>
                     </div>
 
@@ -138,6 +138,14 @@
                     </div>
 
                     <div class="form-group">
+                        <label class="col-md-3 control-label">Operator</label>
+                        <div class="col-md-6">
+                            <input name="user" id="user" type="text" class="validate[required] form-control" 
+                                value="<?= $slitting->user ?>" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <label class="col-md-3 control-label"></label>
                         <div class="col-md-6">
                             <button class="btn btn-default save" type="submit">Update</button>
@@ -151,6 +159,7 @@
 
 
 <script>
+    $("#tgl").datepicker();
     formSelect();
     formValidation(".action-submit-update");
 </script>
