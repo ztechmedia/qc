@@ -130,6 +130,14 @@
                         </div>
                     </div>
 
+		   <div class="form-group">
+                        <label class="col-md-3 control-label">Join</label>
+                        <div class="col-md-6">
+                            <input name="join_slitt" id="join_slitt" type="text" class="form-control" 
+                                value="<?= $slitting->join_slitt?>" />
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <label class="col-md-3 control-label">Keterangan</label>
                         <div class="col-md-6">

@@ -22,6 +22,7 @@ class MetalizeModel extends CI_Model
             ->where("YEAR(tgl_input)", $year)
             ->where("MONTH(tgl_input)", $month)
             ->where("id_mesin", $machine)
+	    ->where("user !=", "")
             ->get()
             ->result();
     }
@@ -34,6 +35,7 @@ class MetalizeModel extends CI_Model
             ->where("YEAR(tgl_input)", $year)
             ->where("MONTH(tgl_input)", $month)
             ->where("id_mesin", $machine)
+	    ->where("user !=", "")
             ->group_by("status")
             ->get()
             ->result();
@@ -46,6 +48,7 @@ class MetalizeModel extends CI_Model
             ->from($this->table)
             ->where("tgl_input", $date)
             ->where("id_mesin", $machine)
+	    ->where("user !=", "")
             ->group_by("status")
             ->get()
             ->result();
@@ -58,6 +61,7 @@ class MetalizeModel extends CI_Model
             ->from($this->table)
             ->where("YEAR(tgl_input)", $year)
             ->group_by("MONTH(tgl_input)")
+	    ->where("user !=", "")
             ->group_by("status")
             ->get()
             ->result();
@@ -71,6 +75,7 @@ class MetalizeModel extends CI_Model
             ->where("YEAR(tgl_input)", $year)
             ->where("MONTH(tgl_input)", $month)
             ->where("regu", $regu)
+	    ->where("user !=", "")
             ->group_by("status")
             ->get()
             ->result();
@@ -103,6 +108,19 @@ class MetalizeModel extends CI_Model
             ->order_by("user", "asc")
             ->get()
             ->result();
+    }
+
+    public function getSlittingStatus($year, $month)
+    {
+        return $this->db
+                ->select("inputan, status")
+                ->from("input_lap_slitting")
+                ->where("YEAR(tgl)", $year)
+                ->where("MONTH(tgl)", $month)
+                ->where("inputan !=", "")
+                ->where("jenis_roll_slitt", "METALIZZED")
+                ->get()
+                ->result();
     }
 
 }

@@ -159,6 +159,12 @@
                         <td width="10%">
                             <a id="status-<?= $prod->id_met ?>" onclick="changeStatus('<?= $prod->id_met ?>')"><?= $prod->status_met ?></a> | 
                             <a class="link-to" data-to="<?=base_url("admin/productions/metalize/$prod->tgl_input/$prod->id_met/edit")?>">Revisi</a>
+			    <br>
+                            <?php if(array_key_exists($prod->output_kode_roll, $status)) { ?>
+                                <a style="color: white" class="btn btn-xs btn-primary"><?= $status[$prod->output_kode_roll]["OK"]+$status[$prod->output_kode_roll]["NCR"] ?></a>
+                                <a style="color: black" class="btn btn-xs btn-warning"><?= $status[$prod->output_kode_roll]["HOLD"] ?></a>
+                                <a style="color: black" class="btn btn-xs btn-danger"><?= $status[$prod->output_kode_roll]["NOT"] ?></a>
+                            <?php } ?>
                         </td>
                     </tr>
                 <?php

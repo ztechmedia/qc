@@ -136,7 +136,7 @@
 		let thick = $("#thick").val();
 		let type = $("#type").val();
 		let page = 1;
-		const url = encodeURI(`${BASE_URL}admin/productions/metalize/metalize-table?year=${dt[2]}&month=${dt[1]}&tgl_input=${tgl}&limit=${limit}&page=${page}&id_mesin=${machineName}&like:output_kode_roll=${noLot}&output_type_met=${type}&mic_met=${thick}&lebar_met=${width}&panjang_met=${length}`);
+		const url = encodeURI(`${BASE_URL}admin/productions/metalize/metalize-table?year=${dt[2]}&month=${dt[1]}&tgl_input=${tgl}&limit=${limit}&page=${page}&id_mesin=${machineName}&like:output_kode_roll=${noLot}&output_type_met=${type}&mic_met=${thick}&lebar_met=${width}&panjang_met=${length}&not:user=`);
 		setContentLoader(".metalize-table");
 		loadContent(url, ".metalize-table");
 	}
@@ -150,7 +150,7 @@
 		let width = $("#width").val();
 		let thick = $("#thick").val();
 		let type = $("#type").val();
-		const url = encodeURI(`${BASE_URL}admin/productions/metalize/metalize-table?year=${dt[2]}&month=${dt[1]}&tgl_input=${tgl}&limit=${limit}&page=${page}&id_mesin=${machineName}&like:output_kode_roll=${noLot}&output_type_met=${type}&mic_met=${thick}&lebar_met=${width}&panjang_met=${length}`);
+		const url = encodeURI(`${BASE_URL}admin/productions/metalize/metalize-table?year=${dt[2]}&month=${dt[1]}&tgl_input=${tgl}&limit=${limit}&page=${page}&id_mesin=${machineName}&like:output_kode_roll=${noLot}&output_type_met=${type}&mic_met=${thick}&lebar_met=${width}&panjang_met=${length}&not:user=`);
 		setContentLoader(".metalize-table");
 		loadContent(url, ".metalize-table");
 	}

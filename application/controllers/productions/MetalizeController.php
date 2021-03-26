@@ -125,6 +125,25 @@ class MetalizeController extends CI_Controller
                 "id_met" => "desc",
             ]
         );
+
+        $slitting  = $this->Metalize->getSlittingStatus($_GET['year'], $_GET['month']);
+        $status = [];
+        foreach ($slitting as $st) {
+            if(array_key_exists($st->inputan, $status)){
+                $status[$st->inputan][$st->status] += + 1;
+            } else {
+                $status[$st->inputan] = [
+                    "OK" => 0,
+                    "NCR" => 0,
+                    "HOLD" => 0,
+                    "NOT" => 0
+                ];
+                
+                $status[$st->inputan][$st->status] += + 1;
+            }
+        }
+
+        $data['status'] = $status;
         $this->load->view("admin/productions/metalize/metalize-table", $data);
     }
 
