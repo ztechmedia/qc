@@ -32,6 +32,8 @@ class DeliveryController extends CI_Controller
         $deliveries = $this->Delivery->getTotalKirim($year);
         $deliveriesPolos = $this->Delivery->getTotalKirimJenis($year, "POLOSAN");
         $deliveriesMetal = $this->Delivery->getTotalKirimJenis($year, "METALIZZED");
+        $stockPolos = $this->Delivery->getStockMonth($year, $month, "POLOSAN");
+        $stockMetal = $this->Delivery->getStockMonth($year, $month, "METALIZZED");
         $totalMonthPolos = toRp($this->Delivery->getTotalKirimMonth($year, $month, "POLOSAN"));
         $totalMonthMetal = toRp($this->Delivery->getTotalKirimMonth($year, $month, "METALIZZED"));
         $totalMonthListPolos = $this->Delivery->getListKirimMonth($year, $month, "POLOSAN");
@@ -166,8 +168,10 @@ class DeliveryController extends CI_Controller
         $data = [
             "total_kirim" => $total_kirim,
             "total_kirim_polos" => $total_kirim_polos,
+            "total_stock_polos" => $stockPolos,
+            "total_stock_metal" => $stockMetal,
             "total_kirim_metal" => $total_kirim_metal,
-            'total_month' => toRp($total_month),
+            'total_month' => $total_month,
             'total_month_polos' => $totalMonthPolos, 
             'total_month_metal' => $totalMonthMetal, 
             'list_polos' => $totalMonthListPolos,

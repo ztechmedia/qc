@@ -55,6 +55,21 @@ class DeliveryModel extends CI_Model
             ->total_kirim;
     }
 
+    public function getStockMonth($year, $month, $jenis)
+    {
+        return $this->db
+            ->select('SUM((a.lebar_roll_palet / 1000) * a.panjang_roll_palet * 0.91 * (a.tebal_roll_palet / 1000)) AS total_kirim')
+            ->from('input_palet AS a')
+            ->join('type_roll AS b', 'a.type_roll_palet = b.type_roll')
+            ->where('YEAR(a.tgl_inputpalet)', $year)
+            ->where('MONTH(a.tgl_inputpalet)', $month)
+            ->where('a.tgl_kirim', '0000-00-00')
+            ->where('b.jenis_roll', $jenis)
+            ->get()
+            ->row()
+            ->total_kirim;
+    }
+
     public function getListKirimMonth($year, $month, $jenis)
     {
         return $this->db

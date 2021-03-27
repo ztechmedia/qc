@@ -43,6 +43,7 @@
                 <div class="widget-data">
                     <div class="widget-int num-count"><?=$total_month_polos?> Kg</div>
                     <div class="widget-title">POLOSAN <?=mToMonth($month)?></div>
+					<div class="widget-title">STOCK PALET BELUM KIRIM: <br><b style="font-size: 22px"><?= toRp($total_stock_polos)?> Kg</b></div>
                 </div>
             </div>
         </div>
@@ -55,6 +56,7 @@
                 <div class="widget-data">
                     <div class="widget-int num-count"><?=$total_month_metal?> Kg</div>
                     <div class="widget-title">METALIZED <?=mToMonth($month)?></div>
+					<div class="widget-title">STOCK PALET BELUM KIRIM: <br><b style="font-size: 22px"><?= toRp($total_stock_metal)?> Kg</b></div>
                 </div>
             </div>
         </div>
@@ -65,8 +67,9 @@
                     <span class="fa fa-truck"></span>
                 </div>
                 <div class="widget-data">
-                    <div class="widget-int num-count"><?=$total_month?> Kg</div>
-                    <div class="widget-title">Total Pengiriman <?=mToMonth($month)?></div>
+                    <div class="widget-int num-count"><?= toRp($total_month)?> Kg</div>
+                    <div class="widget-title">TOTAL PENGIRIMAN <?=mToMonth($month)?></div>
+					<div class="widget-title">(TOTAL KIRIM + STOCK PALET): <br><b style="font-size: 22px"><?= toRp($total_month + $total_stock_polos + $total_stock_metal)?> Kg</b></div>
                 </div>
             </div>
 		</div>
