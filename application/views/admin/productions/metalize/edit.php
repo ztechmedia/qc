@@ -13,6 +13,9 @@
 
     <div class="content-frame-body content-frame-body-left">
         <div class="row">
+            <div style="margin-bottom: 10px" class="col-md-12">
+                <span>Gunakan menu EDIT hanya jika salah pada CHAMBER CLOSE & OPEN, NO LOT INPUT, PANJANG OUTPUT, JOIN , KETERANGAN</span><br>
+            </div>
             <div class="col-md-12">
                 <form id="validate" role="form" class="form-horizontal action-submit-update"
                     data-action="<?=base_url("admin/productions/metalize/$metalize->id_met/update")?>" 
@@ -86,7 +89,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">Kode Roll Output</label>
                         <div class="col-md-6">
-                            <input name="output_kode_roll" id="output_kode_roll" type="text" class="validate[required] form-control" 
+                            <input style="color:black" readonly type="text" class="form-control" 
                             value="<?= $metalize->output_kode_roll ?>" />
                         </div>
                     </div> 
@@ -94,7 +97,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">Tipe Output</label>
                         <div class="col-md-6">
-                            <input style="color:black" readonly name="output_type_met" id="output_type_met" type="text" class="validate[required] form-control" 
+                            <input style="color:black" readonly type="text" class="form-control" 
                             value="<?= $metalize->output_type_met ?>" />
                         </div>
                     </div> 
@@ -102,7 +105,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">Tebal Output</label>
                         <div class="col-md-6">
-                            <input name="mic_met" id="mic_met" type="text" class="validate[required] form-control" 
+                            <input style="color:black" readonly type="text" class="form-control" 
                             value="<?= $metalize->mic_met ?>" />
                         </div>
                     </div> 
@@ -110,7 +113,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">Lebar Output</label>
                         <div class="col-md-6">
-                            <input name="lebar_met" id="lebar_met" type="text" class="validate[required] form-control" 
+                            <input style="color:black" readonly type="text" class="form-control" 
                             value="<?= $metalize->lebar_met ?>" />
                         </div>
                     </div> 
@@ -126,7 +129,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">Deskripsi</label>
                         <div class="col-md-6">
-                            <input style="color:black" readonly name="desc_type" id="desc_type" type="text" class="validate[required] form-control" 
+                            <input style="color:black" readonly type="text" class="form-control" 
                             value="<?= $metalize->desc_type ?>" />
                         </div>
                     </div> 

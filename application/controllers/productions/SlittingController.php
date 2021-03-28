@@ -464,6 +464,7 @@ class SlittingController extends CI_Controller
             "month" => $date[1],
             "date" => $date[2]
         ];
+        $data['spks'] = $this->Slitting->getSpks();
         $data["slitting"] = $this->BM->getWhere('input_lap_slitting', ['id_slitt' => $id])->row();
         $this->load->view('admin/productions/slitting/edit', $data);
     }
@@ -471,6 +472,17 @@ class SlittingController extends CI_Controller
     public function update($id)
     {
         $post = getPost();
+        $spk = $this->BM->getWhere('spk_slitting', ['id_spk_slitting' => $post['id_spk_slitt']])->row();
+        $post['id_po_slitt'] = $spk->id_po_spk_slitt;
+        $post['no_spk_slitt'] = $spk->no_spk_slitting;
+        $post['slitt_roll'] = $spk->kode_roll;
+
+        $kode_roll = explode(" ", $post['slitt_roll']);
+        $post['type_slitt'] = $kode_roll[0];
+        $post['mic_slitt'] = $kode_roll[1];
+        $post['lebar_slitt'] = $kode_roll[3];
+        $post['panjang_slitt'] = $kode_roll[5];
+
         $post["tgl"] = revDate($post["tgl"]);
         $post["kg_hasil_slitt"] = number_format(($post['lebar_slitt']/1000) * $post['panjang_slitt'] * 0.91 * ($post['mic_slitt']/1000), 2, ".", "");
         $update = $this->BM->update("input_lap_slitting", $id, "id_slitt", $post);

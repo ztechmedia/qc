@@ -1,3 +1,7 @@
+<li class="summary">
+	<a class="side-menu" data-url="<?= base_url("admin/summary/$currentYear") ?>" data-menu=".summary"><span class="fa fa-bar-chart-o"></span> <span class="xn-text">Laporan Produksi</span></a>
+</li>
+
 <li class="xn-openable performance">
 	<a><span class="fa fa-bar-chart-o"></span> <span class="xn-text">Produktifitas</span></a>
 	<ul>

@@ -146,3 +146,5 @@ $route['push_start'] = "CronController/pushStart";
 //@view
 $route['admin/delivery/(:num)/(:num)'] = "DeliveryController/delivery/$1/$2";
 $route['admin/waste/(:num)/(:num)'] = "DeliveryController/waste/$1/$2";
+
+$route['admin/summary/(:num)'] = 'productions/SummaryController/summary/$1';

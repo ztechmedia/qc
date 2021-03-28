@@ -253,4 +253,14 @@ class SlittingModel extends CI_Model
             ->get()
             ->result();
     }
+
+    public function getSpks()
+    {
+        return $this->db
+                ->select("*")
+                ->from("spk_slitting")
+                ->where("status_spk_slitt", 1)
+                ->get()
+                ->result();
+    }
 }

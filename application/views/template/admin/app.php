@@ -50,6 +50,7 @@
     <script type="text/javascript" src="<?= base_url("assets/joli/js/jquery/jquery-ui.min.js") ?>"></script>
     <script type="text/javascript" src="<?= base_url("assets/joli/js/bootstrap/bootstrap.min.js") ?>"></script>
     <script type="text/javascript" src="<?= base_url("assets/joli/js/bootstrap/bootstrap-datepicker.js") ?>"></script>
+    <script type="text/javascript" src="<?= base_url("assets/joli/js/bootstrap/bootstrap-select.js") ?>"></script>
     <script type="text/javascript" src="<?= base_url("assets/joli/js/mcustomscrollbar/jquery.mCustomScrollbar.min.js") ?>"></script>
     <script type="text/javascript" src="<?= base_url("assets/datatables/datatables.min.js")?>"></script>
     <script type="text/javascript" src="<?= base_url("assets/sweetalert/sweetalert.min.js") ?>"></script>

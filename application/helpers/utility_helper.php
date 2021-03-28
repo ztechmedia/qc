@@ -91,7 +91,6 @@ function toDateTime($date)
     return date_format($date, "d/m/Y H:i:s");
 }
 
-
 function max_length($string, $max)
 {
     $stringLength = strlen($string);
@@ -118,7 +117,7 @@ function mToMonth($m)
         "9" => "September",
         "10" => "Oktober",
         "11" => "November",
-        "12" => "Desember"
+        "12" => "Desember",
     ];
 
     return $month[$m];
@@ -180,6 +179,40 @@ function checkAlias($array, $data)
 function toRp($amount)
 {
 
-    $rupiah = number_format($amount, 2, ',' ,'.');
+    $rupiah = number_format($amount, 2, ',', '.');
     return $rupiah;
+}
+
+function totalWeek($year)
+{
+    $dt = new DateTime("December 28th, $year");
+    return $dt->format('W');
+}
+
+function dateByWeek($year, $totalWeek)
+{
+    $dateList = array();
+
+    for ($i = 1; $i <= 3; $i++) {
+        $date = new DateTime();
+        $date->setISODate($year, $i);
+        $dateList[] = getFirstLastDayByWeek($date->format('Y-m-d'), $year, $i);
+    }
+
+    return $dateList;
+}
+
+function getFirstLastDayByWeek($date, $year, $week)
+{
+    $today = new DateTime($date);
+    $dateObject =  (object) [
+        'first_day' => clone $today->setISODate($year, $week, 0),
+        'last_day' => clone $today->setISODate($year, $week, 6),
+    ];
+
+    return [
+        "first_day" => date('Y-m-d', strtotime($dateObject->first_day->format('Y-m-d').' +1 day')),
+        "last_day" => date('Y-m-d', strtotime($dateObject->last_day->format('Y-m-d').' +1 day')),
+        "week" => strval($week)
+    ];
 }
