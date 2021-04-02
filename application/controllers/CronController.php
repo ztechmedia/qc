@@ -44,7 +44,7 @@ class CronController extends CI_Controller
        
     }
 
-    //for client
+    //for server
     public function pushStart()
     {
         $tables = ["input_lap_slitting", "input_met", "input_lap_cpp",  "released_jr"];

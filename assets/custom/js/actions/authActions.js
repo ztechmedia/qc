@@ -32,8 +32,7 @@ $(document.body).on("submit", ".auth-action", function (e) {
         if (response.success) {
           switch (response.type) {
             case "login":
-              localStorage.setItem("menu", ".performance");
-              localStorage.setItem("submenu", ".p-slitting");
+              localStorage.setItem("menu", ".delivery");
               localStorage.setItem("currentUrl", response.currentUrl);
               break;
             case "send-link-forgot":
@@ -41,8 +40,7 @@ $(document.body).on("submit", ".auth-action", function (e) {
               break;
             case "reset-password":
               swal("Sukses", "Password berhasil di reset", "success");
-              localStorage.setItem("menu", ".performance");
-              localStorage.setItem("submenu", ".p-slitting");
+              localStorage.setItem("menu", ".delivery");
               localStorage.setItem("currentUrl", response.currentUrl);
               break;
           }
