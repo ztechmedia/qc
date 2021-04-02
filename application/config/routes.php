@@ -135,12 +135,15 @@ $route['admin/productions/released/(:num)/(:num)/(:num)/edit'] = 'productions/Re
 $route['admin/productions/released/(:num)/update'] = 'productions/ReleasedController/update/$1/$2';
 $route['admin/productions/released/(:num)/delete'] = 'productions/ReleasedController/delete/$1';
 
-//cron route at server
+//cron route at wira.goreklame.com
 $route['last-id/(:any)'] = 'CronController/lastId/$1';
 $route['update-data'] = 'CronController/updateDataServer';
 
-//cron route at client
-$route['push_start'] = "CronController/pushStart";
+//cron route at localhost
+$route['push-start'] = "CronController/pushStart";
+
+//cron route at localhost
+$route['get-data/(:any)/(:any)/(:any)'] = "CronController/getData/$1/$2/$3";
 
 //delivery
 //@view
