@@ -32,12 +32,7 @@
         </div>
 
         <div class="col-md-8">
-            <p>Silakan klik pada week yang diinginkan!</p>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-12">
+         <p>Silakan klik pada week yang diinginkan!</p>
 			<div class="panel-group">
 				<div class="panel panel-primary">
 					<div class="panel-heading ui-draggable-handle">

@@ -1,9 +1,18 @@
 <div class="row">
+    <?php
+        $total_berat_input = $output['polos']['total_berat_input']+$output['met']['total_berat_input']+$output['pm']['total_berat_input'];
+        $total_berat_output = $output['polos']['total_berat_output']+$output['met']['total_berat_output']+$output['pm']['total_berat_output'];
+    ?>
+    <div class="col-md-12">
+        <h6>Total Input: <?= toRp($total_berat_input) ?> Kg</h6>
+        <h6>Total Output: <?= toRp($total_berat_output) ?> Kg</h6>
+        <h6>Selisih: <?= toRp($total_berat_output - $total_berat_input) ?> Kg</h6>
+    </div>
     <div class="col-md-12">
         <table class="table table-bordered">
             <tr>
-                <th colspan="2" style="background: skyblue; color: #fff"> POLOSAN </th>
-                <th colspan="1" style="background: skyblue; color: #fff"> SELISIH </th>
+                <th colspan="2" style="background: #9c2020; color: #fff"> POLOSAN </th>
+                <th colspan="1" style="background: #9c2020; color: #fff"> SELISIH </th>
             </tr>
             <tr>
                 <td>Total Input</td>
@@ -15,8 +24,8 @@
                 <td class="bold"><?= toRp($output['polos']['total_berat_output']) ?> Kg</td>
             </tr>
             <tr>
-                <td colspan="2" class="bold" style="background: skyblue; color: #fff">Detail Output</td>
-                <td style="background: skyblue; color: #fff" class="bold">Berat</td>
+                <td colspan="2" class="bold" style="background: #9c2020; color: #fff">Detail Output</td>
+                <td style="background: #9c2020; color: #fff" class="bold">Berat</td>
             </tr>
             <tr>
                 <td>Roll OK</td>
@@ -37,8 +46,8 @@
 
         <table class="table table-bordered">
             <tr>
-                <th colspan="2" style="background: limegreen; color: #fff"> METALIZED </th>
-                <th colspan="1" style="background: limegreen; color: #fff"> SELISIH </th>
+                <th colspan="2" style="background: #9c2020; color: #fff"> METALIZED </th>
+                <th colspan="1" style="background: #9c2020; color: #fff"> SELISIH </th>
             </tr>
             <tr>
                 <td>Total Input</td>
@@ -50,8 +59,8 @@
                 <td class="bold"><?= toRp($output['met']['total_berat_output']) ?> Kg</td>
             </tr>
             <tr>
-                <td colspan="2" class="bold" style="background: limegreen; color: #fff">Detail Output</td>
-                <td style="background: limegreen; color: #fff" class="bold">Berat</td>
+                <td colspan="2" class="bold" style="background: #9c2020; color: #fff">Detail Output</td>
+                <td style="background: #9c2020; color: #fff" class="bold">Berat</td>
             </tr>
             <tr>
                 <td>Roll OK</td>
@@ -72,8 +81,8 @@
 
         <table class="table table-bordered">
             <tr>
-                <th colspan="2" style="background: orange; color: #fff"> PM </th>
-                <th colspan="1" style="background: orange; color: #fff"> SELISIH </th>
+                <th colspan="2" style="background: #9c2020; color: #fff"> PM </th>
+                <th colspan="1" style="background: #9c2020; color: #fff"> SELISIH </th>
             </tr>
             <tr>
                 <td>Total Input</td>
@@ -85,8 +94,8 @@
                 <td class="bold"><?= toRp($output['pm']['total_berat_output']) ?> Kg</td>
             </tr>
             <tr>
-                <td colspan="2" class="bold" style="background: orange; color: #fff">Detail Output</td>
-                <td style="background: orange; color: #fff" class="bold">Berat</td>
+                <td colspan="2" class="bold" style="background: #9c2020; color: #fff">Detail Output</td>
+                <td style="background: #9c2020; color: #fff" class="bold">Berat</td>
             </tr>
             <tr>
                 <td>Roll OK</td>
