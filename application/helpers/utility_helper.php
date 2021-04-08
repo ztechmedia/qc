@@ -160,10 +160,9 @@ function dayName($number)
 
 function toDay($date)
 {
-    $day = dayname(date("D", strtotime($date)));
     $date = explode("-", $date);
     $month = mToMonth(intval($date[1]));
-    $toDay = $day . ", " . $date[2] . " " . $month . " " . $date[0];
+    $toDay = $date[2] . " " . $month . " " . $date[0];
     return $toDay;
 }
 
@@ -193,7 +192,7 @@ function dateByWeek($year, $totalWeek)
 {
     $dateList = array();
 
-    for ($i = 1; $i <= 3; $i++) {
+    for ($i = 1; $i <= $totalWeek; $i++) {
         $date = new DateTime();
         $date->setISODate($year, $i);
         $dateList[] = getFirstLastDayByWeek($date->format('Y-m-d'), $year, $i);

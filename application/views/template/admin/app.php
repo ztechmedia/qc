@@ -30,13 +30,13 @@
         </div>
         <!-- END PAGE CONTENT -->
     </div>
-    <!-- END PAGE CONTAINER -->
 
+        
     <div class="modal" id="modal_basic" tabindex="-1" role="dialog" aria-labelledby="defModalHead" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <button onclick="$('#modal_basic').hide()" type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                     <h4 class="modal-title" id="defModalHead"></h4>
                 </div>
 
@@ -45,7 +45,8 @@
             </div>
         </div>
     </div>
-
+    
+    <!-- END PAGE CONTAINER -->
     <script type="text/javascript" src="<?= base_url("assets/joli/js/jquery/jquery.min.js") ?>"></script>
     <script type="text/javascript" src="<?= base_url("assets/joli/js/jquery/jquery-ui.min.js") ?>"></script>
     <script type="text/javascript" src="<?= base_url("assets/joli/js/bootstrap/bootstrap.min.js") ?>"></script>
@@ -77,6 +78,17 @@
         setSidebarOnLoad();
         let currentUrl = localStorage.getItem("currentUrl");
         setCurrentNav(currentUrl);
+
+        function modalLoader(id, title, url) {
+            const base_url = '<?= base_url() ?>';
+            $("#modal_basic").show();
+            $(".modal-title").html(title);
+            $(".modal-body").load(url);
+        }
+
+        function capFirst(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
     </script>
 
     <style>

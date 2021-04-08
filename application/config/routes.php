@@ -151,3 +151,4 @@ $route['admin/delivery/(:num)/(:num)'] = "DeliveryController/delivery/$1/$2";
 $route['admin/waste/(:num)/(:num)'] = "DeliveryController/waste/$1/$2";
 
 $route['admin/summary/(:num)'] = 'productions/SummaryController/summary/$1';
+$route['admin/summary/chart/(:any)/(:any)'] = 'productions/SummaryController/chart/$1/$2';

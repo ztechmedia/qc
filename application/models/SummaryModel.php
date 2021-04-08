@@ -3,19 +3,17 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class SummaryModel extends CI_Model
 {
-    public function getProducts($time)
+    public function getTotalSlitt($first, $last)
     {
-        $first = $time['first_day'];
-        $last = $time['last_day'];
         return $this->db
-                ->query(
-                    "SELECT tgl, status, kg_hasil_slitt, jenis_roll_slitt 
-                        FROM input_lap_slitting 
-                        WHERE tgl BETWEEN '$first' AND '$last'
-                        AND nama_mesin NOT IN ('Secondary 1', 'Secondary 2')
-                        AND stock != 'Base Film'
-                        AND status != ''
-                ")
+                ->select('status, jenis_roll_slitt, kg_hasil_slitt, inputan, 
+                    mic_inputan_slitt, lebar_inputan_slitt, panjang_inputan_slitt, stock')
+                ->from("input_lap_slitting")
+                ->where("tgl >=", $first)
+                ->where("tgl <=", $last)
+                ->where_not_in("nama_mesin", ["Secondary 1", "Secondary 2"])
+                ->where("status !=", "")
+                ->get()
                 ->result();
     }
 }
