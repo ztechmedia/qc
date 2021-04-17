@@ -114,6 +114,14 @@
                         </div>
                     </div>
 
+		   <div class="form-group">
+                        <label class="col-md-3 control-label">GL/Operator</label>
+                        <div class="col-md-6">
+                            <input name="user" id="user" type="text" class="validate[required] form-control" 
+                            value="<?= $cpp->user?>" />
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <label class="col-md-3 control-label"></label>
                         <div class="col-md-6">

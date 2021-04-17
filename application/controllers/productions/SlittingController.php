@@ -476,6 +476,7 @@ class SlittingController extends CI_Controller
         $post['id_po_slitt'] = $spk->id_po_spk_slitt;
         $post['no_spk_slitt'] = $spk->no_spk_slitting;
         $post['slitt_roll'] = $spk->kode_roll;
+	$post['customer_lap_slitt'] = $spk->customer_spk_slitt;
 
         $kode_roll = explode(" ", $post['slitt_roll']);
         $post['type_slitt'] = $kode_roll[0];

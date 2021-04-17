@@ -29,11 +29,11 @@
                         data-target=".content">
 
                         <div class="form-group">
-                            <label class="col-md-3 control-label">SPK Slitting <?= $slitting->stock ?></label>
+                            <label class="col-md-3 control-label">SPK Slitting</label>
                             <div class="col-md-8">
                                 <select class="validate[required] form-control select" data-live-search="true" name="id_spk_slitt" id="id_spk_slitt">
-                                    <?php foreach ($spks as $spk) { $selected = $spk->id_spk_slitting == $slitting->id_spk_slitt ? "selected" : null; ?>
-                                            <option <?=$selected?> value="<?= $spk->id_spk_slitting ?>"><?= $spk->id_spk_slitting ?></option>
+                                    <?php foreach ($spks as $spk) { $selected = $spk->id_spk_slitting === $slitting->id_spk_slitt ? "selected" : null; ?>
+                                            <option <?= $selected ?> value="<?= $spk->id_spk_slitting ?>"><?= $spk->id_spk_slitting ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
@@ -196,6 +196,7 @@
 
 
 <script>
+    $("#id_spk_slitt").val('<?= $slitting->id_spk_slitt ?>');
     $("#tgl").datepicker();
     formSelect();
     formValidation(".action-submit-update");

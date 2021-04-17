@@ -30,6 +30,7 @@
 
 			<li class="inout"><a class="side-submenu" data-url="<?= base_url("admin/users/5") ?>" data-menu=".users" data-submenu=".inout"><span class="fa fa-crosshairs"></span> In & Out</a></li>
 			<li class="packing-user"><a class="side-submenu" data-url="<?= base_url("admin/users/6") ?>" data-menu=".users" data-submenu=".packing-user"><span class="fa fa-crosshairs"></span> Packing</a></li>
+			<li class="wm-user"><a class="side-submenu" data-url="<?= base_url("admin/wm-users") ?>" data-menu=".users" data-submenu=".wm-user"><span class="fa fa-crosshairs"></span> WM</a></li>
 		</ul>
 	</li>
 <?php } ?>

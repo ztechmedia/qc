@@ -57,6 +57,14 @@ $route['admin/master/defect-alias/(:num)/delete'] = 'master/MasterController/del
 
 /* users routes */
 //@view
+$route['admin/wm-users'] = 'UsersController/wmUsers';
+$route['admin/wm-users-table'] = 'UsersController/wmUsersTable';
+$route['admin/wm-users/create'] = 'UsersController/wmCreate';
+$route['admin/wm-users/(:num)/edit'] = 'UsersController/wmEdit/$1';
+$route['admin/wm-users/add'] = 'UsersController/wmAdd';
+$route['admin/wm-users/(:num)/update'] = 'UsersController/wmUpdate/$1';
+$route['admin/wm-users/(:num)/delete'] = 'UsersController/wmDelete/$1';
+
 $route['admin/users/(:num)'] = 'UsersController/users/$1';
 $route['admin/users-table/(:num)'] = 'UsersController/usersTable/$1';
 $route['admin/users/create/(:num)'] = 'UsersController/create/$1';

@@ -17,6 +17,98 @@ class UsersController extends CI_Controller
 
     //@desc     show users table
     //@route    GET admin/users
+    public function wmUsers()
+    {
+        $this->load->view('admin/users/wm/wm-users');
+    }
+
+    //@desc     show data users table
+    //@route    GET admin/users/users-table
+    public function wmUsersTable()
+    {
+        $tableOption = [
+            "columns" => ["id", "nama", "username", "level"],
+            "searchable" => ['nama', 'username', "level"],
+            "delete_message" => [
+                'name' => "Yakin ingin menghapus [nama] ?",
+            ],
+            "actions_url" => [
+                "edit" => base_url("admin/wm-users/[id]/edit"),
+                "delete" => base_url('admin/wm-users/[id]/delete')
+            ],
+            "actions" => $this->auth->role_id == 1 ? "admin/actions/edit-delete" : "admin/actions/edit",
+        ];
+
+        $users = $this->datatables->setDatatables(
+            "user_level",
+            $tableOption
+        );
+
+        json($users);
+    }
+
+    
+    //@desc     show users create view
+    //@route    GET admin/users/users/create
+    public function wmCreate()
+    {
+        $levels = $this->db
+                    ->select("level")
+                    ->from("user_level")
+                    ->group_by("level")
+                    ->get()
+                    ->result();
+        $data = [
+            "levels" => $levels
+        ];
+        $this->load->View('admin/users/wm/wm-create', $data);
+    }
+
+    //@desc     users create action
+    //@route    POST admin/users/add
+    public function wmAdd()
+    {
+        $post = getPost();
+        $user = $this->db->insert("user_level", $post);
+        if ($user) {
+            appJson([
+                "message" => "Berhasil menambah data Pengguna WM",
+            ]);
+        }
+    }
+
+        //@desc     show users update view
+    //@route    GET admin/users/:userId/edit
+    public function wmEdit($id)
+    {
+        $user = $this->BM->checkById("user_level", $id);
+        $levels = $this->db
+            ->select("level")
+            ->from("user_level")
+            ->group_by("level")
+            ->get()
+            ->result();
+        $data = [
+            "user" => $user,
+            "levels" => $levels
+        ];
+        $this->load->view('admin/users/wm/wm-edit', $data);
+    }
+
+    //@desc     users update action
+    //@route    POST admin/users/:userId/update
+    public function wmUpdate($id)
+    {
+        $post = getPost();
+        $this->db->where("id", $id);
+        $this->db->update("user_level", $post);
+        appJson([
+            "message" => "Berhasil mengubah data Pengguna WM",
+        ]);
+    }
+
+    //@desc     show users table
+    //@route    GET admin/users
     public function users($roleId)
     {
         $data['role'] = $this->BM->getById($this->rolesTable, $roleId);
@@ -123,5 +215,13 @@ class UsersController extends CI_Controller
             $this->BM->deleteById($this->usersTable, $id);
             appJson($id);
         }
+    }
+
+       //@desc     users delete action
+    //@route    GET admin/users/:userId/delete
+    public function wmDelete($id)
+    {
+        $this->BM->deleteById("user_level", $id);
+        appJson($id);   
     }
 }
